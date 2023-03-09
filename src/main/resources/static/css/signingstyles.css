@@ -1,0 +1,40 @@
+body{
+    background-color : #c2b4b4;
+}
+
+#divsignup {
+    display: none
+}
+
+div{
+    background-color: #8a5d5d;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    padding: 5% 10%;
+    border: #943535 5px solid;
+    border-radius: 20px;
+
+}
+
+div > *{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+
+}
+#btreg{
+    position: absolute;
+    left:41.7%;
+}
+#btis{
+    position:absolute;
+    left:40%;
+}
+img {
+    position:absolute;
+    left:50%;
+    transform:translate(-50%,50%);
+}
