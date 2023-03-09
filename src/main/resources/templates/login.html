@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link type="text/css" rel="stylesheet" href="signingstyles.css"/>
+    <script src="signingscript.js"></script>
+</head>
+<body>
+    <div id="divlogin" class="signform">
+        <h1><strong>Iniciar sesion</strong></h1>
+        <form action="log" method="post">
+            <p>Usuario: </p>
+            <input type='text' name='user' required/>
+            <br>
+            <p>Contraseña: </p>
+            <input type='password' name='pass' required/>
+            <br>
+            <br>
+            <input type='submit' value='Iniciar sesion'/>
+        </form>
+        <br>
+        <button onclick="changetosignup()">Registrarse</button>
+    </div>
+    <div id="divsignup" class="signform">
+        <h1><strong>Registrarse</strong></h1>
+        <form action="sign" method="post">
+            <p>Nombre: </p>
+            <input type='text' name='user' required/>
+            <br>
+            <p>Contraseña: </p>
+            <input type='password' name='pass' required/>
+            <br>
+            <br>
+            <input type='submit' value='Registrarse'/>
+        </form>
+        <br>
+        <button onclick="changetologin()">Iniciar sesion</button>
+    </div>
+</body>
+</html>
