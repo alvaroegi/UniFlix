@@ -14,7 +14,6 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Controller
 public class UserController {
-
     @Autowired
     UserServiceController usersService;
 
@@ -32,29 +31,20 @@ public class UserController {
         }
         else {
             model.addAttribute("user", u);
-            return "sucess";
+            return "success";
         }
     }
 
-    /*@PostMapping("/sign")
+    @PostMapping("/sign")
     public String sign(Model model, @RequestParam String user, @RequestParam String pass) {
-        long i = 1;
-        if(!usuarios.isEmpty()) {
-            while(i <= lastId.longValue() && !usuarios.get(i).getName().equals(user)){
-                i++;
-            }
-        }
-
-        if(i <= usuarios.size() && (usuarios.get(i).getName().equals(user))){
+        boolean registered = usersService.signService(user, pass);
+        if(!registered) {
             model.addAttribute("exists", true);
-        } else {
-            User u = new User(user, pass);
+        }
+        else {
             model.addAttribute("correct", true);
-            long id = lastId.incrementAndGet();
-            u.setId(id);
-            usuarios.put(id, u);
         }
         return "login";
-    }*/
+    }
 
 }

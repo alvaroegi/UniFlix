@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
@@ -31,11 +32,6 @@ public class UserServiceController {
         alex.setId(idAl);
         usuarios.put(idAl, alex);
     }
-
-    @GetMapping("/login")
-    public String change1() {
-        return "login";
-    }
     public User logService(String user, String pass) {
         long i = 1;
         if(!usuarios.isEmpty()) {
@@ -48,29 +44,48 @@ public class UserServiceController {
         } else {
             User u = new User(user, pass);
             u.setId(usuarios.get(i).getId());
-            return new User(user, pass);
+            return u;
         }
     }
 
-    @PostMapping("/sign")
-    public String sign(Model model, @RequestParam String user, @RequestParam String pass) {
+    public boolean signService(String user, String pass) {
         long i = 1;
         if(!usuarios.isEmpty()) {
             while(i <= lastId.longValue() && !usuarios.get(i).getName().equals(user)){
                 i++;
             }
         }
-
         if(i <= usuarios.size() && (usuarios.get(i).getName().equals(user))){
-            model.addAttribute("exists", true);
+            return false;
         } else {
             User u = new User(user, pass);
-            model.addAttribute("correct", true);
             long id = lastId.incrementAndGet();
             u.setId(id);
             usuarios.put(id, u);
+            return true;
         }
-        return "login";
+    }
+
+    public User getUser(long id) {
+        return usuarios.get(id);
+    }
+
+    public void addUser(User u) {
+        long id = lastId.incrementAndGet();
+        u.setId(id);
+        usuarios.put(id, u);
+    }
+
+    public User deleteUser(long id) {
+        return usuarios.remove(id);
+    }
+
+    public void updateUser(long id, User u) {
+        usuarios.put(id, u);
+    }
+
+    public Collection<User> getAllUsers() {
+        return usuarios.values();
     }
 
 }
