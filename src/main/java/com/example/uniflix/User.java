@@ -1,11 +1,11 @@
 package com.example.uniflix;
 
-public class Usuario {
+public class User {
     private String name;
     private String pass;
     private long id = -1;
 
-    public Usuario(String name, String pass){
+    public User(String name, String pass){
         this.name = name;
         this.pass = pass;
     }

@@ -9,7 +9,6 @@ public class UniFlixApplication {
     public static void main(String[] args) {
 
         SpringApplication.run(UniFlixApplication.class, args);
-        SigningController sg = new SigningController();
     }
 
 }
