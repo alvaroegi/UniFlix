@@ -35,11 +35,11 @@ public class UserServiceController {
     public User logService(String user, String pass) {
         long i = 1;
         if(!usuarios.isEmpty()) {
-            while(i <= lastId.longValue() && !usuarios.get(i).getName().equals(user)){
+            while(i <= lastId.longValue() && (usuarios.get(i)==null || !usuarios.get(i).getName().equals(user))){
                 i++;
             }
         }
-        if (i > lastId.longValue() || !usuarios.get(i).getPass().equals(pass)) {
+        if (i > lastId.longValue() || (usuarios.get(i)!=null && !usuarios.get(i).getPass().equals(pass))) {
             return null;
         } else {
             User u = new User(user, pass);
@@ -51,11 +51,11 @@ public class UserServiceController {
     public boolean signService(String user, String pass) {
         long i = 1;
         if(!usuarios.isEmpty()) {
-            while(i <= lastId.longValue() && !usuarios.get(i).getName().equals(user)){
+            while(i <= lastId.longValue() && (usuarios.get(i)==null || !usuarios.get(i).getName().equals(user))){
                 i++;
             }
         }
-        if(i <= usuarios.size() && (usuarios.get(i).getName().equals(user))){
+        if(i <= usuarios.size()){
             return false;
         } else {
             User u = new User(user, pass);
