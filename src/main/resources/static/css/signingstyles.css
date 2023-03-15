@@ -6,35 +6,30 @@ body{
     display: none
 }
 
-div{
-    background-color: #8a5d5d;
-    position:absolute;
+.signform{
+    position: absolute;
     top:50%;
     left:50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%,-40%);
+    background-color: #8a5d5d;
+    justify-content: center;
     padding: 4% 10%;
     border: #943535 5px solid;
     border-radius: 20px;
 
 }
 
-div > *{
-    display: flex;
-    flex-direction:column;
-    align-items: center;
-    justify-content: center;
-
-}
 #btreg{
     position: absolute;
-    left:41.7%;
+    left:50%;
+    transform: translate(-50%,0);
 }
 #btis{
     position:absolute;
     left:40%;
 }
-img {
-    position:absolute;
-    left:50%;
-    transform:translate(-50%,50%);
+
+#logoUniflix{
+    display:flex;
+    justify-content: center;
 }
