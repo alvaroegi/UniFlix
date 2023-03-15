@@ -16,23 +16,34 @@ kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="a
     <link type="text/css" rel="stylesheet" href="/static/css/index.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top rounded m-3">
-    <div class="container">
-        <img style="width:10%;" onclick="window.location.href = '/'" src="/images/logo.png"/>
-        <!<a class="navbar-brand fs-4" href="/"><!EgidoTV</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link text-danger m-3" href="/login">Iniciar sesion</a></li>
-                <form class="nav-item">
-                    <div class="col p-3">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Busca tus pelis y series" aria-label="Search">
-                    </div>
-                </form>
-            </ul>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top rounded m-3">
+        <div class="container">
+            <img style="width:10%;" onclick="window.location.href = '/'" src="/images/logo.png"/>
+            <!<a class="navbar-brand fs-4" href="/"><!EgidoTV</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link text-danger m-3" href="/login">Iniciar sesion</a></li>
+                    <form class="nav-item">
+                        <div class="col p-3">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Busca tus pelis y series" aria-label="Search">
+                        </div>
+                    </form>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+    <div id="relleno"></div>
 
+    <div id="top10">
+        <p>Series del momento</p>
+        <div class="carrusel">
+            <img class="caratula" onclick="window.location.href='/peli/MAND'" src="/images/mandalorian.jpg"/>
+            <img class="caratula" onclick="window.location.href='/peli/TLOU'" src="/images/thelastofus.jpg"/>
+            <img class="caratula" onclick="window.location.href='/peli/YOU'" src="/images/you.jpg"/>
+
+        </div>
+
+    </div>
 </body>
 </html>
