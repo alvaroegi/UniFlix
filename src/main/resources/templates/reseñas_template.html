@@ -7,5 +7,25 @@
 </head>
 <body>
     <h1>RESEÑA DE {{peli}}</h1>
+    <button> Añadir Reseña </button>
+    <form class="form-group" action="newReview" method="post">
+        <p>Usuario: </p>
+        <input class="form-control" type='text' name='user' required/>
+        <br>
+        <label for="select"> Puntuacion</label>
+        <select id="select" name="score" required>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+        <br>
+        <p>Comentario: </p>
+        <input class="form-control" type='text' name='comment' required/>
+        <br>
+        <br>
+        <input class="btn btn-danger" type='submit' value='Añadir Reseña'/>
+    </form>
 </body>
 </html>

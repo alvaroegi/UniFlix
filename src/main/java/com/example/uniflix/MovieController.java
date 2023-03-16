@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
-public class ReviewingController {
+public class MovieController {
     @GetMapping("/peli/{name}")
     public String reseñas(Model model, @PathVariable String name){
         model.addAttribute("peli",name);
