@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Uniflix</title>
+</head>
+<body>
+    {{#added}}
+        <p>Pelicula añadida con éxito</p>
+    {{/added}}
+    {{#notAdded}}
+        <p>Esta película ya existe</p>
+    {{/notAdded}}                                          <!--para subir imagenes-->
+    <form class="form-group" action="result" method="post" enctype="multipart/form-data">
+        <p>Nombre: </p>
+        <input class="form-control" type='text' name='name' required/>
+        <br>
+        <p>Director: </p>
+        <input class="form-control" type='text' name='director' required/>
+        <br>
+        <p>Año: </p>
+        <input class="form-control" type='text' name='year' required/>
+        <br>
+        <p>Imagen: </p>
+        <input class="form-control" type='file' name='image' required/>
+        <br>
+        <br>
+        <input class="btn btn-danger" type='submit' value='Añadir película'/>
+    </form>
+    <button onclick="window.location.href='/'">Volver</button>
+</body>
+</html>

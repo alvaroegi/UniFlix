@@ -1,21 +1,17 @@
 package com.example.uniflix;
-import com.example.uniflix.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicLong;
-
 @Controller
 public class UserController {
     @Autowired
     UserServiceController usersService;
+
+    static User actual;
 
     @GetMapping("/login")
     public String change1() {
