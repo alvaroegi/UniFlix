@@ -3,15 +3,14 @@ package com.example.uniflix.Entities;
 import java.util.ArrayList;
 
 public class User {
-    private String name;
+    private String name; //Primary Key
     private String pass;
+    private String age;
     private long id = -1;
-    private ArrayList<Long> opinions;
 
     public User(String name, String pass){
         this.name = name;
         this.pass = pass;
-        opinions = new ArrayList<>();
     }
 
     public String getName(){
@@ -23,19 +22,15 @@ public class User {
     public long getId(){
         return id;
     }
+
     public void setPass(String pass){
         this.pass = pass;
     }
-    public void setName(String name){
-        this.name = name;
-    }
+    public void setAge(String year) { this.age = year;}
     public void setId(long id){
         this.id = id;
     }
 
-    public void addOpinion(long id) {
-        opinions.add(id);
-    }
 
 
 }
