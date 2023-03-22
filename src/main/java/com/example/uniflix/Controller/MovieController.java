@@ -1,5 +1,7 @@
-package com.example.uniflix;
+package com.example.uniflix.Controller;
 
+import com.example.uniflix.Entities.Movie;
+import com.example.uniflix.ServiceControllers.MovieServiceController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,11 +27,11 @@ public class MovieController {
     }
     @GetMapping("/movie")
     public String changeToMovie() { return "create_movie"; }
-    @GetMapping("/")
+    /*@GetMapping("/")
     public String back(Model model) {
         model.addAttribute("movies", moviesService.getMovies());
-        return "index";
-    }
+        return "main";
+    }*/
     @PostMapping("/result")                                                                                                /*para las imagenes-----------------------*/
     public String checkMovie(Model model, @RequestParam String name, @RequestParam String director, @RequestParam int year, @RequestParam/*("file")*/ MultipartFile image) {
         if(moviesService.addMovie(new Movie(name, director, year, image.getOriginalFilename()))!=null) {

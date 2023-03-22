@@ -1,5 +1,6 @@
-package com.example.uniflix;
+package com.example.uniflix.ServiceControllers;
 
+import com.example.uniflix.Entities.Movie;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

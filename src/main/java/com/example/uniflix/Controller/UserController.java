@@ -1,4 +1,6 @@
-package com.example.uniflix;
+package com.example.uniflix.Controller;
+import com.example.uniflix.Entities.User;
+import com.example.uniflix.ServiceControllers.UserServiceController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +29,7 @@ public class UserController {
         }
         else {
             model.addAttribute("user", u);
-            return "success";
+            return "index";
         }
     }
 

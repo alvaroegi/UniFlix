@@ -1,5 +1,7 @@
-package com.example.uniflix;
+package com.example.uniflix.RestController;
 
+import com.example.uniflix.Entities.User;
+import com.example.uniflix.ServiceControllers.UserServiceController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

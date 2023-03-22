@@ -1,4 +1,4 @@
-package com.example.uniflix;
+package com.example.uniflix.Entities;
 
 import java.util.ArrayList;
 

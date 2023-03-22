@@ -1,4 +1,4 @@
-package com.example.uniflix;
+package com.example.uniflix.RestController;
 
 import org.springframework.web.bind.annotation.RestController;
 
