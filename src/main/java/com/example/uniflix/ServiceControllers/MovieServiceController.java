@@ -4,6 +4,7 @@ import com.example.uniflix.Entities.Movie;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
@@ -15,8 +16,12 @@ public class MovieServiceController {
 
     //inicializar peliculas iniciales
 
-    public ArrayList<Movie> getMovies() {
-        ArrayList<Movie> m = new ArrayList<>();
+    public Movie getMovie(long id) {
+        return movies.get(id);
+    }
+
+    public LinkedList<Movie> getMovies() {
+        LinkedList<Movie> m = new LinkedList<>();
         for(long i=1; i<=movies.size(); i++) {
             m.add(movies.get(i));
         }

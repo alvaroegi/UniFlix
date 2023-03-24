@@ -20,10 +20,14 @@ import java.nio.file.Paths;
 public class MovieController {
     @Autowired
     MovieServiceController moviesService;
-    @GetMapping("/peli/{name}")
-    public String reseñas(Model model, @PathVariable String name){
-        model.addAttribute("peli",name);
-        return "reseñas_template";
+    @Autowired
+    ReviewServiceController reviewService;
+
+    @PostConstruct
+    public void init(){
+        moviesService.addMovie(new Movie("You","Greg Berlanti",2018,"/images/you.jpg"));
+        moviesService.addMovie(new Movie("The Mandalorian","Jon Favreau",2019,"/images/mandalorian.jpg"));
+        moviesService.addMovie(new Movie("The Last of Us","Craig Mazin",2023,"/images/thelastofus.jpg"));
     }
     @GetMapping("/movie")
     public String changeToMovie() { return "create_movie"; }

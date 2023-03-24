@@ -3,7 +3,7 @@ package com.example.uniflix.Entities;
 import java.util.ArrayList;
 
 public class Movie {
-    private String name;
+    private String name; //Unique Key
     private String director;
     private float score;
     private int year;
