@@ -2,6 +2,7 @@ package com.example.uniflix.Controller;
 
 import com.example.uniflix.Entities.Movie;
 import com.example.uniflix.ServiceControllers.MovieServiceController;
+import com.example.uniflix.ServiceControllers.ReviewServiceController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +29,15 @@ public class MovieController {
         moviesService.addMovie(new Movie("You","Greg Berlanti",2018,"/images/you.jpg"));
         moviesService.addMovie(new Movie("The Mandalorian","Jon Favreau",2019,"/images/mandalorian.jpg"));
         moviesService.addMovie(new Movie("The Last of Us","Craig Mazin",2023,"/images/thelastofus.jpg"));
+    }
+
+    @GetMapping("/peli/{name}")
+    public String reseñas(Model model, @PathVariable String name){
+        Movie m = moviesService.getMovie(moviesService.containsMovie(name));
+        model.addAttribute("movie", m);
+        if(!reviewService.getReviewsOfMovie(name).isEmpty())
+            model.addAttribute("reviewList", reviewService.getReviewsOfMovie(name));
+        return "info_movie";
     }
     @GetMapping("/movie")
     public String changeToMovie() { return "create_movie"; }

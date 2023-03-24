@@ -3,11 +3,11 @@ package com.example.uniflix.Entities;
 public class Review {
     private String user;
     private String comment;
-    private String movie;
+    private Movie movie;
     private int score;
     private long id = -1;
 
-    public Review(String user, String comment,String movie, int score){
+    public Review(String user, String comment,Movie movie, int score){
         this.user = user;
         this.comment = comment;
         this.movie = movie;
@@ -17,7 +17,7 @@ public class Review {
     public String getUser(){
         return user;
     }
-    public String getMovie(){
+    public Movie getMovie(){
         return movie;
     }
     public String getComment(){
@@ -36,7 +36,7 @@ public class Review {
     public void setComment(String comment){
         this.comment = comment;
     }
-    public void setMovie(String movie){
+    public void setMovie(Movie movie){
         this.movie = movie;
     }
     public void setId(long id){

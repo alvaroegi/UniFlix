@@ -37,7 +37,7 @@ kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="a
                             Reseñas
                         </a>
                         <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton2">
-                            <a class="dropdown-item text-danger" href="/movie">Añadir</a>
+                            <a class="dropdown-item text-danger" href="/create">Añadir</a>
                             <a class="dropdown-item text-danger" href="#">Modificar</a>
                             <a class="dropdown-item text-danger" href="#">Eliminar</a>
                         </div>
@@ -67,12 +67,12 @@ kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="a
         <p>Series del momento</p>
         <div class="carrusel">
                                                                   <!--id pelicula -->
-            <img class="caratula" onclick="window.location.href='/peli/MAND'" src="/images/mandalorian.jpg"/>
-            <img class="caratula" onclick="window.location.href='/peli/TLOU'" src="/images/thelastofus.jpg"/>
-            <img class="caratula" onclick="window.location.href='/peli/YOU'" src="/images/you.jpg"/>
+            <img class="caratula" onclick="window.location.href='/peli/themandalorian'" src="/images/mandalorian.jpg"/>
+            <img class="caratula" onclick="window.location.href='/peli/thelastofus'" src="/images/thelastofus.jpg"/>
+            <img class="caratula" onclick="window.location.href='/peli/you'" src="/images/you.jpg"/>
         </div>
         {{#movies}}
-            <img class="caratula" onclick="window.location.href='/peli/MAND'" src="/images/{{image}}"/></img>
+            <img class="caratula" onclick="window.location.href='/peli/{{name}}'" src="/images/{{image}}"/></img>
         {{/movies}}
 
     </div>

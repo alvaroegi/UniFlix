@@ -29,7 +29,7 @@ public class MovieServiceController {
     }
     public long containsMovie(String name) {
         long i = 1;
-        while(i<=lastId.longValue() && (movies.get(i)==null || !movies.get(i).getName().equals(name))) {
+        while(i<=lastId.longValue() && (movies.get(i)==null || !movies.get(i).getName().toLowerCase().equals(name.toLowerCase()))) {
             i++;
         }
         if(i<=movies.size())

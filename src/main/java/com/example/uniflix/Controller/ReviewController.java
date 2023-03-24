@@ -7,16 +7,30 @@ import com.example.uniflix.ServiceControllers.ReviewServiceController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.LinkedList;
 
 @Controller
 public class ReviewController {
     @Autowired
     ReviewServiceController reviewService;
+    @Autowired
+    MovieServiceController moviesService;
 
     @PostMapping("/newReview")
-    public  void newReview(Model model, @RequestParam String user, @RequestParam String comment, @RequestParam int score, @RequestParam String peli) {
-
+    public String newReview(Model model, @RequestParam String user, @RequestParam String comment, @RequestParam int score, @RequestParam String movie) {
+        Review r = new Review(user, comment, moviesService.getMovie(moviesService.containsMovie(movie)),  score);
+        reviewService.addReview(r);
+        return "index";
     }
+
+    @GetMapping("/create")
+    public String review(Model model) {
+        model.addAttribute("movies", moviesService.getMovies());
+        return "reseñas_template";
+    }
+
 }
