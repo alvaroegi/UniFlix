@@ -2,11 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pelicula</title>
+    <title>{{name}}</title>
+    <link type="text/css" rel="stylesheet" href="/css/info_movie.css">
 </head>
 <body>
-  {{#reviewList}}
-  <div>{{commente}}</div>
-  {{/reviewList}}
+    <div>
+        <h1>{{name}}</h1>
+        <p>Director: {{movie.director}}</p>
+        <p>Puntuación: {{movie.score}}</p>
+        <p>Año: {{movie.year}}</p>
+        <img class="caratula" src="/Peliculas/{{movie.image}}"/>
+    </div>
+    {{#reviewList}}
+    <div>{{comment}}</div>
+    {{/reviewList}}
 </body>
 </html>
