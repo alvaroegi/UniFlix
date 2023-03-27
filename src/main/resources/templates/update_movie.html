@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modificar</title>
+    <script src="/js/updateMoviejs.js"></script>
+    <link type="text/css" rel="stylesheet" href="/css/updatemovies.css">
+</head>
+<body>
+    <div id="modify">
+        <form class="form-group" action="movie/modify_nondelete" method="post">
+            <label for="select2"> Pelicula</label>
+            <select id="select2" name="movie" required>
+              {{#movies}}
+              <option>{{name}}</option>
+              {{/movies}}
+            </select>
+            <div id="formUpdate">
+                <p>Director: </p>
+                <input class="form-control" type='text' name='director'/>
+                <br>
+                <p>Año: </p>
+                <input class="form-control" type='text' name='year'/>
+                <br>
+                <p>Imagen: </p>
+                <input class="form-control" type='file' name='image'/>
+                <br>
+                <br>
+                <input class="btn btn-danger" type='submit' value='Modificar película'/>
+            </div>
+        </form>
+        <button onclick="borrar()">Ir a borrar</button>
+    </div>
+    <div id="delete">
+        <form class="form-group" action="movie/modify_delete" method="post">
+            <label for="select2"> Pelicula</label>
+            <select name="movie" required>
+                {{#movies}}
+                <option>{{name}}</option>
+                {{/movies}}
+            </select>
+            <br>
+            <input class="btn btn-danger" type='submit' value='Borrar película'/>
+        </form>
+        <button onclick="modify2()">Ir a modificar</button>
+    </div>
+
+</body>
+</html>
