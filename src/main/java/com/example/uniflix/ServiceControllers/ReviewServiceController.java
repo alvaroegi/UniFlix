@@ -34,4 +34,14 @@ public class ReviewServiceController {
         }
         return reviewList;
     }
+
+    public void deleteReviewsofMovie(long id) {
+        for(Map.Entry entry: reviews.entrySet()) {
+            Review r = (Review)entry.getValue();
+            long aux = r.getMovie();
+            if(id==aux) {
+                reviews.remove(r.getId());
+            }
+        }
+    }
 }

@@ -1,6 +1,8 @@
 package com.example.uniflix.ServiceControllers;
 
 import com.example.uniflix.Entities.Movie;
+import com.example.uniflix.Entities.Review;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,6 +15,9 @@ import java.util.concurrent.atomic.AtomicLong;
 public class MovieServiceController {
     private Map<Long, Movie> movies = new ConcurrentHashMap<>();
     private AtomicLong lastId = new AtomicLong();
+
+    @Autowired
+    ReviewServiceController reviewService;
 
     //inicializar peliculas iniciales
 
@@ -46,6 +51,20 @@ public class MovieServiceController {
             movies.put(id, m);
             return m;
         }
+    }
+
+    public void deleteMovie(Movie m){
+        movies.remove(m.getId());
+        reviewService.deleteReviewsofMovie(m.getId());
+    }
+
+    public void deleteWithoutCascade(long id,String director, int year){
+        Movie aux = new Movie(movies.get(id));
+        movies.remove(id);
+        aux.setDirector(director);
+        aux.setYear(year);
+        aux.setId(id);
+        movies.put(id,aux);
     }
 
 }
