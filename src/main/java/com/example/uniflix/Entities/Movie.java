@@ -10,7 +10,6 @@ public class Movie {
     private String image;
     private long id = -1; //Primary Key
 
-    private ArrayList<Review> reviews;
     //private ArrayList<Category> categorys;
 
     public Movie(String name, String director, int year, String image){
@@ -18,9 +17,16 @@ public class Movie {
         this.director = director;
         this.year = year;
         this.score = 0;
-        this.reviews = new ArrayList<>();
         this.image = image;
         //this.categorys = new ArrayList<>();
+    }
+
+    public Movie(Movie aux){
+        this.name = aux.getName();
+        this.director = aux.getDirector();
+        this.year = aux.getYear();
+        this.score = 0;
+        this.image = aux.getImage();
     }
 
     public String getName(){
@@ -39,8 +45,7 @@ public class Movie {
         return id;
     }
     public String getImage() { return image; }
-    public ArrayList<Review> getReviews() { return reviews; }
-    //public ArrayList<Category> getReviews() { return categorys; }
+
 
     public void setName(String name){
         this.name = name;
@@ -59,12 +64,4 @@ public class Movie {
     }
 
     public void setImage(String image) { this.image = image; }
-    public void addReview(Review newReview) {
-        this.reviews.add(newReview);
-        this.score = 0;
-        for(int i=0; i<this.reviews.size(); i++) {
-            this.score+=this.reviews.get(i).getScore();
-        }
-        this.score = this.score/this.reviews.size();
-    }
 }

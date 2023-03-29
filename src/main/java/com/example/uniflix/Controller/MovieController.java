@@ -42,8 +42,8 @@ public class MovieController {
     public String reseñas(Model model, @PathVariable String name){
         Movie m = moviesService.getMovie(moviesService.containsMovie(name));
         model.addAttribute("movie", m);
-        if(!reviewService.getReviewsOfMovie(name).isEmpty())
-            model.addAttribute("reviewList", reviewService.getReviewsOfMovie(name));
+        if(!reviewService.getReviewsOfMovie(moviesService.containsMovie(name)).isEmpty())
+            model.addAttribute("reviewList", reviewService.getReviewsOfMovie(moviesService.containsMovie(name)));
         return "info_movie";
     }
     @GetMapping("/movie")
@@ -74,18 +74,28 @@ public class MovieController {
         return "create_movie";
     }
 
-    @GetMapping("/movie/modify")
+    @GetMapping("/modify")
     public String update(Model model) {
         model.addAttribute("movies", moviesService.getMovies());
         return "update_movie";
     }
-    @PostMapping("/movie/modify_delete")
-    public String update_delete(Model model) {
+    @PostMapping("/modify_delete")
+    public String update_delete(Model model, @RequestParam String movie) {
+        Movie m = moviesService.getMovie(moviesService.containsMovie(movie));
+        moviesService.deleteMovie(m);
+        model.addAttribute("modified", true);
+        model.addAttribute("movies", moviesService.getMovies());
         return "update_movie";
     }
 
-    @PostMapping("/movie/modify_nondelete")
-    public String update_nondelete(Model model) {
+    @PostMapping("/modify_nondelete")
+    public String update_nondelete(Model model, @RequestParam String movie, @RequestParam String director, @RequestParam int year) {
+        long id = moviesService.containsMovie(movie);
+        if(id!=-1) {
+            moviesService.deleteWithoutCascade(id, director, year);
+        }
+        model.addAttribute("modified", true);
+        model.addAttribute("movies", moviesService.getMovies());
         return "update_movie";
     }
 

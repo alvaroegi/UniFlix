@@ -22,16 +22,25 @@ public class ReviewServiceController {
         return newReview;
     }
 
-    public ArrayList<Review> getReviewsOfMovie(String movie) {
+    public ArrayList<Review> getReviewsOfMovie(long idMovie) {
         ArrayList<Review> reviewList = new ArrayList<>();
         for(Map.Entry entry: reviews.entrySet()) {
             Review r = (Review)entry.getValue();
-            movie = movie.toLowerCase();
-            String aux = r.getMovie().getName().toLowerCase();
-            if(aux.equals(movie)) {
+            long aux = r.getMovie();
+            if(idMovie==aux) {
                 reviewList.add(r);
             }
         }
         return reviewList;
+    }
+
+    public void deleteReviewsofMovie(long id) {
+        for(Map.Entry entry: reviews.entrySet()) {
+            Review r = (Review)entry.getValue();
+            long aux = r.getMovie();
+            if(id==aux) {
+                reviews.remove(r.getId());
+            }
+        }
     }
 }

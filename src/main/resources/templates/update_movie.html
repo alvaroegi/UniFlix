@@ -7,8 +7,11 @@
     <link type="text/css" rel="stylesheet" href="/css/updatemovies.css">
 </head>
 <body>
+    {{#modified}}
+        <p>Pelicula modificada con éxito</p>
+    {{/modified}}
     <div id="modify">
-        <form class="form-group" action="movie/modify_nondelete" method="post">
+        <form class="form-group" action="modify_nondelete" method="post">
             <label for="select2"> Pelicula</label>
             <select id="select2" name="movie" required>
               {{#movies}}
@@ -17,13 +20,10 @@
             </select>
             <div id="formUpdate">
                 <p>Director: </p>
-                <input class="form-control" type='text' name='director'/>
+                <input class="form-control" type='text' name='director' required/>
                 <br>
                 <p>Año: </p>
-                <input class="form-control" type='text' name='year'/>
-                <br>
-                <p>Imagen: </p>
-                <input class="form-control" type='file' name='image'/>
+                <input class="form-control" type='text' name='year' required/>
                 <br>
                 <br>
                 <input class="btn btn-danger" type='submit' value='Modificar película'/>
@@ -32,7 +32,7 @@
         <button onclick="borrar()">Ir a borrar</button>
     </div>
     <div id="delete">
-        <form class="form-group" action="movie/modify_delete" method="post">
+        <form class="form-group" action="modify_delete" method="post">
             <label for="select2"> Pelicula</label>
             <select name="movie" required>
                 {{#movies}}
@@ -44,6 +44,7 @@
         </form>
         <button onclick="modify2()">Ir a modificar</button>
     </div>
+    <button onclick="window.location.href='/'">Volver</button>
 
 </body>
 </html>

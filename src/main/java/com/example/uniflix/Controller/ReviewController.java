@@ -22,7 +22,7 @@ public class ReviewController {
 
     @PostMapping("/newReview")
     public String newReview(Model model, @RequestParam String user, @RequestParam String comment, @RequestParam int score, @RequestParam String movie) {
-        Review r = new Review(user, comment, moviesService.getMovie(moviesService.containsMovie(movie)),  score);
+        Review r = new Review(user, comment, moviesService.containsMovie(movie), score);
         reviewService.addReview(r);
         return "reseñas_template";
     }
