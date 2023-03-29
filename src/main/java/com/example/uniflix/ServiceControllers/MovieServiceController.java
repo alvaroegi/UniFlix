@@ -26,19 +26,23 @@ public class MovieServiceController {
     }
 
     public LinkedList<Movie> getMovies() {
-        LinkedList<Movie> m = new LinkedList<>();
-        for(long i=1; i<=movies.size(); i++) {
-            m.add(movies.get(i));
+        LinkedList<Movie> movieList = new LinkedList<>();
+        for(Map.Entry entry: movies.entrySet()) {
+            Movie m = (Movie)entry.getValue();
+                movieList.add(m);
         }
-        return m;
+        return movieList;
     }
     public long containsMovie(String name) {
-        long i = 1;
-        while(i<=lastId.longValue() && (movies.get(i)==null || !movies.get(i).getName().toLowerCase().replace(" ", "").equals(name.toLowerCase().replace(" ", "")))) {
-            i++;
+        long sol = 0;
+        for(Map.Entry entry: movies.entrySet()) {
+            Movie m = (Movie)entry.getValue();
+            if(m.getName().toLowerCase().replace(" ", "").equals(name.toLowerCase().replace(" ", ""))) {
+                sol = (long)entry.getKey();
+            }
         }
-        if(i<=movies.size())
-            return i;
+        if(sol!=0)
+            return sol;
         else
             return -1;
     }

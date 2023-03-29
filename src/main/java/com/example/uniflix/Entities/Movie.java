@@ -59,12 +59,4 @@ public class Movie {
     }
 
     public void setImage(String image) { this.image = image; }
-    public void addReview(Review newReview) {
-        this.reviews.add(newReview);
-        this.score = 0;
-        for(int i=0; i<this.reviews.size(); i++) {
-            this.score+=this.reviews.get(i).getScore();
-        }
-        this.score = this.score/this.reviews.size();
-    }
 }
