@@ -98,4 +98,11 @@ public class MovieController {
         return "update_movie";
     }
 
+    @GetMapping("/search")
+    public String searchFilms(Model model, @RequestParam String searching) {
+        model.addAttribute("filter", searching);
+        model.addAttribute("moviesWithFilter", moviesService.searchMovies(searching));
+        return "index";
+    }
+
 }

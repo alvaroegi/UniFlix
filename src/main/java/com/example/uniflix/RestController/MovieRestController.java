@@ -6,7 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collection;
 
 @RestController
@@ -32,8 +37,29 @@ public class MovieRestController {
     @PostMapping("/movie")
     @ResponseStatus(HttpStatus.CREATED)
     public Movie addMovieApi(@RequestBody Movie m) {
-        //moviesService.addUser(u);
-        return m;
+        if(moviesService.containsMovie(m.getName())==-1) {
+            m.setImage("/default.jpg");
+            moviesService.addMovie(m);
+            return m;
+        }
+        return null;
+    }
+
+    @PostMapping("/{id}/image")
+    public ResponseEntity<Movie> uploadImage(@PathVariable long id, @RequestBody MultipartFile image) {
+        String absolutePath = "C://Uniflix//Peliculas";
+        try {
+            byte[] bytesImage = image.getBytes();
+            Path completePath = Paths.get(absolutePath + "/" + image.getOriginalFilename());
+            Files.write(completePath, bytesImage);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        Movie m = moviesService.getMovie(id);
+        m.setImage(image.getOriginalFilename());
+        moviesService.updateMovie(id, m);
+        return new ResponseEntity<>(m, HttpStatus.OK);
     }
 
     @DeleteMapping("/movie/{id}")
@@ -52,6 +78,10 @@ public class MovieRestController {
         Movie m = moviesService.getMovie(id);
         if (m != null && moviesService.containsMovie(updatedMovie.getName())==-1) {
             updatedMovie.setId(id);
+            // those parameters are not supposed to be modified
+            updatedMovie.setName(moviesService.getMovie(id).getName());
+            updatedMovie.setImage(moviesService.getMovie(id).getImage());
+            updatedMovie.setScore(moviesService.getMovie(id).getScore());
             moviesService.updateMovie(id, updatedMovie);
             return new ResponseEntity<>(updatedMovie, HttpStatus.OK);
         } else {
