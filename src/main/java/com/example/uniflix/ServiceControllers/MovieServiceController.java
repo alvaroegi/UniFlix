@@ -81,4 +81,17 @@ public class MovieServiceController {
         movies.put(id, m);
     }
 
+    public LinkedList<Movie> searchMovies(String name){
+        LinkedList<Movie> sol = new LinkedList<>();
+        for(Map.Entry entry: movies.entrySet()) {
+            Movie m = (Movie)entry.getValue();
+            String aux = m.getName().toLowerCase().replace(" ","");
+            name= name.toLowerCase().replace(" ","");
+            if(aux.contains(name)) {
+                sol.add(m);
+            }
+        }
+        return sol;
+    }
+
 }
