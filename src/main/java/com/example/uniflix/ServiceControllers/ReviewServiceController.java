@@ -1,9 +1,11 @@
 package com.example.uniflix.ServiceControllers;
 
 import com.example.uniflix.Entities.Review;
+import com.example.uniflix.Entities.User;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -42,5 +44,22 @@ public class ReviewServiceController {
                 reviews.remove(r.getId());
             }
         }
+    }
+
+    public Collection<Review> getAllReviews() {
+        return reviews.values();
+    }
+
+    public Review getReview(long id) {
+        return reviews.get(id);
+    }
+
+    public Review deleteReview(long id) {
+        Review r = reviews.remove(id);
+        return r;
+    }
+
+    public void updateReview(long id, Review r) {
+        reviews.put(id, r);
     }
 }

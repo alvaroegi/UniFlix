@@ -17,7 +17,7 @@ public class Review {
     public String getUser(){
         return user;
     }
-    public Long getMovie(){
+    public long getMovie(){
         return Idmovie;
     }
     public String getComment(){
