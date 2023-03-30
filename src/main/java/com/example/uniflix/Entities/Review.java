@@ -7,10 +7,10 @@ public class Review {
     private int score;
     private long id = -1;
 
-    public Review(String user, String comment,Long movie, int score){
+    public Review(String user, String comment, long Idmovie, int score){
         this.user = user;
         this.comment = comment;
-        this.Idmovie = movie;
+        this.Idmovie = Idmovie;
         this.score = score;
     }
 
@@ -36,8 +36,8 @@ public class Review {
     public void setComment(String comment){
         this.comment = comment;
     }
-    public void setMovie(Long movie){
-        this.Idmovie = movie;
+    public void setMovie(long Idmovie){
+        this.Idmovie = Idmovie;
     }
     public void setId(long id){
         this.id = id;

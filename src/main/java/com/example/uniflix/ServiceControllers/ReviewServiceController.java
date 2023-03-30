@@ -20,7 +20,6 @@ public class ReviewServiceController {
         long id = lastId.incrementAndGet();
         newReview.setId(id);
         reviews.put(id,newReview);
-        //añadirlo al futuro array de pelicula
         return newReview;
     }
 
