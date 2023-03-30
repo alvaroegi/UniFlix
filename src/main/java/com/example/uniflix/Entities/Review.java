@@ -3,7 +3,7 @@ package com.example.uniflix.Entities;
 public class Review {
     private String user;
     private String comment;
-    private Long Idmovie;
+    private long Idmovie;
     private int score;
     private long id = -1;
 
