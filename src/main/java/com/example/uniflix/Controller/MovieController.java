@@ -46,7 +46,7 @@ public class MovieController {
             model.addAttribute("reviewList", reviewService.getReviewsOfMovie(moviesService.containsMovie(name)));
         return "info_movie";
     }
-    @GetMapping("/movie")
+    @GetMapping("/createMovie")
     public String changeToMovie() { return "create_movie"; }
     @PostMapping("/result")                                                                                                /*para las imagenes-----------------------*/
     public String checkMovie(Model model, @RequestParam String name, @RequestParam String director, @RequestParam int year, @RequestParam/*("file")*/ MultipartFile image) {
@@ -81,8 +81,7 @@ public class MovieController {
     }
     @PostMapping("/modify_delete")
     public String update_delete(Model model, @RequestParam String movie) {
-        Movie m = moviesService.getMovie(moviesService.containsMovie(movie));
-        moviesService.deleteMovie(m);
+        moviesService.deleteMovie(moviesService.containsMovie(movie));
         model.addAttribute("modified", true);
         model.addAttribute("movies", moviesService.getMovies());
         return "update_movie";

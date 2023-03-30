@@ -2,10 +2,12 @@ package com.example.uniflix.ServiceControllers;
 
 import com.example.uniflix.Entities.Movie;
 import com.example.uniflix.Entities.Review;
+import com.example.uniflix.Entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -57,18 +59,26 @@ public class MovieServiceController {
         }
     }
 
-    public void deleteMovie(Movie m){
-        movies.remove(m.getId());
-        reviewService.deleteReviewsofMovie(m.getId());
+    public Movie deleteMovie(long id){
+        Movie m = movies.remove(id);
+        reviewService.deleteReviewsofMovie(id);
+        return m;
     }
 
     public void deleteWithoutCascade(long id,String director, int year){
         Movie aux = new Movie(movies.get(id));
-        movies.remove(id);
         aux.setDirector(director);
         aux.setYear(year);
         aux.setId(id);
         movies.put(id,aux);
+    }
+
+    public Collection<Movie> getAllMovies() {
+        return movies.values();
+    }
+
+    public void updateMovie(long id, Movie m) {
+        movies.put(id, m);
     }
 
 }
