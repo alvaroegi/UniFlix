@@ -1,11 +1,14 @@
 package com.example.uniflix.Entities;
 
+import com.example.uniflix.Pair;
+
 import java.util.ArrayList;
 
-public class Movie {
+public class Movie{
+
     private String name; //Unique Key
     private String director;
-    private float score;
+    private Pair score;
     private int year;
     private String image;
     private long id = -1; //Primary Key
@@ -16,7 +19,7 @@ public class Movie {
         this.name = name;
         this.director = director;
         this.year = year;
-        this.score = 0;
+        this.score = new Pair();
         this.image = image;
         //this.categorys = new ArrayList<>();
     }
