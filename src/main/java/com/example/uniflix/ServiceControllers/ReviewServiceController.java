@@ -59,6 +59,8 @@ public class ReviewServiceController {
     }
 
     public void updateReview(long id, Review r) {
+        long iden = r.getMovie();
+        //Movie m = moviesService.getMovie(iden);
         reviews.put(id, r);
     }
 }

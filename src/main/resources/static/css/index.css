@@ -10,6 +10,7 @@ body {
     width: 200px;
     height: 300px;
     margin-bottom: 4px;
+    border-radius: 10px;
 }
 
 .caratula:hover {
@@ -18,11 +19,12 @@ body {
 }
 #general{
     position:absolute;
+    left:1.5%;
     margin-left:50px;
     margin-right: 50px;
 }
 #general2{
-    display:none;
+    left:1.5%;
     position:absolute;
     margin-left:50px;
     margin-right: 50px;

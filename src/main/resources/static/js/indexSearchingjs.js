@@ -1,8 +1,11 @@
-function hide(){
-    let gen = document.getElementById("general");
-    let gen2 = document.getElementById("general2");
-
-    gen.style.display = "none";
-    gen2.style.display = "block";
-
-}
+let gen = document.getElementById("general");
+var form = document.getElementById("searchAction");
+form.addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevenir el comportamiento por defecto del formulario
+    // Tu código de JavaScript aquí
+    gen.display.style="none";
+    console.log("holaquetal");
+    // Acción del formulario
+    form.action = "search";
+    form.submit();
+});
