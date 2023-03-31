@@ -1,7 +1,9 @@
 package com.example.uniflix.ServiceControllers;
 
+import com.example.uniflix.Entities.Movie;
 import com.example.uniflix.Entities.Review;
 import com.example.uniflix.Entities.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,6 +17,8 @@ import java.util.concurrent.atomic.AtomicLong;
 public class ReviewServiceController {
     private Map<Long, Review> reviews = new ConcurrentHashMap<>();
     private AtomicLong lastId = new AtomicLong();
+
+
 
     public Review addReview(Review newReview) {
         long id = lastId.incrementAndGet();

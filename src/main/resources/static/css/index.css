@@ -14,9 +14,13 @@ body {
 }
 
 .caratula:hover {
-    width: 210px;
-    height: 310px;
+    transform: scale(1.10);
 }
+
+.dropdown:hover>.dropdown-menu {
+    display: block;
+}
+
 #general{
     position:absolute;
     left:1.5%;

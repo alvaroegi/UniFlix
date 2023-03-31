@@ -25,7 +25,7 @@ public class Movie {
         this.name = aux.getName();
         this.director = aux.getDirector();
         this.year = aux.getYear();
-        this.score = 0;
+        this.score = aux.getScore();
         this.image = aux.getImage();
     }
 
@@ -35,10 +35,8 @@ public class Movie {
     public String getDirector(){
         return director;
     }
-    public int getYear(){
-        return year;
-    }
-    public float getScore(){
+    public int getYear() { return year; }
+    public Pair getScore(){
         return score;
     }
     public long getId(){
@@ -59,7 +57,7 @@ public class Movie {
     public void setId(long id){
         this.id = id;
     }
-    public void setScore(float score){
+    public void setScore(Pair score){
         this.score = score;
     }
 

@@ -14,7 +14,12 @@
         <img class="caratula" src="/Peliculas/{{movie.image}}"/>
     </div>
     {{#reviewList}}
-    <div>{{comment}}</div>
+    <div>
+        {{comment}}
+        <form action="/modifyReview/{{id}}">
+            <button type="submit">Modificar</button>
+        </form>
+    </div>
     {{/reviewList}}
 </body>
 </html>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -31,6 +32,12 @@ public class ReviewController {
     public String review(Model model) {
         model.addAttribute("movies", moviesService.getMovies());
         return "reseñas_template";
+    }
+
+    @GetMapping("/modifyReview/{id}")
+    public String updateReview(Model model, @PathVariable long id, @RequestParam String user, @RequestParam String comment, @RequestParam int score, @RequestParam String movie){
+        Review r = new Review(user, comment, moviesService.containsMovie(movie), score);
+        return "index";
     }
 
 }
