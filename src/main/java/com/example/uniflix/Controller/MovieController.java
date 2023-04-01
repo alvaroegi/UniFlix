@@ -80,9 +80,11 @@ public class MovieController {
         return "update_movie";
     }
     @PostMapping("/modify_delete")
-    public String update_delete(Model model, @RequestParam String movie) {
-        moviesService.deleteMovie(moviesService.containsMovie(movie));
-        model.addAttribute("modified", true);
+    public String update_delete(Model model, @RequestParam String movie, @RequestParam boolean confirmed) {
+        if(confirmed) {
+            moviesService.deleteMovie(moviesService.containsMovie(movie));
+            model.addAttribute("modified", true);
+        }
         model.addAttribute("movies", moviesService.getMovies());
         return "update_movie";
     }

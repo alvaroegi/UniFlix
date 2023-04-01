@@ -40,7 +40,8 @@
                 {{/movies}}
             </select>
             <br>
-            <input class="btn btn-danger" type='submit' value='Borrar película'/>
+            <input id="confirmed" class="form-control" type="hidden" name="confirmed"/>
+            <input class="btn btn-danger" type='submit' onclick="confirmDelete()" value='Borrar película'/>
         </form>
         <button onclick="modify2()">Ir a modificar</button>
     </div>

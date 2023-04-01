@@ -21,23 +21,44 @@ public class ReviewController {
     @Autowired
     MovieServiceController moviesService;
 
-    @PostMapping("/newReview")
-    public String newReview(Model model, @RequestParam String user, @RequestParam String comment, @RequestParam int score, @RequestParam String movie) {
-        Review r = new Review(user, comment, moviesService.containsMovie(movie), score);
+    @PostMapping("/newReview/{Idmovie}")
+    public String newReview(Model model, @RequestParam String user, @RequestParam String comment, @RequestParam int score, @PathVariable long Idmovie) {
+        Review r = new Review(user, comment, Idmovie, score);
         reviewService.addReview(r);
-        return "reseñas_template";
+        Movie m = moviesService.getMovie(Idmovie);
+        model.addAttribute("movie", m);
+        if(!reviewService.getReviewsOfMovie(Idmovie).isEmpty())
+            model.addAttribute("reviewList", reviewService.getReviewsOfMovie(Idmovie));
+        return "info_movie";
     }
 
-    @GetMapping("/create")
+    @GetMapping("/createReview")
     public String review(Model model) {
         model.addAttribute("movies", moviesService.getMovies());
         return "reseñas_template";
     }
 
-    @GetMapping("/modifyReview/{id}")
-    public String updateReview(Model model, @PathVariable long id, @RequestParam String user, @RequestParam String comment, @RequestParam int score, @RequestParam String movie){
-        Review r = new Review(user, comment, moviesService.containsMovie(movie), score);
-        return "index";
+    @PostMapping("/modifyReview/{Idmovie}/{id}")
+    public String updateReview(Model model, @PathVariable long id, @RequestParam String user, @RequestParam String comment, @RequestParam int score, @PathVariable long Idmovie){
+        Review updatedReview = new Review(user, comment, Idmovie, score);
+        updatedReview.setId(id);
+        reviewService.updateReview(id, updatedReview);
+        Movie m = moviesService.getMovie(Idmovie);
+        model.addAttribute("movie", m);
+        if(!reviewService.getReviewsOfMovie(Idmovie).isEmpty())
+            model.addAttribute("reviewList", reviewService.getReviewsOfMovie(Idmovie));
+        return "info_movie";
+    }
+
+    @PostMapping("/deleteReview/{Idmovie}/{id}")
+    public String deleteReview(Model model, @PathVariable long id, @PathVariable long Idmovie, @RequestParam boolean confirmed) {
+        if(confirmed)
+            reviewService.deleteReview(id);
+        Movie m = moviesService.getMovie(Idmovie);
+        model.addAttribute("movie", m);
+        if(!reviewService.getReviewsOfMovie(Idmovie).isEmpty())
+            model.addAttribute("reviewList", reviewService.getReviewsOfMovie(Idmovie));
+        return "info_movie";
     }
 
 }

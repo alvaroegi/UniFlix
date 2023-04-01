@@ -2,24 +2,75 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{name}}</title>
-    <link type="text/css" rel="stylesheet" href="/css/info_movie.css">
+    <title>{{movie.name}}</title>
+    <script src="/js/info_Movie.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/info_movie.css">
 </head>
 <body>
     <div>
-        <h1>{{name}}</h1>
+        <h1>{{movie.name}}</h1>
         <p>Director: {{movie.director}}</p>
         <p>Puntuación: {{movie.score}}</p>
         <p>Año: {{movie.year}}</p>
         <img class="caratula" src="/Peliculas/{{movie.image}}"/>
     </div>
+    <button id="addReviewButton" onclick="showAddForm()">Añadir</button>
+    <div id="addReviewForm">
+        <form class="form-group" action="/newReview/{{movie.id}}" method="post">
+            <p>Usuario: </p>
+            <input class="form-control" type='text' name='user' required/>
+            <br>
+            <br>
+            <label for="select"> Puntuacion</label>
+            <select id="select" name="score" required>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+            <br>
+            <p>Comentario: </p>
+            <input class="form-control" type='text' name='comment' required/>
+            <br>
+            <br>
+            <input class="btn btn-danger" type='submit' value='Añadir Reseña'/>
+        </form>
+        <button onclick="hideAddForm()">Cancelar</button>
+    </div>
     {{#reviewList}}
-    <div>
-        {{comment}}
-        <form action="/modifyReview/{{id}}">
-            <button type="submit">Modificar</button>
+    <div class="reviewInfo">
+        <p>{{user}}: {{comment}} {{score}}</p>
+        <button id="modifyReviewButton{{id}}" onclick="showModifyForm('{{id}}')">Modificar</button>
+        <div id="modifyReviewForm{{id}}" class="modifyReviewForm">
+            <form class="form-group" action="/modifyReview/{{Idmovie}}/{{id}}" method="post">
+                <p>Usuario: </p>
+                <input class="form-control" type='text' name='user' required/>
+                <br>
+                <br>
+                <label for="select2"> Puntuacion</label>
+                <select id="select2" name="score" required>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+                <br>
+                <p>Comentario: </p>
+                <input class="form-control" type='text' name='comment' required/>
+                <br>
+                <br>
+                <input class="btn btn-danger" type='submit' value='Modificar Reseña'/>
+            </form>
+            <button onclick="hideModifyForm('{{id}}')">Cancelar</button>
+        </div>
+        <form action="/deleteReview/{{Idmovie}}/{{id}}" method="post">
+            <input id="confirmed{{id}}" class="form-control" type="hidden" name="confirmed"/>
+            <button type="submit" onclick="confirmDelete('{{id}}')">Eliminar</button>
         </form>
     </div>
     {{/reviewList}}
+    <button onclick="window.location.href='/'">Volver</button>
 </body>
 </html>

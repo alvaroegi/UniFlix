@@ -13,3 +13,10 @@ function modify2(){
     deleteMovie.style.display = "none";
 }
 
+function confirmDelete() {
+    let confirmed = document.getElementById("confirmed");
+    if(confirm('Eliminar una película también elimina sus reseñas'))
+        confirmed.value = true;
+    else
+        confirmed.value = false;
+}
