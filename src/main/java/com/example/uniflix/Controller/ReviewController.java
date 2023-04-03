@@ -25,6 +25,7 @@ public class ReviewController {
     public String newReview(Model model, @RequestParam String user, @RequestParam String comment, @RequestParam int score, @PathVariable long Idmovie) {
         Review r = new Review(user, comment, Idmovie, score);
         reviewService.addReview(r);
+        moviesService.updateScore(Idmovie);
         Movie m = moviesService.getMovie(Idmovie);
         model.addAttribute("movie", m);
         if(!reviewService.getReviewsOfMovie(Idmovie).isEmpty())
@@ -43,6 +44,7 @@ public class ReviewController {
         Review updatedReview = new Review(user, comment, Idmovie, score);
         updatedReview.setId(id);
         reviewService.updateReview(id, updatedReview);
+        moviesService.updateScore(Idmovie);
         Movie m = moviesService.getMovie(Idmovie);
         model.addAttribute("movie", m);
         if(!reviewService.getReviewsOfMovie(Idmovie).isEmpty())
@@ -54,6 +56,7 @@ public class ReviewController {
     public String deleteReview(Model model, @PathVariable long id, @PathVariable long Idmovie, @RequestParam boolean confirmed) {
         if(confirmed)
             reviewService.deleteReview(id);
+        moviesService.updateScore(Idmovie);
         Movie m = moviesService.getMovie(Idmovie);
         model.addAttribute("movie", m);
         if(!reviewService.getReviewsOfMovie(Idmovie).isEmpty())

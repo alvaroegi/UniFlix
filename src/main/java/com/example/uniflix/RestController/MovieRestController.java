@@ -19,12 +19,12 @@ public class MovieRestController {
     @Autowired
     MovieServiceController moviesService;
 
-    @GetMapping("/movie")
+    @GetMapping("/api/movie")
     public Collection<Movie> allMoviesApi() {
         return moviesService.getAllMovies();
     }
 
-    @GetMapping("/movie/{id}")
+    @GetMapping("/api/movie/{id}")
     public ResponseEntity<Movie> getMovieApi(@PathVariable long id) {
         Movie m = moviesService.getMovie(id);
         if (m != null) {
@@ -34,7 +34,7 @@ public class MovieRestController {
         }
     }
 
-    @PostMapping("/movie")
+    @PostMapping("/api/movie")
     @ResponseStatus(HttpStatus.CREATED)
     public Movie addMovieApi(@RequestBody Movie m) {
         if(moviesService.containsMovie(m.getName())==-1) {
@@ -45,7 +45,7 @@ public class MovieRestController {
         return null;
     }
 
-    @PostMapping("/{id}/image")
+    @PostMapping("/api/{id}/image")
     public ResponseEntity<Movie> uploadImage(@PathVariable long id, @RequestBody MultipartFile image) {
         String absolutePath = "C://Uniflix//Peliculas";
         try {
@@ -62,7 +62,7 @@ public class MovieRestController {
         return new ResponseEntity<>(m, HttpStatus.OK);
     }
 
-    @DeleteMapping("/movie/{id}")
+    @DeleteMapping("/api/movie/{id}")
     public ResponseEntity<Movie> deleteMovieApi(@PathVariable long id) {
         Movie m = moviesService.deleteMovie(id);
         if(m!=null) {
@@ -73,7 +73,7 @@ public class MovieRestController {
         }
     }
 
-    @PutMapping("/movie/{id}")
+    @PutMapping("/api/movie/{id}")
     public ResponseEntity<Movie> updateMovieApi(@PathVariable long id, @RequestBody Movie updatedMovie) {
         Movie m = moviesService.getMovie(id);
         if (m != null && moviesService.containsMovie(updatedMovie.getName())==-1) {

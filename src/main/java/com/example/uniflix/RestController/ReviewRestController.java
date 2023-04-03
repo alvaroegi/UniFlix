@@ -1,6 +1,7 @@
 package com.example.uniflix.RestController;
 
 import com.example.uniflix.Entities.Review;
+import com.example.uniflix.ServiceControllers.MovieServiceController;
 import com.example.uniflix.ServiceControllers.ReviewServiceController;
 import com.example.uniflix.ServiceControllers.UserServiceController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +15,16 @@ import java.util.Collection;
 public class ReviewRestController {
     @Autowired
     ReviewServiceController reviewService;
+    @Autowired
+    MovieServiceController moviesService;
 
-    @GetMapping("/review")
-    public Collection<Review> todosAnuncios() {
+    @GetMapping("/api/review")
+    public Collection<Review> allReviewsApi() {
         return reviewService.getAllReviews();
     }
 
-    @GetMapping("/review/{id}")
-    public ResponseEntity<Review> getUser(@PathVariable long id) {
+    @GetMapping("/api/review/{id}")
+    public ResponseEntity<Review> getReviewApi(@PathVariable long id) {
         Review r = reviewService.getReview(id);
         if (r != null) {
             return new ResponseEntity<>(r, HttpStatus.OK);
@@ -30,17 +33,19 @@ public class ReviewRestController {
         }
     }
 
-    @PostMapping("/review")
+    @PostMapping("/api/review")
     @ResponseStatus(HttpStatus.CREATED)
-    public Review addUser(@RequestBody Review r) {
+    public Review addReviewApi(@RequestBody Review r) {
         reviewService.addReview(r);
+        moviesService.updateScore(r.getMovie());
         return r;
     }
 
-    @DeleteMapping("/review/{id}")
-    public ResponseEntity<Review> deleteUser(@PathVariable long id) {
+    @DeleteMapping("/api/review/{id}")
+    public ResponseEntity<Review> deleteReviewApi(@PathVariable long id) {
         Review r = reviewService.deleteReview(id);
         if(r!=null) {
+            moviesService.updateScore(r.getMovie());
             return new ResponseEntity<>(r, HttpStatus.OK);
         }
         else {
@@ -48,12 +53,13 @@ public class ReviewRestController {
         }
     }
 
-    @PutMapping("/review/{id}")
-    public ResponseEntity<Review> updateUser(@PathVariable long id, @RequestBody Review updatedReview) {
+    @PutMapping("/api/review/{id}")
+    public ResponseEntity<Review> updateReviewApi(@PathVariable long id, @RequestBody Review updatedReview) {
         Review r = reviewService.getReview(id);
         if (r != null) {
             updatedReview.setId(id);
             reviewService.updateReview(id, updatedReview);
+            moviesService.updateScore(r.getMovie());
             return new ResponseEntity<>(updatedReview, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
