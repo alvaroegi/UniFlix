@@ -94,4 +94,20 @@ public class MovieServiceController {
         return sol;
     }
 
+    public void updateScore(long id) {
+        ArrayList<Review> reviewList = reviewService.getReviewsOfMovie(id);
+        float amount = 0;
+        float total = 0;
+        for(Review r : reviewList) {
+            amount++;
+            total = total + r.getScore();
+        }
+        Movie m = movies.get(id);
+        if(amount!=0)
+            m.setScore((float)Math.round(total/amount*100)/100);
+        else
+            m.setScore(0);
+        movies.put(id, m);
+    }
+
 }

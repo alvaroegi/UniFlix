@@ -8,7 +8,7 @@ public class Movie{
 
     private String name; //Unique Key
     private String director;
-    private Pair score;
+    private float score;
     private int year;
     private String image;
     private long id = -1; //Primary Key
@@ -19,7 +19,7 @@ public class Movie{
         this.name = name;
         this.director = director;
         this.year = year;
-        this.score = new Pair();
+        this.score = 0;
         this.image = image;
         //this.categorys = new ArrayList<>();
     }
@@ -39,7 +39,7 @@ public class Movie{
         return director;
     }
     public int getYear() { return year; }
-    public Pair getScore(){
+    public float getScore(){
         return score;
     }
     public long getId(){
@@ -60,7 +60,7 @@ public class Movie{
     public void setId(long id){
         this.id = id;
     }
-    public void setScore(Pair score){
+    public void setScore(float score){
         this.score = score;
     }
 
