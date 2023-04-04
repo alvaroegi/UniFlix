@@ -21,6 +21,8 @@ public class MovieServiceController {
 
     @Autowired
     ReviewServiceController reviewService;
+    @Autowired
+    CategoryServiceController categoryService;
 
     //inicializar peliculas iniciales
 
@@ -53,6 +55,7 @@ public class MovieServiceController {
         if(containsMovie(m.getName())!=-1)
             return null;
         else {
+            categoryService.addMovieToCategories(m);
             long id = lastId.incrementAndGet();
             m.setId(id);
             movies.put(id, m);
@@ -63,24 +66,18 @@ public class MovieServiceController {
     public Movie deleteMovie(long id){
         Movie m = movies.remove(id);
         reviewService.deleteReviewsofMovie(id);
+        categoryService.deleteMovieFromCategories(m);
         return m;
     }
-
-    public void deleteWithoutCascade(long id,String director, int year,String synopsis){
-        Movie aux = new Movie(movies.get(id));
-        aux.setDirector(director);
-        aux.setYear(year);
-        aux.setSynopsis(synopsis);
-        aux.setId(id);
-        movies.put(id,aux);
-    }
-
     public Collection<Movie> getAllMovies() {
         return movies.values();
     }
 
     public void updateMovie(long id, Movie m) {
+        Movie originalMovie = movies.get(id);
+        categoryService.deleteMovieFromCategories(originalMovie);
         movies.put(id, m);
+        categoryService.addMovieToCategories(m);
     }
 
     public LinkedList<Movie> searchMovies(String name){

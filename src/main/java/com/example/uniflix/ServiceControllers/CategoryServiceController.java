@@ -46,4 +46,29 @@ public class CategoryServiceController {
         return sol;
     }
 
+    public ArrayList<Category> getSelectedCategorys(String[] categoryList) {
+        ArrayList<Category> selectedCategorys = new ArrayList<>();
+        for (int i = 0; i < categoryList.length; i++)
+            selectedCategorys.add(new Category(categoryList[i]));
+        return selectedCategorys;
+    }
+    public void addMovieToCategories(Movie m) {
+        for(Category c : m.getCategorys()) {
+            Category aux = getCategory(c.getName());
+            ArrayList<Movie> movieList = aux.getMovies();
+            movieList.add(m);
+            aux.setMovies(movieList);
+            categorys.put(aux.getId(), aux);
+        }
+    }
+    public void deleteMovieFromCategories(Movie m) {
+        for(Category c : m.getCategorys()) {
+            Category aux = getCategory(c.getName());
+            ArrayList<Movie> movieList = aux.getMovies();
+            movieList.remove(m);
+            aux.setMovies(movieList);
+            categorys.put(aux.getId(), aux);
+        }
+    }
+
 }

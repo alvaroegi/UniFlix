@@ -1,6 +1,7 @@
 package com.example.uniflix.Entities;
 
 import com.example.uniflix.Pair;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
 
@@ -13,17 +14,17 @@ public class Movie{
     private int year;
     private String image;
     private long id = -1; //Primary Key
-
+    @JsonIgnore
     private ArrayList<Category> categorys;
 
-    public Movie(String name, String director,String synopsis, int year, String image){
+    public Movie(String name, String director, String synopsis, int year, String image, ArrayList<Category> categorys){
         this.name = name;
         this.director = director;
         this.synopsis=synopsis;
         this.year = year;
         this.score = 0;
         this.image = image;
-        this.categorys = new ArrayList<>();
+        this.categorys = categorys;
     }
 
     public Movie(Movie aux){
