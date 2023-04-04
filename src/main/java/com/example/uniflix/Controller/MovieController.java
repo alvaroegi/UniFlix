@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 @Controller
 public class MovieController {
@@ -32,9 +33,24 @@ public class MovieController {
 
     @PostConstruct
     public void init(){
-        moviesService.addMovie(new Movie("You","Greg Berlanti",2018,"you.jpg"));
-        moviesService.addMovie(new Movie("The Mandalorian","Jon Favreau",2019,"mandalorian.jpg"));
-        moviesService.addMovie(new Movie("The Last of Us","Craig Mazin",2023,"thelastofus.jpg"));
+        Movie y = new Movie("You","Greg Berlanti","Un joven profundamente obsesivo y peligrosamente seductor mueve cielo y tierra para instalarse en la vida de aquellas personas por quienes se siente cautivado",2018,"you.jpg");
+        ArrayList<Category> you = new ArrayList<>();
+        you.add(new Category("Suspense"));
+        you.add(new Category("Drama"));
+        y.setCategorys(you);
+        moviesService.addMovie(y);
+        Movie m = new Movie("The Mandalorian","Jon Favreau", "Serie de aventura espacial que se ubica en el universo de Stars Wars",2019,"mandalorian.jpg");
+        ArrayList<Category> mand = new ArrayList<>();
+        mand.add(new Category("Accion"));
+        mand.add(new Category("Suspense"));
+        m.setCategorys(mand);
+        moviesService.addMovie(m);
+        Movie t = new Movie("The Last of Us","Craig Mazin","Basado en un videojuego de accion y aventuras la serie nos relata como Joel y Ellie sobreviven a una pandemia en EEUU",2023,"thelastofus.jpg");
+        ArrayList<Category> tlou = new ArrayList<>();
+        tlou.add(new Category("Miedo"));
+        tlou.add(new Category("Accion"));
+        t.setCategorys(tlou);
+        moviesService.addMovie(t);
         categoryService.addCategory(new Category("Miedo"));
         categoryService.addCategory(new Category("Accion"));
         categoryService.addCategory(new Category("Drama"));
@@ -61,8 +77,8 @@ public class MovieController {
     @GetMapping("/createMovie")
     public String changeToMovie() { return "create_movie"; }
     @PostMapping("/result")                                                                                                /*para las imagenes-----------------------*/
-    public String checkMovie(Model model, @RequestParam String name, @RequestParam String director, @RequestParam int year, @RequestParam/*("file")*/ MultipartFile image) {
-        if(moviesService.addMovie(new Movie(name, director, year, image.getOriginalFilename()))!=null) {
+    public String checkMovie(Model model, @RequestParam String name, @RequestParam String director,@RequestParam String synopsis, @RequestParam int year, @RequestParam/*("file")*/ MultipartFile image) {
+        if(moviesService.addMovie(new Movie(name, director,synopsis, year, image.getOriginalFilename()))!=null) {
             model.addAttribute("added", true);
             /* desde aqui para imagenes */
             // https://www.youtube.com/watch?v=BjHEuNdpC-U parte 1
@@ -102,10 +118,10 @@ public class MovieController {
     }
 
     @PostMapping("/modify_nondelete")
-    public String update_nondelete(Model model, @RequestParam String movie, @RequestParam String director, @RequestParam int year) {
+    public String update_nondelete(Model model, @RequestParam String movie, @RequestParam String director, @RequestParam int year,@RequestParam String synopsis) {
         long id = moviesService.containsMovie(movie);
         if(id!=-1) {
-            moviesService.deleteWithoutCascade(id, director, year);
+            moviesService.deleteWithoutCascade(id, director, year,synopsis);
         }
         model.addAttribute("modified", true);
         model.addAttribute("movies", moviesService.getMovies());

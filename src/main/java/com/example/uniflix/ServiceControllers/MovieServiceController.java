@@ -1,5 +1,6 @@
 package com.example.uniflix.ServiceControllers;
 
+import com.example.uniflix.Entities.Category;
 import com.example.uniflix.Entities.Movie;
 import com.example.uniflix.Entities.Review;
 import com.example.uniflix.Entities.User;
@@ -65,10 +66,11 @@ public class MovieServiceController {
         return m;
     }
 
-    public void deleteWithoutCascade(long id,String director, int year){
+    public void deleteWithoutCascade(long id,String director, int year,String synopsis){
         Movie aux = new Movie(movies.get(id));
         aux.setDirector(director);
         aux.setYear(year);
+        aux.setSynopsis(synopsis);
         aux.setId(id);
         movies.put(id,aux);
     }
@@ -108,6 +110,17 @@ public class MovieServiceController {
         else
             m.setScore(0);
         movies.put(id, m);
+    }
+
+    public boolean isCategory(Category c,Movie m) {
+        boolean sol = false;
+        String aux = c.getName().toLowerCase();
+        ArrayList<Category> clist = m.getCategorys();
+        for(Category caux : clist) {
+            String s = caux.getName().toLowerCase();
+            if(aux.equals(s)) sol=true;
+        }
+        return sol;
     }
 
 }

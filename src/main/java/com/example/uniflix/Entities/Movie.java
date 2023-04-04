@@ -8,28 +8,32 @@ public class Movie{
 
     private String name; //Unique Key
     private String director;
+    private String synopsis;
     private float score;
     private int year;
     private String image;
     private long id = -1; //Primary Key
 
-    //private ArrayList<Category> categorys;
+    private ArrayList<Category> categorys;
 
-    public Movie(String name, String director, int year, String image){
+    public Movie(String name, String director,String synopsis, int year, String image){
         this.name = name;
         this.director = director;
+        this.synopsis=synopsis;
         this.year = year;
         this.score = 0;
         this.image = image;
-        //this.categorys = new ArrayList<>();
+        this.categorys = new ArrayList<>();
     }
 
     public Movie(Movie aux){
         this.name = aux.getName();
         this.director = aux.getDirector();
+        this.synopsis=aux.getSynopsis();
         this.year = aux.getYear();
         this.score = aux.getScore();
         this.image = aux.getImage();
+        this.categorys=aux.getCategorys();
     }
 
     public String getName(){
@@ -47,6 +51,8 @@ public class Movie{
     }
     public String getImage() { return image; }
 
+    public String getSynopsis() {return synopsis;}
+    public ArrayList<Category> getCategorys(){return categorys;}
 
     public void setName(String name){
         this.name = name;
@@ -54,6 +60,7 @@ public class Movie{
     public void setDirector(String director){
         this.director = director;
     }
+    public void setSynopsis(String s) {this.synopsis=s;}
     public void setYear(int year){
         this.year = year;
     }
@@ -65,4 +72,5 @@ public class Movie{
     }
 
     public void setImage(String image) { this.image = image; }
+    public void setCategorys(ArrayList<Category> c) { this.categorys = c; }
 }

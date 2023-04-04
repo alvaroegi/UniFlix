@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class Category {
     private String name;
     private ArrayList<Long> movies;
+
+    private long moty;
     private long id = -1;
 
     public Category(String n) {
