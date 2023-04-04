@@ -9,10 +9,10 @@
 <body>
     <div>
         <h1>{{movie.name}}</h1>
-        <p>Director: {{movie.director}}</p>
+        <p> <img class="caratula" src="/Peliculas/{{movie.image}}" align="right"/>
+            Director: {{movie.director}}</p>
         <p>Puntuación: {{movie.score}}</p>
         <p>Año: {{movie.year}}</p>
-        <img class="caratula" src="/Peliculas/{{movie.image}}"/>
     </div>
     <button id="addReviewButton" onclick="showAddForm()">Añadir</button>
     <div id="addReviewForm">

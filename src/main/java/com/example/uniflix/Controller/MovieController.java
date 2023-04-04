@@ -1,6 +1,8 @@
 package com.example.uniflix.Controller;
 
+import com.example.uniflix.Entities.Category;
 import com.example.uniflix.Entities.Movie;
+import com.example.uniflix.ServiceControllers.CategoryServiceController;
 import com.example.uniflix.ServiceControllers.MovieServiceController;
 import com.example.uniflix.ServiceControllers.ReviewServiceController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,16 +27,25 @@ public class MovieController {
     @Autowired
     ReviewServiceController reviewService;
 
+    @Autowired
+    CategoryServiceController categoryService;
+
     @PostConstruct
     public void init(){
         moviesService.addMovie(new Movie("You","Greg Berlanti",2018,"you.jpg"));
         moviesService.addMovie(new Movie("The Mandalorian","Jon Favreau",2019,"mandalorian.jpg"));
         moviesService.addMovie(new Movie("The Last of Us","Craig Mazin",2023,"thelastofus.jpg"));
+        categoryService.addCategory(new Category("Miedo"));
+        categoryService.addCategory(new Category("Accion"));
+        categoryService.addCategory(new Category("Drama"));
+        categoryService.addCategory(new Category("Anime"));
+        categoryService.addCategory(new Category("Suspense"));
     }
 
     @GetMapping("/")
     public String back(Model model) {
         model.addAttribute("movies", moviesService.getMovies());
+        model.addAttribute("categorys", categoryService.getCategorys());
         return "index";
     }
 
