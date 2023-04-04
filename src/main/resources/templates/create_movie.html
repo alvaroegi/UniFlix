@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Uniflix</title>
+    <script src="/js/createMovie.js"></script>
 </head>
 <body>
     {{#added}}
@@ -11,7 +12,7 @@
     {{#notAdded}}
         <p>Esta película ya existe</p>
     {{/notAdded}}                                          <!--para subir imagenes-->
-    <form class="form-group" action="result" method="post" enctype="multipart/form-data">
+    <form id="createForm" class="form-group" action="result" method="post" enctype="multipart/form-data">
         <p>Nombre: </p>
         <input class="form-control" type='text' name='name' required/>
         <br>
@@ -27,8 +28,13 @@
         <p>Imagen: </p>
         <input class="form-control" type='file' name='image' required/>
         <br>
+        <p>Categorías: </p>
+        {{#categorys}}
+        <label for="category{{id}}">{{name}}:</label>
+        <input id="category{{id}}" class="form-control" type='checkbox' name="selectedCategorys" value="{{name}}"/>
         <br>
-        <input class="btn btn-danger" type='submit' value='Añadir película'/>
+        {{/categorys}}
+        <input type="submit"/>Añadir película</button>
     </form>
     <button onclick="window.location.href='/'">Volver</button>
 </body>

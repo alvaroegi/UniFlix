@@ -28,7 +28,12 @@
                 <p>Sinopsis: </p>
                 <input class="form-control" type='text' name='synopsis' required/>
                 <br>
+                <p>Categorías: </p>
+                {{#categorys}}
+                <label for="category{{id}}">{{name}}:</label>
+                <input id="category{{id}}" class="form-control" type='checkbox' name="selectedCategorys" value="{{name}}"/>
                 <br>
+                {{/categorys}}
                 <input class="btn btn-danger" type='submit' value='Modificar película'/>
             </div>
         </form>

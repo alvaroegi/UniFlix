@@ -8,10 +8,7 @@ import com.example.uniflix.ServiceControllers.ReviewServiceController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
@@ -33,29 +30,31 @@ public class MovieController {
 
     @PostConstruct
     public void init(){
-        Movie y = new Movie("You","Greg Berlanti","Un joven profundamente obsesivo y peligrosamente seductor mueve cielo y tierra para instalarse en la vida de aquellas personas por quienes se siente cautivado",2018,"you.jpg");
+        Category miedo = new Category("Miedo");
+        categoryService.addCategory(miedo);
+        Category accion = new Category("Accion");
+        categoryService.addCategory(accion);
+        Category drama = new Category("Drama");
+        categoryService.addCategory(drama);
+        Category anime = new Category("Anime");
+        categoryService.addCategory(anime);
+        Category suspense = new Category("Suspense");
+        categoryService.addCategory(suspense);
         ArrayList<Category> you = new ArrayList<>();
         you.add(new Category("Suspense"));
         you.add(new Category("Drama"));
-        y.setCategorys(you);
+        Movie y = new Movie("You","Greg Berlanti","Un joven profundamente obsesivo y peligrosamente seductor mueve cielo y tierra para instalarse en la vida de aquellas personas por quienes se siente cautivado",2018,"you.jpg", you);
         moviesService.addMovie(y);
-        Movie m = new Movie("The Mandalorian","Jon Favreau", "Serie de aventura espacial que se ubica en el universo de Stars Wars",2019,"mandalorian.jpg");
         ArrayList<Category> mand = new ArrayList<>();
         mand.add(new Category("Accion"));
         mand.add(new Category("Suspense"));
-        m.setCategorys(mand);
+        Movie m = new Movie("The Mandalorian","Jon Favreau", "Serie de aventura espacial que se ubica en el universo de Stars Wars",2019,"mandalorian.jpg", mand);
         moviesService.addMovie(m);
-        Movie t = new Movie("The Last of Us","Craig Mazin","Basado en un videojuego de accion y aventuras la serie nos relata como Joel y Ellie sobreviven a una pandemia en EEUU",2023,"thelastofus.jpg");
         ArrayList<Category> tlou = new ArrayList<>();
         tlou.add(new Category("Miedo"));
         tlou.add(new Category("Accion"));
-        t.setCategorys(tlou);
+        Movie t = new Movie("The Last of Us","Craig Mazin","Basado en un videojuego de accion y aventuras la serie nos relata como Joel y Ellie sobreviven a una pandemia en EEUU",2023,"thelastofus.jpg", tlou);
         moviesService.addMovie(t);
-        categoryService.addCategory(new Category("Miedo"));
-        categoryService.addCategory(new Category("Accion"));
-        categoryService.addCategory(new Category("Drama"));
-        categoryService.addCategory(new Category("Anime"));
-        categoryService.addCategory(new Category("Suspense"));
     }
 
     @GetMapping("/")
@@ -75,10 +74,14 @@ public class MovieController {
         return "info_movie";
     }
     @GetMapping("/createMovie")
-    public String changeToMovie() { return "create_movie"; }
+    public String changeToMovie(Model model) {
+        model.addAttribute("categorys", categoryService.getCategorys());
+        return "create_movie"; }
     @PostMapping("/result")                                                                                                /*para las imagenes-----------------------*/
-    public String checkMovie(Model model, @RequestParam String name, @RequestParam String director,@RequestParam String synopsis, @RequestParam int year, @RequestParam/*("file")*/ MultipartFile image) {
-        if(moviesService.addMovie(new Movie(name, director,synopsis, year, image.getOriginalFilename()))!=null) {
+    public String checkMovie(Model model, @RequestParam String name, @RequestParam String director,@RequestParam String synopsis, @RequestParam int year, @RequestParam/*("file")*/ MultipartFile image, @RequestParam String[] selectedCategorys) {
+        ArrayList<Category> categorys = categoryService.getSelectedCategorys(selectedCategorys);
+        Movie m = new Movie(name, director,synopsis, year, image.getOriginalFilename(), categorys);
+        if(moviesService.addMovie(m)!=null) {
             model.addAttribute("added", true);
             /* desde aqui para imagenes */
             // https://www.youtube.com/watch?v=BjHEuNdpC-U parte 1
@@ -105,6 +108,7 @@ public class MovieController {
     @GetMapping("/modify")
     public String update(Model model) {
         model.addAttribute("movies", moviesService.getMovies());
+        model.addAttribute("categorys", categoryService.getCategorys());
         return "update_movie";
     }
     @PostMapping("/modify_delete")
@@ -114,17 +118,21 @@ public class MovieController {
             model.addAttribute("modified", true);
         }
         model.addAttribute("movies", moviesService.getMovies());
+        model.addAttribute("categorys", categoryService.getCategorys());
         return "update_movie";
     }
 
     @PostMapping("/modify_nondelete")
-    public String update_nondelete(Model model, @RequestParam String movie, @RequestParam String director, @RequestParam int year,@RequestParam String synopsis) {
+    public String update_nondelete(Model model, @RequestParam String movie, @RequestParam String director, @RequestParam int year,@RequestParam String synopsis, @RequestParam String[] selectedCategorys) {
         long id = moviesService.containsMovie(movie);
         if(id!=-1) {
-            moviesService.deleteWithoutCascade(id, director, year,synopsis);
+            ArrayList<Category> categorys = categoryService.getSelectedCategorys(selectedCategorys);
+            Movie updatedMovie = new Movie(movie, director, synopsis, year, moviesService.getMovie(id).getImage(), categorys);
+            moviesService.updateMovie(id, updatedMovie);
         }
         model.addAttribute("modified", true);
         model.addAttribute("movies", moviesService.getMovies());
+        model.addAttribute("categorys", categoryService.getCategorys());
         return "update_movie";
     }
 
@@ -132,6 +140,7 @@ public class MovieController {
     public String searchFilms(Model model, @RequestParam String searching) {
         model.addAttribute("filter", searching);
         model.addAttribute("moviesWithFilter", moviesService.searchMovies(searching));
+        model.addAttribute("categorys", categoryService.getCategorys());
         return "index";
     }
 

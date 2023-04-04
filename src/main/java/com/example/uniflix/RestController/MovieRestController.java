@@ -76,7 +76,7 @@ public class MovieRestController {
     @PutMapping("/api/movie/{id}")
     public ResponseEntity<Movie> updateMovieApi(@PathVariable long id, @RequestBody Movie updatedMovie) {
         Movie m = moviesService.getMovie(id);
-        if (m != null && moviesService.containsMovie(updatedMovie.getName())==-1) {
+        if (m != null && moviesService.containsMovie(updatedMovie.getName())!=-1) {
             updatedMovie.setId(id);
             // those parameters are not supposed to be modified
             updatedMovie.setName(moviesService.getMovie(id).getName());

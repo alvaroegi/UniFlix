@@ -2,6 +2,7 @@ package com.example.uniflix.Controller;
 
 import com.example.uniflix.Entities.Movie;
 import com.example.uniflix.Entities.Review;
+import com.example.uniflix.ServiceControllers.CategoryServiceController;
 import com.example.uniflix.ServiceControllers.MovieServiceController;
 import com.example.uniflix.ServiceControllers.ReviewServiceController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class ReviewController {
     ReviewServiceController reviewService;
     @Autowired
     MovieServiceController moviesService;
+    @Autowired
+    CategoryServiceController categoryService;
 
     @PostMapping("/newReview/{Idmovie}")
     public String newReview(Model model, @RequestParam String user, @RequestParam String comment, @RequestParam int score, @PathVariable long Idmovie) {
@@ -28,6 +31,7 @@ public class ReviewController {
         moviesService.updateScore(Idmovie);
         Movie m = moviesService.getMovie(Idmovie);
         model.addAttribute("movie", m);
+        model.addAttribute("categorys", categoryService.getCategorys());
         if(!reviewService.getReviewsOfMovie(Idmovie).isEmpty())
             model.addAttribute("reviewList", reviewService.getReviewsOfMovie(Idmovie));
         return "info_movie";
@@ -47,6 +51,7 @@ public class ReviewController {
         moviesService.updateScore(Idmovie);
         Movie m = moviesService.getMovie(Idmovie);
         model.addAttribute("movie", m);
+        model.addAttribute("categorys",categoryService.getCategorys());
         if(!reviewService.getReviewsOfMovie(Idmovie).isEmpty())
             model.addAttribute("reviewList", reviewService.getReviewsOfMovie(Idmovie));
         return "info_movie";
@@ -59,6 +64,7 @@ public class ReviewController {
         moviesService.updateScore(Idmovie);
         Movie m = moviesService.getMovie(Idmovie);
         model.addAttribute("movie", m);
+        model.addAttribute("categorys",categoryService.getCategorys());
         if(!reviewService.getReviewsOfMovie(Idmovie).isEmpty())
             model.addAttribute("reviewList", reviewService.getReviewsOfMovie(Idmovie));
         return "info_movie";

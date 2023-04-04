@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Category {
     private String name;
-    private ArrayList<Long> movies;
+    private ArrayList<Movie> movies;
 
     private long moty;
     private long id = -1;
@@ -21,10 +21,13 @@ public class Category {
     public void setId(long id) {
         this.id = id;
     }
+    public void setMovies(ArrayList<Movie> m) { this.movies = m; }
 
     public String getName() {return this.name;}
 
-    public ArrayList<Long> getMovies() {return this.movies;}
+    public long getId() { return this.id; }
+
+    public ArrayList<Movie> getMovies() {return this.movies;}
 
 
 }
