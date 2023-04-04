@@ -2,75 +2,119 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--BOOSTRAP -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-
+rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-
+cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-
+kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
     <title>{{movie.name}}</title>
     <script src="/js/info_Movie.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/info_movie.css">
 </head>
 <body>
-    <div>
-        <h1>{{movie.name}}</h1>
-        <p> <img class="caratula" src="/Peliculas/{{movie.image}}" align="right"/>
-            Director: {{movie.director}}</p>
-        <p>Puntuación: {{movie.score}}</p>
-        <p>Año: {{movie.year}}</p>
-    </div>
-    <button id="addReviewButton" onclick="showAddForm()">Añadir</button>
-    <div id="addReviewForm">
-        <form class="form-group" action="/newReview/{{movie.id}}" method="post">
-            <p>Usuario: </p>
-            <input class="form-control" type='text' name='user' required/>
-            <br>
-            <br>
-            <label for="select"> Puntuacion</label>
-            <select id="select" name="score" required>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-            </select>
-            <br>
-            <p>Comentario: </p>
-            <input class="form-control" type='text' name='comment' required/>
-            <br>
-            <br>
-            <input class="btn btn-danger" type='submit' value='Añadir Reseña'/>
-        </form>
-        <button onclick="hideAddForm()">Cancelar</button>
-    </div>
-    {{#reviewList}}
-    <div class="reviewInfo">
-        <p>{{user}}: {{comment}} {{score}}</p>
-        <button id="modifyReviewButton{{id}}" onclick="showModifyForm('{{id}}')">Modificar</button>
-        <div id="modifyReviewForm{{id}}" class="modifyReviewForm">
-            <form class="form-group" action="/modifyReview/{{Idmovie}}/{{id}}" method="post">
-                <p>Usuario: </p>
-                <input class="form-control" type='text' name='user' required/>
-                <br>
-                <br>
-                <label for="select2"> Puntuacion</label>
-                <select id="select2" name="score" required>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-                <br>
-                <p>Comentario: </p>
-                <input class="form-control" type='text' name='comment' required/>
-                <br>
-                <br>
-                <input class="btn btn-danger" type='submit' value='Modificar Reseña'/>
-            </form>
-            <button onclick="hideModifyForm('{{id}}')">Cancelar</button>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top rounded m-3">
+        <div class="container">
+            <img style="width:10%;" onclick="window.location.href = '/'" src="/images/logo.png"/>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            </div>
         </div>
-        <form action="/deleteReview/{{Idmovie}}/{{id}}" method="post">
-            <input id="confirmed{{id}}" class="form-control" type="hidden" name="confirmed"/>
-            <button type="submit" onclick="confirmDelete('{{id}}')">Eliminar</button>
-        </form>
+    </nav>
+    <div id="relleno"></div>
+    <nav id="navH">
+        <ul>
+            <li>
+                <a href="/">Inicio</a>
+                {{#categorys}}
+                <a onclick="window.location.href='/cat/{{name}}'">{{name}}</a>
+                {{/categorys}}
+            </li>
+        </ul>
+    </nav>
+
+
+    <div class="container2">
+        <div id="reviewM">
+            <div id="content">
+                <h1>{{movie.name}}</h1>
+                <p>Año: {{movie.year}}</p>
+                <p>Director: {{movie.director}}</p>
+                <p>Puntuación: {{movie.score}}</p>
+            </div>
+            <div id="image">
+                <img class="caratula" src="/Peliculas/{{movie.image}}"/>
+            </div>
+        </div>
+
+        <div id="addR">
+            <h2>Reseñas:</h2>
+            <div class="buttons">
+                <button class="btn btn-primary btn-dark" id="addReviewButton" onclick="showAddForm()">Añadir</button>
+            </div>
+
+            <div id="addReviewForm">
+                <form class="form-group" action="/newReview/{{movie.id}}" method="post">
+                    <p>Usuario: </p>
+                    <input class="form-control" type='text' name='user' required/>
+                    <br>
+                    <br>
+                    <label for="select"> Puntuacion</label>
+                    <select id="select" name="score" required>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                    <br>
+                    <p>Comentario: </p>
+                    <input class="form-control" type='text' name='comment' required/>
+                    <br>
+                    <br>
+                    <input class="btn btn-danger" type='submit' value='Añadir Reseña'/>
+                </form>
+                <button onclick="hideAddForm()">Cancelar</button>
+            </div>
+            {{#reviewList}}
+            <div class="reviewInfo">
+                <p>{{user}}: {{comment}} {{score}}</p>
+                <button id="modifyReviewButton{{id}}" onclick="showModifyForm('{{id}}')">Modificar</button>
+                <div id="modifyReviewForm{{id}}" class="modifyReviewForm">
+                    <form class="form-group" action="/modifyReview/{{Idmovie}}/{{id}}" method="post">
+                        <p>Usuario: </p>
+                        <input class="form-control" type='text' name='user' required/>
+                        <br>
+                        <br>
+                        <label for="select2"> Puntuacion</label>
+                        <select id="select2" name="score" required>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                        <br>
+                        <p>Comentario: </p>
+                        <input class="form-control" type='text' name='comment' required/>
+                        <br>
+                        <br>
+                        <input class="btn btn-danger" type='submit' value='Modificar Reseña'/>
+                    </form>
+                    <button onclick="hideModifyForm('{{id}}')">Cancelar</button>
+                </div>
+                <form action="/deleteReview/{{Idmovie}}/{{id}}" method="post">
+                    <input id="confirmed{{id}}" class="form-control" type="hidden" name="confirmed"/>
+                    <button type="submit" onclick="confirmDelete('{{id}}')">Eliminar</button>
+                </form>
+            </div>
+            {{/reviewList}}
+            <div class="buttons">
+                <button class="btn btn-primary btn-dark" onclick="window.location.href='/'">Volver</button>
+            </div>
+        </div>
     </div>
-    {{/reviewList}}
-    <button onclick="window.location.href='/'">Volver</button>
 </body>
 </html>

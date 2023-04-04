@@ -1,9 +1,83 @@
+body {
+    background-color : #c2b4b4;
+}
+
+#relleno{
+    height: 100px;
+}
+#navH {
+    float: left;
+    width:200px;
+    height: 100vh;
+    background-color: black;
+    margin-top: 10px;
+    margin-left: 30px;
+    margin-right: 30px;
+    border-radius: 5px;
+}
+
+#navH a {
+    display: block;
+    padding: 5px 10px;
+    color: white;
+    text-decoration: none;
+}
+
+#navH a:hover {
+    background-color: #eee;
+}
+.container2{
+    margin-left: 250px;
+}
+
+#reviewM{
+    display:flex;
+    border: 3px solid red;
+    border-radius: 5px;
+    justify-content: space-between;
+}
+#content{
+    display:flex;
+    flex-direction: column;
+    justify-content: left;
+    margin-left:150px;
+    margin-top:10px;
+    width: 50%;
+}
+#content > p{
+    margin-left: 60px;
+    font-family: verdana,arial,helvética;
+    font-size:20px;
+
+}
+#image{
+    display:inline-flex;
+    justify-content: right;
+    width:50%;
+    margin-right:150px;
+    margin-top:10px;
+}
 .caratula{
-    float: right;
     width: 200px;
     height: 300px;
     margin: 4px;
 }
+
+#addR{
+    border: 3px solid red;
+    border-radius: 5px;
+    margin:40px;
+
+}
+#addR > * {
+    margin: 20px;
+}
+.buttons{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 #addReviewForm {
     display: none;

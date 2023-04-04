@@ -53,6 +53,7 @@ public class MovieController {
     public String reseñas(Model model, @PathVariable String name){
         Movie m = moviesService.getMovie(moviesService.containsMovie(name));
         model.addAttribute("movie", m);
+        model.addAttribute("categorys",categoryService.getCategorys());
         if(!reviewService.getReviewsOfMovie(moviesService.containsMovie(name)).isEmpty())
             model.addAttribute("reviewList", reviewService.getReviewsOfMovie(moviesService.containsMovie(name)));
         return "info_movie";

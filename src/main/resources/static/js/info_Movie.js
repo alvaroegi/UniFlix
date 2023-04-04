@@ -25,7 +25,7 @@ function hideModifyForm(id) {
 }
 function confirmDelete(id) {
     let confirmed = document.getElementById("confirmed" + id);
-    if(confirm('¿Eliminar reseña?'))
+    if(confirm(String.fromCharCode(191)+'Eliminar rese'+String.fromCharCode(241)+'a?'))
         confirmed.value = true;
     else
         confirmed.value = false;
