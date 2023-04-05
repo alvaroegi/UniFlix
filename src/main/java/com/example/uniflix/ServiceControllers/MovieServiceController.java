@@ -120,4 +120,15 @@ public class MovieServiceController {
         return sol;
     }
 
+    public ArrayList<Movie> moviesOfCategory(Category c){
+        ArrayList<Movie> sol = new ArrayList<>();
+        for(Map.Entry entry: movies.entrySet()) {
+            Movie m = (Movie)entry.getValue();
+            if(isCategory(c,m)) {
+                sol.add(m);
+            }
+        }
+        return sol;
+    }
+
 }

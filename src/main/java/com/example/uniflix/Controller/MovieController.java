@@ -61,6 +61,16 @@ public class MovieController {
     public String back(Model model) {
         model.addAttribute("movies", moviesService.getMovies());
         model.addAttribute("categorys", categoryService.getCategorys());
+        ArrayList<Movie> aux1 = moviesService.moviesOfCategory(categoryService.getCategory(1));
+        model.addAttribute("fear",aux1);
+        ArrayList<Movie> aux2 = moviesService.moviesOfCategory(categoryService.getCategory(2));
+        model.addAttribute("action",aux2);
+        ArrayList<Movie> aux3 = moviesService.moviesOfCategory(categoryService.getCategory(3));
+        model.addAttribute("drama",aux3);
+        ArrayList<Movie> aux4 = moviesService.moviesOfCategory(categoryService.getCategory(4));
+        model.addAttribute("anime",aux4);
+        ArrayList<Movie> aux5 = moviesService.moviesOfCategory(categoryService.getCategory(5));
+        model.addAttribute("suspense",aux5);
         return "index";
     }
 

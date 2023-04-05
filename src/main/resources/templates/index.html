@@ -71,12 +71,37 @@ kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="a
 
     <div id="general">
         <div id="top10">
-            <p>Series del momento</p>
+            <h2>Series del momento</h2>
             <div class="carrusel">
                 {{#movies}}
                 <img class="caratula" onclick="window.location.href='/peli/{{name}}'" src="/Peliculas/{{image}}"/></img>
                 {{/movies}}
             </div>
+            <hr>
+            <h2>Miedo</h2>
+                {{#fear}}
+                <img class="caratula" onclick="window.location.href='/peli/{{name}}'" src="/Peliculas/{{image}}"/></img>
+                {{/fear}}
+            <hr>
+            <h2>Accion</h2>
+                {{#action}}
+                <img class="caratula" onclick="window.location.href='/peli/{{name}}'" src="/Peliculas/{{image}}"/></img>
+                {{/action}}
+            <hr>
+            <h2>Drama</h2>
+                {{#drama}}
+                <img class="caratula" onclick="window.location.href='/peli/{{name}}'" src="/Peliculas/{{image}}"/></img>
+                {{/drama}}
+            <hr>
+            <h2>Anime</h2>
+                {{#anime}}
+                <img class="caratula" onclick="window.location.href='/peli/{{name}}'" src="/Peliculas/{{image}}"/></img>
+                {{/anime}}
+            <hr>
+            <h2>Suspense</h2>
+                {{#suspense}}
+                <img class="caratula" onclick="window.location.href='/peli/{{name}}'" src="/Peliculas/{{image}}"/></img>
+                {{/suspense}}
         </div>
     </div>
 
@@ -88,5 +113,6 @@ kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="a
         {{/moviesWithFilter}}
     </div>
     {{/filter}}
+
 </body>
 </html>

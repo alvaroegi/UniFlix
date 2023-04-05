@@ -46,6 +46,10 @@ public class CategoryServiceController {
         return sol;
     }
 
+    public Category getCategory(long id) {
+        return categorys.get(id);
+    }
+
     public ArrayList<Category> getSelectedCategorys(String[] categoryList) {
         ArrayList<Category> selectedCategorys = new ArrayList<>();
         for (int i = 0; i < categoryList.length; i++)
