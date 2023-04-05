@@ -1,6 +1,7 @@
 package com.example.uniflix.Controller;
 
 import com.example.uniflix.Entities.Category;
+import com.example.uniflix.Entities.Moty;
 import com.example.uniflix.Entities.Movie;
 import com.example.uniflix.ServiceControllers.CategoryServiceController;
 import com.example.uniflix.ServiceControllers.MovieServiceController;
@@ -34,8 +35,16 @@ public class CategoryController {
                 m.add(aux);
             }
         }
+        Moty motyInfo = categoryService.getMoty(c);
+        ArrayList<Category> aux= new ArrayList<>();
+        aux.add(c);
+        Movie motyMovie = new Movie("Sin establecer","Sin establecer","Sin establecer",0,"default.jpg",aux);
+        if(motyInfo.getScore()!=-1) {
+            motyMovie = movieService.getMovie(movieService.containsMovie(motyInfo.getName()));
+        }
         model.addAttribute("category", c);
         model.addAttribute("movies",m);
+        model.addAttribute("moty",motyMovie);
         return "info_category";
     }
 

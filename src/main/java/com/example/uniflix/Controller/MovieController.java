@@ -1,8 +1,10 @@
 package com.example.uniflix.Controller;
 
 import com.example.uniflix.Entities.Category;
+import com.example.uniflix.Entities.Moty;
 import com.example.uniflix.Entities.Movie;
 import com.example.uniflix.ServiceControllers.CategoryServiceController;
+import com.example.uniflix.ServiceControllers.MotyServiceController;
 import com.example.uniflix.ServiceControllers.MovieServiceController;
 import com.example.uniflix.ServiceControllers.ReviewServiceController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 @Controller
 public class MovieController {
@@ -27,19 +30,31 @@ public class MovieController {
 
     @Autowired
     CategoryServiceController categoryService;
+    @Autowired
+    MotyServiceController motyService;
 
     @PostConstruct
     public void init(){
         Category miedo = new Category("Miedo");
         categoryService.addCategory(miedo);
+        Moty m1 = new Moty(categoryService.getCategory("Miedo").getId());
+        motyService.addMoty(m1);
         Category accion = new Category("Accion");
         categoryService.addCategory(accion);
+        Moty m2 = new Moty(categoryService.getCategory("Accion").getId());
+        motyService.addMoty(m2);
         Category drama = new Category("Drama");
         categoryService.addCategory(drama);
+        Moty m3 = new Moty(categoryService.getCategory("Drama").getId());
+        motyService.addMoty(m3);
         Category anime = new Category("Anime");
         categoryService.addCategory(anime);
+        Moty m4 = new Moty(categoryService.getCategory("Anime").getId());
+        motyService.addMoty(m4);
         Category suspense = new Category("Suspense");
         categoryService.addCategory(suspense);
+        Moty m5 = new Moty(categoryService.getCategory("Suspense").getId());
+        motyService.addMoty(m5);
         ArrayList<Category> you = new ArrayList<>();
         you.add(new Category("Suspense"));
         you.add(new Category("Drama"));
@@ -90,7 +105,9 @@ public class MovieController {
     @PostMapping("/result")                                                                                                /*para las imagenes-----------------------*/
     public String checkMovie(Model model, @RequestParam String name, @RequestParam String director,@RequestParam String synopsis, @RequestParam int year, @RequestParam/*("file")*/ MultipartFile image, @RequestParam String[] selectedCategorys) {
         ArrayList<Category> categorys = categoryService.getSelectedCategorys(selectedCategorys);
+        LinkedList<Category> categorys2 = categoryService.getCategorys();
         Movie m = new Movie(name, director,synopsis, year, image.getOriginalFilename(), categorys);
+        model.addAttribute("categorys",categorys2);
         if(moviesService.addMovie(m)!=null) {
             model.addAttribute("added", true);
             /* desde aqui para imagenes */

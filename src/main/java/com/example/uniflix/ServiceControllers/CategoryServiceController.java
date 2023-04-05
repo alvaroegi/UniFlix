@@ -1,8 +1,10 @@
 package com.example.uniflix.ServiceControllers;
 
 import com.example.uniflix.Entities.Category;
+import com.example.uniflix.Entities.Moty;
 import com.example.uniflix.Entities.Movie;
 import com.example.uniflix.Entities.Review;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,6 +16,9 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class CategoryServiceController {
+
+    @Autowired
+    MotyServiceController motyService;
     private Map<Long, Category> categorys = new ConcurrentHashMap<>();
     private AtomicLong lastId = new AtomicLong();
 
@@ -74,5 +79,19 @@ public class CategoryServiceController {
             categorys.put(aux.getId(), aux);
         }
     }
+
+    public Moty getMoty(Category c) {
+        ArrayList<Moty> list = motyService.getMotys();
+        String name = c.getName();
+        Moty sol = new Moty(1);
+        for(Moty aux : list) {
+            String other = categorys.get(aux.getIdcategory()).getName();
+            if(name.equals(other)) {
+                sol = aux;
+            }
+        }
+        return sol;
+    }
+
 
 }

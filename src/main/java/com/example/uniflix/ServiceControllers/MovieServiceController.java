@@ -1,9 +1,6 @@
 package com.example.uniflix.ServiceControllers;
 
-import com.example.uniflix.Entities.Category;
-import com.example.uniflix.Entities.Movie;
-import com.example.uniflix.Entities.Review;
-import com.example.uniflix.Entities.User;
+import com.example.uniflix.Entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +21,8 @@ public class MovieServiceController {
     @Autowired
     CategoryServiceController categoryService;
 
+    @Autowired
+    MotyServiceController motyService;
     //inicializar peliculas iniciales
 
     public Movie getMovie(long id) {
@@ -107,6 +106,19 @@ public class MovieServiceController {
         else
             m.setScore(0);
         movies.put(id, m);
+
+        ArrayList<Category> catList = m.getCategorys();
+        boolean alreadyMoty = false;
+        for(Category c : catList) {
+            Moty moty = categoryService.getMoty(c);
+            if(moty.getName().equals(m.getName())) alreadyMoty = true;
+            if((moty.getScore()==-1 && !alreadyMoty) || (moty.getScore()<m.getScore() && !moty.getName().equals(m.getName()) && !alreadyMoty)){
+                moty.setScore(m.getScore());
+                moty.setName(m.getName());
+                motyService.updateMoty(moty.getId(),moty);
+                alreadyMoty=true;
+            }
+        }
     }
 
     public boolean isCategory(Category c,Movie m) {
