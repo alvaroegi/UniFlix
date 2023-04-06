@@ -6,12 +6,12 @@ public class Moty {
     private long Idcategory;
     private float score;
     private long id=-1;
-    private String name;
+    private long idMovie;
 
     public Moty(long cat) {
         this.score=-1;
         this.Idcategory=cat;
-        this.name="";
+        this.idMovie=-1;
     }
 
     public void setCategory(long c) {
@@ -20,8 +20,8 @@ public class Moty {
 
     public float getScore() {return this.score;}
     public void setScore(float s) {this.score=s;}
-    public void setName(String s){this.name=s;}
-    public String getName(){return this.name;}
+    public void setIdMovie(long id){this.idMovie=id;}
+    public long getIdMovie(){return this.idMovie;}
     public long getIdcategory() {return this.Idcategory;}
     public long getId() {return this.id;}
 

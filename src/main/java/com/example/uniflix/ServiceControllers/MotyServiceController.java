@@ -31,6 +31,10 @@ public class MotyServiceController {
         return sol;
     }
 
+    public Moty getMoty(long id) {
+        return motys.get(id);
+    }
+
     public void updateMoty(long id, Moty m) {
         //Moty originalMovie = motys.get(id);
         //categoryService.deleteMovieFromCategories(originalMovie);
