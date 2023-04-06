@@ -58,7 +58,7 @@ public class CategoryServiceController {
     public ArrayList<Category> getSelectedCategorys(String[] categoryList) {
         ArrayList<Category> selectedCategorys = new ArrayList<>();
         for (int i = 0; i < categoryList.length; i++)
-            selectedCategorys.add(new Category(categoryList[i]));
+            selectedCategorys.add(getCategory(categoryList[i]));
         return selectedCategorys;
     }
     public void addMovieToCategories(Movie m) {

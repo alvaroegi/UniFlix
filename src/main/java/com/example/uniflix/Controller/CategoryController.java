@@ -40,7 +40,7 @@ public class CategoryController {
         aux.add(c);
         Movie motyMovie = new Movie("Sin establecer","Sin establecer","Sin establecer",0,"default.jpg",aux);
         if(motyInfo.getScore()!=-1) {
-            motyMovie = movieService.getMovie(movieService.containsMovie(motyInfo.getName()));
+            motyMovie = movieService.getMovie(motyInfo.getIdMovie());
         }
         model.addAttribute("category", c);
         model.addAttribute("movies",m);

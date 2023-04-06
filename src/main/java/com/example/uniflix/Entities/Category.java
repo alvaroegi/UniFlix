@@ -26,6 +26,7 @@ public class Category {
     public String getName() {return this.name;}
 
     public long getId() { return this.id; }
+    public void setMoty(long id) { this.moty = id; }
 
     public ArrayList<Movie> getMovies() {return this.movies;}
 
