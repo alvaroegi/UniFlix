@@ -3,6 +3,7 @@ package com.example.uniflix.Controller;
 import com.example.uniflix.Entities.Category;
 import com.example.uniflix.Entities.Moty;
 import com.example.uniflix.Entities.Movie;
+import com.example.uniflix.Entities.Review;
 import com.example.uniflix.ServiceControllers.CategoryServiceController;
 import com.example.uniflix.ServiceControllers.MotyServiceController;
 import com.example.uniflix.ServiceControllers.MovieServiceController;
@@ -35,6 +36,7 @@ public class MovieController {
 
     @PostConstruct
     public void init(){
+        //We create the default categorys and motys
         Category miedo = new Category("Miedo");
         categoryService.addCategory(miedo);
         Moty m1 = new Moty(categoryService.getCategory("Miedo").getId());
@@ -55,6 +57,8 @@ public class MovieController {
         categoryService.addCategory(suspense);
         Moty m5 = new Moty(categoryService.getCategory("Suspense").getId());
         motyService.addMoty(m5);
+
+        //We create the initial movies
         ArrayList<Category> you = new ArrayList<>();
         you.add(new Category("Suspense"));
         you.add(new Category("Drama"));
@@ -70,6 +74,47 @@ public class MovieController {
         tlou.add(new Category("Accion"));
         Movie t = new Movie("The Last of Us","Craig Mazin","Basado en un videojuego de accion y aventuras la serie nos relata como Joel y Ellie sobreviven a una pandemia en EEUU",2023,"thelastofus.jpg", tlou);
         moviesService.addMovie(t);
+        ArrayList<Category> naruto = new ArrayList<>();
+        naruto.add(new Category("Anime"));
+        naruto.add(new Category("Accion"));
+        Movie n = new Movie("Naruto","Osamu Kobayashi","Basada en la historia de un ninja huérfano que aspira a convertirse en Hokage y ser alguien importante en su aldea.",2002,"naruto.jpg", naruto);
+        moviesService.addMovie(n);
+        ArrayList<Category> peaky = new ArrayList<>();
+        peaky.add(new Category("Drama"));
+        peaky.add(new Category("Accion"));
+        peaky.add(new Category("Suspense"));
+        Movie pb = new Movie("Peaky Blinders","Otto Buthurst","Basada en la historia de una familia gitana y en su auge por convertirse en gangsters reconocidos",2013,"peakyblinders.jpg", peaky);
+        moviesService.addMovie(pb);
+        ArrayList<Category> tintina = new ArrayList<>();
+        tintina.add(new Category("Miedo"));
+        tintina.add(new Category("Suspense"));
+        Movie tt = new Movie("Tin & Tina","Rubin Stein","Cuando Lola pierde a sus dos hijos también pierde la fe en Dios. Para intentar recuperarla adopta dos hermanos angelicales de los que empieza a sentirse atraída.",2023,"tintina.jpg", tintina);
+        moviesService.addMovie(tt);
+
+        //We create the initials reviews for the initials movies
+        Review r1 = new Review("Raul", "Una pelicula que merece mucho la pena ver, la recomiendo a todos los fanáticos de Jaime Lorente", 6, 4);
+        reviewService.addReview(r1);
+        moviesService.updateScore(6);
+
+        Review r2 = new Review("Alvaro", "Una de las mejores series de la época, Cillian Murphy esta espectacular", 5, 5);
+        reviewService.addReview(r2);
+        moviesService.updateScore(5);
+
+        Review r3 = new Review("Alejandro", "Una de las peores series de Netflix", 1, 1);
+        reviewService.addReview(r3);
+        moviesService.updateScore(1);
+
+        Review r4 = new Review("user123", "Una continuación de la mejor saga de la historia, pero no está a la altura", 2, 3);
+        reviewService.addReview(r4);
+        moviesService.updateScore(2);
+
+        Review r5 = new Review("lechuga", "Se podría decir que me ha gustado más que el juego y eso que tengo muchas horas jugadas", 3, 5);
+        reviewService.addReview(r5);
+        moviesService.updateScore(3);
+
+        Review r6 = new Review("alemg_29", "Si te gusta el anime y no has visto Naruto... deberías estar preso", 4, 4);
+        reviewService.addReview(r6);
+        moviesService.updateScore(4);
     }
 
     @GetMapping("/")
