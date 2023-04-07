@@ -132,6 +132,7 @@ public class MovieController {
 
     @GetMapping("/")
     public String back(Model model) {
+        model.addAttribute("nofilter",true);
         model.addAttribute("movies", moviesService.getMovies());
         model.addAttribute("categorys", categoryService.getCategorys());
         ArrayList<Movie> aux1 = moviesService.moviesOfCategory(categoryService.getCategory(1));

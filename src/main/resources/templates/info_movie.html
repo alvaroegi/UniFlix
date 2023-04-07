@@ -19,7 +19,13 @@ kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="a
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top rounded m-3">
         <div class="container">
             <img style="width:10%;" onclick="window.location.href = '/'" src="/images/logo.png"/>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#categoriesMobile" aria-controls="categoriesMobile" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div id="categoriesMobile" class="collapse navbar-collapse">
+                {{#categorys}}
+                <li class="nav-item">
+                    <a class="nav-link text-danger m-3" href="/cat/{{name}}">{{name}}</a>
+                </li>
+                {{/categorys}}
             </div>
         </div>
     </nav>
@@ -29,7 +35,7 @@ kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="a
             <li>
                 <a href="/">Inicio</a>
                 {{#categorys}}
-                <a onclick="window.location.href='/cat/{{name}}'">{{name}}</a>
+                <a href="/cat/{{name}}">{{name}}</a>
                 {{/categorys}}
             </li>
         </ul>
@@ -43,7 +49,7 @@ kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="a
                 <p>Año: {{movie.year}}</p>
                 <p>Director: {{movie.director}}</p>
                 <p>Puntuación: {{movie.score}}</p>
-                <p>Sinopsis: {{movie.synopsis}}</p>
+                <p id="synopsis">Sinopsis: {{movie.synopsis}}</p>
             </div>
             <div id="image">
                 <img class="caratula" src="/Peliculas/{{movie.image}}"/>
