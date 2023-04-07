@@ -1,6 +1,7 @@
 package com.example.uniflix.RestController;
 
 import com.example.uniflix.Entities.Review;
+import com.example.uniflix.ServiceControllers.MotyServiceController;
 import com.example.uniflix.ServiceControllers.MovieServiceController;
 import com.example.uniflix.ServiceControllers.ReviewServiceController;
 import com.example.uniflix.ServiceControllers.UserServiceController;
@@ -17,6 +18,8 @@ public class ReviewRestController {
     ReviewServiceController reviewService;
     @Autowired
     MovieServiceController moviesService;
+    @Autowired
+    MotyServiceController motyService;
 
     @GetMapping("/api/review")
     public Collection<Review> allReviewsApi() {
@@ -38,6 +41,7 @@ public class ReviewRestController {
     public Review addReviewApi(@RequestBody Review r) {
         reviewService.addReview(r);
         moviesService.updateScore(r.getMovie());
+        motyService.updateMotysOfCategorys(moviesService.getMovie(r.getMovie()).getCategorys());
         return r;
     }
 
@@ -46,6 +50,7 @@ public class ReviewRestController {
         Review r = reviewService.deleteReview(id);
         if(r!=null) {
             moviesService.updateScore(r.getMovie());
+            motyService.updateMotysOfCategorys(moviesService.getMovie(r.getMovie()).getCategorys());
             return new ResponseEntity<>(r, HttpStatus.OK);
         }
         else {
@@ -60,6 +65,7 @@ public class ReviewRestController {
             updatedReview.setId(id);
             reviewService.updateReview(id, updatedReview);
             moviesService.updateScore(r.getMovie());
+            motyService.updateMotysOfCategorys(moviesService.getMovie(r.getMovie()).getCategorys());
             return new ResponseEntity<>(updatedReview, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

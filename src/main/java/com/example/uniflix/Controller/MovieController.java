@@ -120,6 +120,8 @@ public class MovieController {
         Review r6 = new Review("alemg_29", "Si te gusta el anime y no has visto Naruto... deberías estar preso", 4, 4);
         reviewService.addReview(r6);
         moviesService.updateScore(4);
+
+        motyService.updateMotysOfCategorys(categoryService.getCategorys());
     }
 
     @GetMapping("/")
@@ -155,7 +157,7 @@ public class MovieController {
     @PostMapping("/result")                                                                                                /*para las imagenes-----------------------*/
     public String checkMovie(Model model, @RequestParam String name, @RequestParam String director,@RequestParam String synopsis, @RequestParam int year, @RequestParam/*("file")*/ MultipartFile image, @RequestParam String[] selectedCategorys) {
         ArrayList<Category> categorys = categoryService.getSelectedCategorys(selectedCategorys);
-        LinkedList<Category> categorys2 = categoryService.getCategorys();
+        ArrayList<Category> categorys2 = categoryService.getCategorys();
         Movie m = new Movie(name, director,synopsis, year, image.getOriginalFilename(), categorys);
         model.addAttribute("categorys",categorys2);
         if(moviesService.addMovie(m)!=null) {
@@ -192,6 +194,7 @@ public class MovieController {
     @PostMapping("/modify_delete")
     public String update_delete(Model model, @RequestParam String movie, @RequestParam boolean confirmed) {
         if(confirmed) {
+            long id = moviesService.containsMovie(movie);
             moviesService.deleteMovie(moviesService.containsMovie(movie));
             model.addAttribute("modified", true);
         }
@@ -206,6 +209,8 @@ public class MovieController {
         if(id!=-1) {
             ArrayList<Category> categorys = categoryService.getSelectedCategorys(selectedCategorys);
             Movie updatedMovie = new Movie(movie, director, synopsis, year, moviesService.getMovie(id).getImage(), categorys);
+            updatedMovie.setId(id);
+            updatedMovie.setScore(moviesService.getMovie(id).getScore());
             moviesService.updateMovie(id, updatedMovie);
         }
         model.addAttribute("modified", true);

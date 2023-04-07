@@ -30,8 +30,8 @@ public class CategoryServiceController {
         return c;
     }
 
-    public LinkedList<Category> getCategorys() {
-        LinkedList<Category> catList = new LinkedList<>();
+    public ArrayList<Category> getCategorys() {
+        ArrayList<Category> catList = new ArrayList<>();
         for(Map.Entry entry: categorys.entrySet()) {
             Category c = (Category) entry.getValue();
             catList.add(c);

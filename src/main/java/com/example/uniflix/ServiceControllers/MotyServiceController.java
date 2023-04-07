@@ -41,4 +41,19 @@ public class MotyServiceController {
         motys.put(id, m);
         //categoryService.addMovieToCategories(m);
     }
+
+    public void updateMotysOfCategorys(ArrayList<Category> categorys) {
+        for(Category c : categorys) {
+            Moty bestMovie = getMoty(c.getMoty());
+            bestMovie.setScore(-1);
+            bestMovie.setIdMovie(-1);
+            for(Movie actual : c.getMovies()) {
+                if(actual.getScore() > bestMovie.getScore()) {
+                    bestMovie.setIdMovie(actual.getId());
+                    bestMovie.setScore(actual.getScore());
+                }
+            }
+            updateMoty(bestMovie.getId(), bestMovie);
+        }
+    }
 }

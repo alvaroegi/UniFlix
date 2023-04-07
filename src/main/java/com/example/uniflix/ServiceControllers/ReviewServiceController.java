@@ -24,6 +24,7 @@ public class ReviewServiceController {
         long id = lastId.incrementAndGet();
         newReview.setId(id);
         reviews.put(id,newReview);
+
         return newReview;
     }
 

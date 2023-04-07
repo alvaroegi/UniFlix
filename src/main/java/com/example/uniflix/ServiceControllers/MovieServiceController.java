@@ -54,9 +54,9 @@ public class MovieServiceController {
         if(containsMovie(m.getName())!=-1)
             return null;
         else {
-            categoryService.addMovieToCategories(m);
             long id = lastId.incrementAndGet();
             m.setId(id);
+            categoryService.addMovieToCategories(m);
             movies.put(id, m);
             return m;
         }
@@ -65,8 +65,9 @@ public class MovieServiceController {
     public Movie deleteMovie(long id){
         Movie m = movies.remove(id);
         reviewService.deleteReviewsofMovie(id);
+        // borrar esta peli de los motys en los que esté
         categoryService.deleteMovieFromCategories(m);
-        updateScore(id);
+        motyService.updateMotysOfCategorys(m.getCategorys());
         return m;
     }
     public Collection<Movie> getAllMovies() {
@@ -75,9 +76,12 @@ public class MovieServiceController {
 
     public void updateMovie(long id, Movie m) {
         Movie originalMovie = movies.get(id);
+        //borrar esta peli de los motys en los que esté
         categoryService.deleteMovieFromCategories(originalMovie);
+        motyService.updateMotysOfCategorys(originalMovie.getCategorys());
         movies.put(id, m);
         categoryService.addMovieToCategories(m);
+        motyService.updateMotysOfCategorys(m.getCategorys());
         updateScore(id);
     }
 
@@ -108,16 +112,6 @@ public class MovieServiceController {
         else
             m.setScore(0);
         movies.put(id, m);
-
-        ArrayList<Category> catList = m.getCategorys();
-        for(Category c : catList) {
-            Moty moty = categoryService.getMoty(c);
-            if((moty.getScore()==-1) || (moty.getScore()<m.getScore())){
-                moty.setScore(m.getScore());
-                moty.setIdMovie(m.getId());
-                motyService.updateMoty(moty.getId(),moty);
-            }
-        }
     }
 
     public boolean isCategory(Category c,Movie m) {

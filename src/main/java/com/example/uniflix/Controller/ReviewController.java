@@ -3,6 +3,7 @@ package com.example.uniflix.Controller;
 import com.example.uniflix.Entities.Movie;
 import com.example.uniflix.Entities.Review;
 import com.example.uniflix.ServiceControllers.CategoryServiceController;
+import com.example.uniflix.ServiceControllers.MotyServiceController;
 import com.example.uniflix.ServiceControllers.MovieServiceController;
 import com.example.uniflix.ServiceControllers.ReviewServiceController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,15 @@ public class ReviewController {
     MovieServiceController moviesService;
     @Autowired
     CategoryServiceController categoryService;
+    @Autowired
+    MotyServiceController motyService;
 
     @PostMapping("/newReview/{Idmovie}")
     public String newReview(Model model, @RequestParam String user, @RequestParam String comment, @RequestParam int score, @PathVariable long Idmovie) {
         Review r = new Review(user, comment, Idmovie, score);
         reviewService.addReview(r);
         moviesService.updateScore(Idmovie);
+        motyService.updateMotysOfCategorys(moviesService.getMovie(Idmovie).getCategorys());
         Movie m = moviesService.getMovie(Idmovie);
         model.addAttribute("movie", m);
         model.addAttribute("categorys", categoryService.getCategorys());
@@ -49,6 +53,7 @@ public class ReviewController {
         updatedReview.setId(id);
         reviewService.updateReview(id, updatedReview);
         moviesService.updateScore(Idmovie);
+        motyService.updateMotysOfCategorys(moviesService.getMovie(Idmovie).getCategorys());
         Movie m = moviesService.getMovie(Idmovie);
         model.addAttribute("movie", m);
         model.addAttribute("categorys",categoryService.getCategorys());
@@ -62,6 +67,7 @@ public class ReviewController {
         if(confirmed)
             reviewService.deleteReview(id);
         moviesService.updateScore(Idmovie);
+        motyService.updateMotysOfCategorys(moviesService.getMovie(Idmovie).getCategorys());
         Movie m = moviesService.getMovie(Idmovie);
         model.addAttribute("movie", m);
         model.addAttribute("categorys",categoryService.getCategorys());

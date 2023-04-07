@@ -30,5 +30,7 @@ public class Category {
 
     public ArrayList<Movie> getMovies() {return this.movies;}
 
+    public long getMoty() { return this.moty; }
+
 
 }
