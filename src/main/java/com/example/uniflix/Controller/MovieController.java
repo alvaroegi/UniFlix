@@ -102,11 +102,15 @@ public class MovieController {
         moviesService.updateScore(6);
 
         Review r2 = new Review("Alvaro", "Una de las mejores series de la época, Cillian Murphy esta espectacular", 5, 5);
+        Review real = new Review("Fauste23","La serie más sobrevalorada de la historia, es una telenovela para hombres",5,1);
         reviewService.addReview(r2);
+        reviewService.addReview(real);
         moviesService.updateScore(5);
 
         Review r3 = new Review("Alejandro", "Una de las peores series de Netflix", 1, 1);
+        Review real2 = new Review("Experto23","La mezcla del romanticismo con la psicopatía del personaje crea un aura de suspense espectacular",1,5);
         reviewService.addReview(r3);
+        reviewService.addReview(real2);
         moviesService.updateScore(1);
 
         Review r4 = new Review("user123", "Una continuación de la mejor saga de la historia, pero no está a la altura", 2, 3);
@@ -118,7 +122,9 @@ public class MovieController {
         moviesService.updateScore(3);
 
         Review r6 = new Review("alemg_29", "Si te gusta el anime y no has visto Naruto... deberías estar preso", 4, 4);
+        Review real3 = new Review("como33", "Esto solo lo ve la gente que huele mal. Que naruto y naruta mejor el nano ese puede con todo",4,1);
         reviewService.addReview(r6);
+        reviewService.addReview(real3);
         moviesService.updateScore(4);
 
         motyService.updateMotysOfCategorys(categoryService.getCategorys());
