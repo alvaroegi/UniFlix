@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Uniflix</title>
+    <link rel="stylesheet" type="text/css" href="/css/create_movie.css">
     <script src="/js/createMovie.js"></script>
 </head>
 <body>
@@ -15,27 +17,30 @@
     <form id="createForm" class="form-group" action="result" method="post" enctype="multipart/form-data">
         <p>Nombre: </p>
         <input class="form-control" type='text' name='name' required/>
-        <br>
+        <div class="relleno"></div>
         <p>Director: </p>
         <input class="form-control" type='text' name='director' required/>
-        <br>
+        <div class="relleno"></div>
         <p>Año: </p>
-        <input class="form-control" type='text' name='year' required/>
-        <br>
+        <input class="form-control" type='number' name='year' required/>
+        <div class="relleno"></div>
         <p>Sinopsis: </p>
         <input class="form-control" type='text' name='synopsis' required/>
-        <br>
+        <div class="relleno"></div>
         <p>Imagen: </p>
         <input class="form-control" type='file' name='image' required/>
-        <br>
+        <div class="relleno"></div>
         <p>Categorías: </p>
-        {{#categorys}}
-        <label for="category{{id}}">{{name}}:</label>
-        <input id="category{{id}}" class="form-control" type='checkbox' name="selectedCategorys" value="{{name}}"/>
-        <br>
-        {{/categorys}}
-        <input type="submit"/>Añadir película</button>
+        <div id="cat">
+            {{#categorys}}
+            <p for="category{{id}}">{{name}}:</p>
+            <input id="category{{id}}" class="form-control" type='checkbox' name="selectedCategorys" value="{{name}}"/>
+            {{/categorys}}
+        </div>
+        <div class="buttons">
+            <button type="submit"/>Añadir película</button>
+            <button onclick="window.location.href='/'">Volver</button>
+        </div>
     </form>
-    <button onclick="window.location.href='/'">Volver</button>
 </body>
 </html>

@@ -29,8 +29,7 @@ kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="a
             <div id="moty">
                 <div id="content">
                     <h5>MOTY</h5>
-                    <p>El premio MOTY es un premio que se otorga a la pelicula de la categoria {{category.name}} con mayor puntuacion y
-                    que no haya sido galardonada con un MOTY en otra categoría.</p>
+                    <p>El premio MOTY es un premio que se otorga a la pelicula de la categoria {{category.name}} con mayor puntuacion.</p>
                     <p>La película ganadora del MOTY en {{category.name}} es: </p>
                     <div id="reviewM">
                         <div id="content2">
@@ -41,7 +40,9 @@ kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="a
                             <p>Sinopsis: {{moty.synopsis}}</p>
                         </div>
                         <div id="image">
-                            <img class="caratula" onclick="window.location.href='/peli/{{name}}'" src="/Peliculas/{{moty.image}}"/>
+                            {{#moty}}
+                            <img class="caratula" onclick="window.location.href='/peli/{{name}}'" src="/Peliculas/{{image}}"/>
+                            {{/moty}}
                         </div>
                     </div>
                 </div>
