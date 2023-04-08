@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Uniflix</title>
     <link rel="stylesheet" type="text/css" href="/css/create_movie.css">
     <script src="/js/createMovie.js"></script>
@@ -14,33 +13,40 @@
     {{#notAdded}}
         <p>Esta película ya existe</p>
     {{/notAdded}}                                          <!--para subir imagenes-->
-    <form id="createForm" class="form-group" action="result" method="post" enctype="multipart/form-data">
-        <p>Nombre: </p>
-        <input class="form-control" type='text' name='name' required/>
-        <div class="relleno"></div>
-        <p>Director: </p>
-        <input class="form-control" type='text' name='director' required/>
-        <div class="relleno"></div>
-        <p>Año: </p>
-        <input class="form-control" type='number' name='year' required/>
-        <div class="relleno"></div>
-        <p>Sinopsis: </p>
-        <textarea class="form-control" name='synopsis' required></textarea>
-        <div class="relleno"></div>
-        <p>Imagen: </p>
-        <input class="form-control" type='file' name='image' required/>
-        <div class="relleno"></div>
-        <p>Categorías: </p>
-        <div id="cat">
-            {{#categorys}}
-            <p for="category{{id}}">{{name}}:</p>
-            <input id="category{{id}}" class="form-control" type='checkbox' name="selectedCategorys" value="{{name}}"/>
-            {{/categorys}}
-        </div>
-        <div class="buttons">
-            <button type="submit"/>Añadir película</button>
-            <button onclick="window.location.href='/'">Volver</button>
-        </div>
-    </form>
+    <div id="content">
+        <form action="result" method="post" enctype="multipart/form-data">
+            <div>
+                <label>Nombre: </label>
+                <input class="form-control" type='text' name='name' required/>
+            </div>
+            <div>
+                <label>Director: </label>
+                <input class="form-control" type='text' name='director' required/>
+            </div>
+            <div>
+                <label>Año: </label>
+                <input class="form-control" type='number' name='year' required/>
+            </div>
+            <div>
+                <label>Sinopsis: </label>
+                <textarea class="form-control" name='synopsis' required></textarea>
+            </div>
+            <div>
+                <label>Imagen: </label>
+                <input class="form-control" type='file' name='image' required/>
+            </div>
+            <fieldset>
+                <legend class="letters">Categorías: </legend>
+                    {{#categorys}}
+                    <label for="category{{id}}"><input id="category{{id}}" class="form-control" type='checkbox' name="selectedCategorys" value="{{name}}"/>{{name}}</label>
+                    <br>
+                    {{/categorys}}
+            </fieldset>
+            <div class="buttonslist">
+                <button class="button" type="submit"/>Añadir película</button>
+                <button class="button" onclick="window.location.href='/'">Volver</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

@@ -10,25 +10,18 @@ form{
     background-color:white;
 }
 
-p {
-    width:72px;
-    font-weight:bold;
-    font-family: verdana,arial,helvética;
-    font-size:15px;
-    display:inline-block;
-}
 
-#relleno{
-    height: 100px;
-}
-
-.buttons{
+.buttonslist{
     display:flex;
     justify-content: center;
     align-items: center;
 }
 
-.cat {
-    margin: 0px auto;
-    font-size:10px;
+.button {
+    display: block;
+    font-weight: bold;
+    padding: 8px 20px;
+    color:white;
+    background-color: grey;
+    text-align: center;
 }

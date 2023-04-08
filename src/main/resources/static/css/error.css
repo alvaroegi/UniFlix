@@ -1,0 +1,27 @@
+body {
+    background-color : #c2b4b4;
+}
+
+#relleno{
+    height: 100px;
+}
+
+.caratula{
+    width: 200px;
+    height: 300px;
+    margin-bottom: 4px;
+    border-radius: 10px;
+}
+
+.divs{
+    display:flex;
+    justify-content: center;
+    background-color: #171515;
+}
+
+#info {
+    font-weight:bold;
+    font-family: verdana,arial,helvética;
+    font-size:30px;
+    color:red;
+}

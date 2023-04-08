@@ -234,4 +234,10 @@ public class MovieController {
         return "index";
     }
 
+    @GetMapping("/error")
+    public String error(Model model) {
+        model.addAttribute("nano","default.jpg");
+        return "error";
+    }
+
 }
