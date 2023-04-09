@@ -20,25 +20,33 @@
               {{/movies}}
             </select>
             <div id="formUpdate">
-                <p>Director: </p>
-                <input class="form-control" type='text' name='director' required/>
-                <br>
-                <p>Año: </p>
-                <input class="form-control" type='number' name='year' required/>
-                <br>
-                <p>Sinopsis: </p>
-                <input class="form-control" type='text' name='synopsis' required/>
-                <br>
-                <p>Categorías: </p>
-                {{#categorys}}
-                <label for="category{{id}}">{{name}}:</label>
-                <input id="category{{id}}" class="form-control" type='checkbox' name="selectedCategorys" value="{{name}}"/>
-                <br>
-                {{/categorys}}
-                <input class="btn btn-danger" type='submit' value='Modificar película'/>
+                <div>
+                    <label>Director: </label>
+                    <input class="form-control" type='text' name='director' required/>
+                </div>
+                <div>
+                    <label>Año: </label>
+                    <input class="form-control" type='number' name='year' required/>
+                </div>
+                <div>
+                    <label>Sinopsis: </label>
+                    <textarea class="form-control" name='synopsis' required></textarea>
+                </div>
+                <fieldset>
+                    <legend class="letters">Categorías: </legend>
+                    {{#categorys}}
+                    <label for="category{{id}}"><input id="category{{id}}" class="form-control" type='checkbox' name="selectedCategorys" value="{{name}}"/>{{name}}</label>
+                    <br>
+                    {{/categorys}}
+                </fieldset>
+                <input class="button" type='submit' value='Modificar película'/>
             </div>
         </form>
-        <button onclick="borrar()">Ir a borrar</button>
+        <br>
+        <div class="buttonslist">
+            <button class="button" onclick="borrar()">Ir a borrar</button>
+            <button class="button" onclick="window.location.href='/'">Volver</button>
+        </div>
     </div>
     <div id="delete">
         <form class="form-group" action="modify_delete" method="post">
@@ -50,11 +58,13 @@
             </select>
             <br>
             <input id="confirmed" class="form-control" type="hidden" name="confirmed"/>
-            <input class="btn btn-danger" type='submit' onclick="confirmDelete()" value='Borrar película'/>
+            <input class="button" type='submit' onclick="confirmDelete()" value='Borrar película'/>
         </form>
-        <button onclick="modify2()">Ir a modificar</button>
+        <br>
+        <div class="buttonslist">
+            <button class="button" onclick="modify2()">Ir a modificar</button>
+            <button class="button" onclick="window.location.href='/'">Volver</button>
+        </div>
     </div>
-    <button onclick="window.location.href='/'">Volver</button>
-
 </body>
 </html>
