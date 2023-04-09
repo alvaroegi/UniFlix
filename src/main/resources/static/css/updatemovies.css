@@ -2,4 +2,30 @@
     display:none;
 }
 
+body {
+    background-color : #c2b4b4;
+}
 
+form{
+    width:1200px;
+    padding:16px;
+    border-radius:10px;
+    margin:auto;
+    background-color:white;
+}
+
+
+.buttonslist{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    display: block;
+    font-weight: bold;
+    padding: 8px 20px;
+    color:white;
+    background-color: grey;
+    text-align: center;
+}

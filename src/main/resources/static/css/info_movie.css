@@ -117,3 +117,108 @@ body {
 .reviewInfo {
     background-color: gainsboro;
 }
+
+.puntuation {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.puntuation > input {
+    position: absolute;
+    top: -100px;
+}
+
+.puntuation > label {
+    float: right;
+    color: #252525;
+    margin-right: 5px;
+}
+
+.puntuation > label:hover {
+    color: gold;
+}
+
+.puntuation > input:checked ~ label{
+    color: gold;
+}
+
+.puntuation > label:hover ~ label {
+    color: gold;
+}
+
+.puntuation1 > #one {
+    color: gold;
+}
+.puntuation1 > #two {
+    color: #252525;
+}
+.puntuation1 > #three {
+    color: #252525;
+}
+.puntuation1 > #four {
+    color: #252525;
+}
+.puntuation1 > #five {
+    color: #252525;
+}
+.puntuation2 > #one {
+    color: gold;
+}
+.puntuation2 > #two {
+    color: gold;
+}
+.puntuation2 > #three {
+    color: #252525;
+}
+.puntuation2 > #four {
+    color: #252525;
+}
+.puntuation2 > #five {
+    color: #252525;
+}
+.puntuation3 > #one {
+    color: gold;
+}
+.puntuation3 > #two {
+    color: gold;
+}
+.puntuation3 > #three {
+    color: gold;
+}
+.puntuation3 > #four {
+    color: #252525;
+}
+.puntuation3 > #five {
+    color: #252525;
+}
+.puntuation4 > #one {
+    color: gold;
+}
+.puntuation4 > #two {
+    color: gold;
+}
+.puntuation4 > #three {
+    color: gold;
+}
+.puntuation4 > #four {
+    color: gold;
+}
+.puntuation4 > #five {
+    color: #252525;
+}
+.puntuation5 > #one {
+    color: gold;
+}
+.puntuation5 > #two {
+    color: gold;
+}
+.puntuation5 > #three {
+    color: gold;
+}
+.puntuation5 > #four {
+    color: gold;
+}
+.puntuation5 > #five {
+    color: gold;
+}
