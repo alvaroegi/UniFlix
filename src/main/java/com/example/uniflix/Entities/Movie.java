@@ -14,7 +14,7 @@ public class Movie{
     private int year;
     private String image;
     private long id = -1; //Primary Key
-    @JsonIgnore
+
     private ArrayList<Category> categorys;
 
     public Movie(String name, String director, String synopsis, int year, String image, ArrayList<Category> categorys){
