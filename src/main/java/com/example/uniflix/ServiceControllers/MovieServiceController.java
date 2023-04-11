@@ -54,6 +54,7 @@ public class MovieServiceController {
             long id = lastId.incrementAndGet();
             m.setId(id);
             categoryService.addMovieToCategories(m);
+            motyService.updateMotysOfCategorys(m.getCategorys());
             movies.put(id, m);
             return m;
         }
