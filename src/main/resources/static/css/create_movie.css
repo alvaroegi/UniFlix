@@ -17,10 +17,10 @@ body {
 }
 
 form{
-    width:1200px;
+    width:80%;
+    margin-left:10%;
     padding:16px;
     border-radius:10px;
-    margin:auto;
     background-color:white;
 }
 
@@ -38,4 +38,5 @@ form{
     color:white;
     background-color: grey;
     text-align: center;
+    margin:1%;
 }
