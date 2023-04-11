@@ -170,12 +170,6 @@ public class MovieController {
         model.addAttribute("categorys",categorys2);
         if(moviesService.addMovie(m)!=null) {
             model.addAttribute("added", true);
-            /* desde aqui para imagenes */
-            // https://www.youtube.com/watch?v=BjHEuNdpC-U parte 1
-            // https://www.youtube.com/watch?v=df67kmObW7M parte 2
-            // para solucionar lo de las imagenes => https://www.youtube.com/watch?v=vVCgPzjbh2s
-            //Path imagesDirectory = Paths.get("src/main/resources/static/images");
-            //String absolutePath = imagesDirectory.toFile().getAbsolutePath();
             String absolutePath = "C://Uniflix//Peliculas";
             try {
                 byte[] bytesImage = image.getBytes();
@@ -185,7 +179,6 @@ public class MovieController {
             catch (IOException e) {
                 e.printStackTrace();
             }
-            /* hasta aqui lo de las imagenes */
         }
         else
             model.addAttribute("notAdded", true);
