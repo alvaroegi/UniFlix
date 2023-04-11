@@ -11,6 +11,8 @@ public class Review {
         this.user = user;
         this.comment = comment;
         this.Idmovie = Idmovie;
+        if(score>5) score=5;
+        else if(score<0) score=0;
         this.score = score;
     }
 

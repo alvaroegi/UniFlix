@@ -21,6 +21,7 @@ public class Movie{
         this.name = name;
         this.director = director;
         this.synopsis=synopsis;
+        if(year<0) year=0;
         this.year = year;
         this.score = 0;
         this.image = image;
