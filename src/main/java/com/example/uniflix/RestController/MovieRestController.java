@@ -1,6 +1,8 @@
 package com.example.uniflix.RestController;
 
+import com.example.uniflix.Entities.Category;
 import com.example.uniflix.Entities.Movie;
+import com.example.uniflix.ServiceControllers.CategoryServiceController;
 import com.example.uniflix.ServiceControllers.MovieServiceController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,12 +14,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @RestController
 public class MovieRestController {
     @Autowired
     MovieServiceController moviesService;
+    @Autowired
+    CategoryServiceController categorysService;
 
     @GetMapping("/api/movie")
     public Collection<Movie> allMoviesApi() {
@@ -38,6 +43,11 @@ public class MovieRestController {
     @ResponseStatus(HttpStatus.CREATED)
     public Movie addMovieApi(@RequestBody Movie m) {
         if(moviesService.containsMovie(m.getName())==-1) {
+            ArrayList<Category> selectedCategorys = new ArrayList<>();
+            for(Category c : m.getCategorys()) {
+                selectedCategorys.add(categorysService.getCategory(c.getName()));
+            }
+            m.setCategorys(selectedCategorys);
             m.setImage("/default.jpg");
             moviesService.addMovie(m);
             return m;
@@ -82,6 +92,11 @@ public class MovieRestController {
             updatedMovie.setName(moviesService.getMovie(id).getName());
             updatedMovie.setImage(moviesService.getMovie(id).getImage());
             updatedMovie.setScore(moviesService.getMovie(id).getScore());
+            ArrayList<Category> selectedCategorys = new ArrayList<>();
+            for(Category c : updatedMovie.getCategorys()) {
+                selectedCategorys.add(categorysService.getCategory(c.getName()));
+            }
+            updatedMovie.setCategorys(selectedCategorys);
             moviesService.updateMovie(id, updatedMovie);
             return new ResponseEntity<>(updatedMovie, HttpStatus.OK);
         } else {

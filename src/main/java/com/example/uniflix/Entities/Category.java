@@ -1,9 +1,12 @@
 package com.example.uniflix.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 
 public class Category {
     private String name;
+    @JsonIgnore
     private ArrayList<Movie> movies;
 
     private long moty;
