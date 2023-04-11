@@ -23,6 +23,7 @@ body {
 }
 
 #general{
+    margin-left: 20px;
     display:flex;
     justify-content: center;
     margin:1%;
