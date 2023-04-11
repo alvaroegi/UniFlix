@@ -4,7 +4,6 @@ import com.example.uniflix.Entities.Review;
 import com.example.uniflix.ServiceControllers.MotyServiceController;
 import com.example.uniflix.ServiceControllers.MovieServiceController;
 import com.example.uniflix.ServiceControllers.ReviewServiceController;
-import com.example.uniflix.ServiceControllers.UserServiceController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

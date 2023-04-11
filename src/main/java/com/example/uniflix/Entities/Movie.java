@@ -1,6 +1,5 @@
 package com.example.uniflix.Entities;
 
-import com.example.uniflix.Pair;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
