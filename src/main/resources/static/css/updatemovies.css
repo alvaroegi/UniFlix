@@ -2,8 +2,22 @@
     display:none;
 }
 
+#relleno{
+    height: 100px;
+}
+
 body {
     background-color : #c2b4b4;
+}
+
+#info {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#info > p {
+    font-size:200%;
 }
 
 form{

@@ -86,14 +86,15 @@ body {
 }
 #content > p{
     margin-left: 10%;
-    font-family: verdana,arial,helvÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©tica;
+    font-family: verdana,arial,helvetica;
 
 }
 #synopsis{
-    width: 150%;
+    width: 120%;
 }
 
 .caratula{
+    height: 300vh;
     max-height: 300px;
     max-width: 200px;
 }

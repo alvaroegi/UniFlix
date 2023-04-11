@@ -2,6 +2,9 @@ body {
     background-color : #c2b4b4;
 }
 
+#titleC{
+    margin-left:5%;
+}
 #relleno{
     height: 90px;
 }
@@ -37,15 +40,29 @@ body {
     flex-wrap: wrap;
 }
 
-.caratula{
-    width:30%;
-    max-width: 200px;
-    max-height: 300px;
-    margin-bottom: 4px;
-    border-radius: 10px;
-    margin:1%;
-}
-
 .caratula:hover {
     transform: scale(1.10);
+}
+
+@media(max-width: 768px) {
+    .caratula {
+        width: 30%;
+        max-width: 200px;
+        max-height: 300px;
+        margin-bottom: 4px;
+        border-radius: 10px;
+        margin:1%;
+    }
+}
+
+@media(min-width: 768px) {
+    .caratula {
+        width: 30%;
+        height: 300vh;
+        max-width: 200px;
+        max-height: 300px;
+        margin-bottom: 4px;
+        border-radius: 10px;
+        margin:1%;
+    }
 }

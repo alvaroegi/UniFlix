@@ -2,6 +2,20 @@ body {
     background-color : #c2b4b4;
 }
 
+#relleno{
+    height:100px;
+}
+
+#info {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#info > p {
+    font-size:200%;
+}
+
 form{
     width:1200px;
     padding:16px;

@@ -6,13 +6,6 @@ body {
     height: 100px;
 }
 
-.caratula{
-    width:30%;
-    max-width: 200px;
-    max-height: 300px;
-    margin-bottom: 4px;
-    border-radius: 10px;
-}
 
 .caratula:hover {
     transform: scale(1.10);
@@ -33,10 +26,57 @@ body {
     #general{
         margin-left:7%;
     }
+    .caratula{
+        width:30%;
+        max-width: 200px;
+        max-height: 300px;
+        margin-bottom: 4px;
+        border-radius: 10px;
+    }
+    .caratula2{
+        width:30%;
+        max-width: 200px;
+        max-height: 300px;
+        margin-bottom: 4px;
+        border-radius: 10px;
+        margin:1%;
+    }
+}
+
+@media(min-width: 768px){
+    .caratula{
+        width:30%;
+        height:300vh;
+        max-width: 200px;
+        max-height: 300px;
+        margin-bottom: 4px;
+        border-radius: 10px;
+    }
+    .caratula2{
+        width:30%;
+        height:150vh;
+        max-width: 200px;
+        max-height: 300px;
+        margin-bottom: 4px;
+        border-radius: 10px;
+        margin:1%;
+    }
 }
 #general2{
-    left:1.5%;
-    position:absolute;
-    margin-left:50px;
-    margin-right: 50px;
+    margin-left: 20px;
+    display:flex;
+    justify-content: center;
+    flex-wrap:wrap;
+    margin:1%;
+}
+
+
+.caratula2:hover {
+    transform: scale(1.10);
+}
+
+#labelSearch{
+    margin-left:5%;
+    margin-top:2%;
+    font-size:200%;
 }

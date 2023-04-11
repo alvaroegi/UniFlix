@@ -143,8 +143,9 @@ public class MovieServiceController {
             Random random = new Random();
             Set<Long> numbers = new HashSet<>();
             while (numbers.size() < 6) {
-                long randomNumber = random.nextInt(movies.size()) + 1;
-                numbers.add(randomNumber);
+                long randomNumber = random.nextInt(lastId.intValue()) + 1;
+                if(movies.get(randomNumber) != null)
+                    numbers.add(randomNumber);
             }
             for(Long aux : numbers) {
                 Movie m = movies.get(aux);
