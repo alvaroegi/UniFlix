@@ -15,7 +15,7 @@ function modify2(){
 
 function confirmDelete() {
     let confirmed = document.getElementById("confirmed");
-    if(confirm('Eliminar una película también elimina sus reseñas'))
+    if(confirm('Eliminar una pel'+String.fromCharCode(237)+'cula tambi'+String.fromCharCode(233)+'n elimina sus rese'+String.fromCharCode(241)+'as'))
         confirmed.value = true;
     else
         confirmed.value = false;

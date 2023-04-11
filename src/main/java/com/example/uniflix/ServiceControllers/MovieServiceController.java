@@ -4,10 +4,7 @@ import com.example.uniflix.Entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -134,6 +131,46 @@ public class MovieServiceController {
             }
         }
         return sol;
+    }
+    public ArrayList<Movie> getSixMovies(){
+        ArrayList<Movie> sol = new ArrayList<>();
+        if (movies.size() <= 6) {
+            for(Map.Entry entry : movies.entrySet()) {
+                Movie m = (Movie) entry.getValue();
+                sol.add(m);
+            }
+        } else {
+            Random random = new Random();
+            Set<Long> numbers = new HashSet<>();
+            while (numbers.size() < 6) {
+                long randomNumber = random.nextInt(movies.size()) + 1;
+                numbers.add(randomNumber);
+            }
+            for(Long aux : numbers) {
+                Movie m = movies.get(aux);
+                sol.add(m);
+            }
+        }
+        return sol;
+    }
+
+    public ArrayList<Movie> getSixMoviesofCat(Category c){
+        ArrayList<Movie> sol = moviesOfCategory(c);
+        if (sol.size() <= 6) {
+            return sol;
+        } else {
+            ArrayList<Movie> aux = new ArrayList<>();
+            Random random = new Random();
+            Set<Integer> numbers = new HashSet<>();
+            while (numbers.size() < 6) {
+                int randomNumber = random.nextInt(sol.size());
+                numbers.add(randomNumber);
+            }
+            for(int i : numbers) {
+                aux.add(sol.get(i));
+            }
+            return aux;
+        }
     }
 
 }

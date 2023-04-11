@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -133,17 +134,17 @@ public class MovieController {
     @GetMapping("/")
     public String back(Model model) {
         model.addAttribute("nofilter",true);
-        model.addAttribute("movies", moviesService.getMovies());
+        model.addAttribute("movies", moviesService.getSixMovies());
         model.addAttribute("categorys", categoryService.getCategorys());
-        ArrayList<Movie> aux1 = moviesService.moviesOfCategory(categoryService.getCategory(1));
+        ArrayList<Movie> aux1 = moviesService.getSixMoviesofCat(categoryService.getCategory(1));
         model.addAttribute("fear",aux1);
-        ArrayList<Movie> aux2 = moviesService.moviesOfCategory(categoryService.getCategory(2));
+        ArrayList<Movie> aux2 = moviesService.getSixMoviesofCat(categoryService.getCategory(2));
         model.addAttribute("action",aux2);
-        ArrayList<Movie> aux3 = moviesService.moviesOfCategory(categoryService.getCategory(3));
+        ArrayList<Movie> aux3 = moviesService.getSixMoviesofCat(categoryService.getCategory(3));
         model.addAttribute("drama",aux3);
-        ArrayList<Movie> aux4 = moviesService.moviesOfCategory(categoryService.getCategory(4));
+        ArrayList<Movie> aux4 = moviesService.getSixMoviesofCat(categoryService.getCategory(4));
         model.addAttribute("anime",aux4);
-        ArrayList<Movie> aux5 = moviesService.moviesOfCategory(categoryService.getCategory(5));
+        ArrayList<Movie> aux5 = moviesService.getSixMoviesofCat(categoryService.getCategory(5));
         model.addAttribute("suspense",aux5);
         return "index";
     }

@@ -3,12 +3,13 @@ body {
 }
 
 #relleno{
-    height: 125px;
+    height: 100px;
 }
 
 .caratula{
-    width: 200px;
-    height: 300px;
+    width:30%;
+    max-width: 200px;
+    max-height: 300px;
     margin-bottom: 4px;
     border-radius: 10px;
 }
@@ -24,6 +25,13 @@ body {
 #general{
     display:flex;
     justify-content: center;
+    margin:1%;
+}
+
+@media(max-width: 768px){
+    #general{
+        margin-left:7%;
+    }
 }
 #general2{
     left:1.5%;

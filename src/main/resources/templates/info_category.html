@@ -17,43 +17,38 @@ kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="a
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top rounded m-3">
         <div class="container">
             <img style="width:10%;" onclick="window.location.href = '/'" src="/images/logo.png"/>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        </div>
         </div>
     </nav>
     <div id="relleno"></div>
-    <div>
-        <div>
-            <h1 class="general">{{category.name}}</h1>
-            <br>
-            <div id="moty">
-                <div id="content">
-                    <h5>MOTY</h5>
-                    <p>El premio MOTY es un premio que se otorga a la pelicula de la categoria {{category.name}} con mayor puntuacion.</p>
-                    <p>La película ganadora del MOTY en {{category.name}} es: </p>
-                    <div id="reviewM">
-                        <div id="content2">
-                            <h1>{{moty.name}}</h1>
-                            <p>Año: {{moty.year}}</p>
-                            <p>Director: {{moty.director}}</p>
-                            <p>Puntuación: {{moty.score}}</p>
-                            <p>Sinopsis: {{moty.synopsis}}</p>
-                        </div>
-                        <div id="image">
-                            {{#moty}}
-                            <img class="caratula" onclick="window.location.href='/peli/{{name}}'" src="/Peliculas/{{image}}"/>
-                            {{/moty}}
-                        </div>
-                    </div>
+
+    <h1>{{category.name}}</h1>
+    <div id="moty">
+        <div id="content">
+            <h5>MOTY</h5>
+            <p>El premio MOTY es un premio que se otorga a la pelicula de la categoria {{category.name}} con mayor puntuación.</p>
+            <p>La película ganadora del MOTY en {{category.name}} es: </p>
+            <div id="reviewM">
+                <div id="content2">
+                    <h1>{{moty.name}}</h1>
+                    <p>Año: {{moty.year}}</p>
+                    <p>Director: {{moty.director}}</p>
+                    <p>Puntuación: {{moty.score}}</p>
+                    <p>Sinopsis: {{moty.synopsis}}</p>
                 </div>
-            </div>
-            <br>
-            <div class="general">
-                {{#movies}}
-                <img class="caratula" onclick="window.location.href='/peli/{{name}}'" src="/Peliculas/{{image}}"/></img>
-                {{/movies}}
+                <div id="image">
+                    {{#moty}}
+                    <img class="caratula" onclick="window.location.href='/peli/{{name}}'" src="/Peliculas/{{image}}"/>
+                    {{/moty}}
+                </div>
             </div>
         </div>
     </div>
+    <br>
+    <div class="general">
+        {{#movies}}
+        <img class="caratula" onclick="window.location.href='/peli/{{name}}'" src="/Peliculas/{{image}}"/></img>
+        {{/movies}}
+    </div>
+
 </body>
 </html>

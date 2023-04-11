@@ -14,7 +14,7 @@
         <p>Esta película ya existe</p>
     {{/notAdded}}                                          <!--para subir imagenes-->
     <div id="content">
-        <form action="result" method="post" enctype="multipart/form-data">
+        <form id="formMovie" action="result" method="post" enctype="multipart/form-data">
             <div>
                 <label>Nombre: </label>
                 <input class="form-control" type='text' name='name' required/>
@@ -35,7 +35,7 @@
                 <label>Imagen: </label>
                 <input class="form-control" type='file' name='image' required/>
             </div>
-            <fieldset>
+            <fieldset requiered>
                 <legend class="letters">Categorías: </legend>
                     {{#categorys}}
                     <label for="category{{id}}"><input id="category{{id}}" class="form-control" type='checkbox' name="selectedCategorys" value="{{name}}"/>{{name}}</label>
