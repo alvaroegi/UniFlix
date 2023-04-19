@@ -7,15 +7,15 @@ import javax.persistence.*;
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String user;
+    private long id = -1;
+    private String name;
     private String comment;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Movie Idmovie;
     private int score;
-    private long id = -1;
 
-    public Review(String user, String comment, Movie movie, int score){
-        this.user = user;
+    public Review(String name, String comment, Movie movie, int score){
+        this.name = name;
         this.comment = comment;
         this.Idmovie = movie;
         if(score>5) score=5;
@@ -27,8 +27,8 @@ public class Review {
 
     }
 
-    public String getUser(){
-        return user;
+    public String getName(){
+        return name;
     }
     public Movie getMovie(){
         return Idmovie;
@@ -43,8 +43,8 @@ public class Review {
         return id;
     }
 
-    public void setUser(String user){
-        this.user = user;
+    public void setName(String name){
+        this.name = name;
     }
     public void setComment(String comment){
         this.comment = comment;

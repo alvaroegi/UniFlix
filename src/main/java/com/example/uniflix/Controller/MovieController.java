@@ -4,6 +4,8 @@ import com.example.uniflix.Entities.Category;
 import com.example.uniflix.Entities.Moty;
 import com.example.uniflix.Entities.Movie;
 import com.example.uniflix.Entities.Review;
+import com.example.uniflix.InterfacesBBDD.CategoryRepository;
+import com.example.uniflix.InterfacesBBDD.MovieRepository;
 import com.example.uniflix.ServiceControllers.CategoryServiceController;
 import com.example.uniflix.ServiceControllers.MotyServiceController;
 import com.example.uniflix.ServiceControllers.MovieServiceController;
@@ -26,6 +28,10 @@ import java.util.LinkedList;
 @Controller
 public class MovieController {
     @Autowired
+    CategoryRepository categoryRepository;
+    @Autowired
+    MovieRepository movieRepository;
+    @Autowired
     MovieServiceController moviesService;
     @Autowired
     ReviewServiceController reviewService;
@@ -43,13 +49,15 @@ public class MovieController {
         miedo.setMoty(m1);
         m1.setCategory(miedo);
         categoryService.addCategory(miedo);
+        categoryRepository.save(miedo);
         motyService.addMoty(m1);
 
         Category accion = new Category("Accion");
         Moty m2 = new Moty(categoryService.getCategory("Accion"));
         accion.setMoty(m2);
-        m1.setCategory(accion);
+        m2.setCategory(accion);
         categoryService.addCategory(accion);
+        categoryRepository.save(accion);
         motyService.addMoty(m2);
 
         Category drama = new Category("Drama");
@@ -57,6 +65,7 @@ public class MovieController {
         drama.setMoty(m3);
         m3.setCategory(drama);
         categoryService.addCategory(drama);
+        categoryRepository.save(drama);
         motyService.addMoty(m3);
 
         Category anime = new Category("Anime");
@@ -64,6 +73,7 @@ public class MovieController {
         anime.setMoty(m4);
         m4.setCategory(anime);
         categoryService.addCategory(anime);
+        categoryRepository.save(anime);
         motyService.addMoty(m4);
 
         Category suspense = new Category("Suspense");
@@ -71,6 +81,7 @@ public class MovieController {
         suspense.setMoty(m5);
         m5.setCategory(suspense);
         categoryService.addCategory(suspense);
+        categoryRepository.save(suspense);
         motyService.addMoty(m5);
 
         //We create the initial movies
@@ -79,32 +90,38 @@ public class MovieController {
         you.add(categoryService.getCategory("Drama"));
         Movie y = new Movie("You","Greg Berlanti","Un joven profundamente obsesivo y peligrosamente seductor mueve cielo y tierra para instalarse en la vida de aquellas personas por quienes se siente cautivado",2018,"you.jpg", you);
         moviesService.addMovie(y);
+        //movieRepository.save(y);
         ArrayList<Category> mand = new ArrayList<>();
         mand.add(categoryService.getCategory("Accion"));
         mand.add(categoryService.getCategory("Suspense"));
         Movie m = new Movie("The Mandalorian","Jon Favreau", "Serie de aventura espacial que se ubica en el universo de Stars Wars",2019,"mandalorian.jpg", mand);
         moviesService.addMovie(m);
+        //movieRepository.save(m);
         ArrayList<Category> tlou = new ArrayList<>();
         tlou.add(categoryService.getCategory("Miedo"));
         tlou.add(categoryService.getCategory("Accion"));
         Movie t = new Movie("The Last of Us","Craig Mazin","Basado en un videojuego de accion y aventuras la serie nos relata como Joel y Ellie sobreviven a una pandemia en EEUU",2023,"thelastofus.jpg", tlou);
         moviesService.addMovie(t);
+        //movieRepository.save(t);
         ArrayList<Category> naruto = new ArrayList<>();
         naruto.add(categoryService.getCategory("Anime"));
         naruto.add(categoryService.getCategory("Accion"));
         Movie n = new Movie("Naruto","Osamu Kobayashi","Basada en la historia de un ninja huérfano que aspira a convertirse en Hokage y ser alguien importante en su aldea.",2002,"naruto.jpg", naruto);
         moviesService.addMovie(n);
+        //movieRepository.save(n);
         ArrayList<Category> peaky = new ArrayList<>();
         peaky.add(categoryService.getCategory("Drama"));
         peaky.add(categoryService.getCategory("Accion"));
         peaky.add(categoryService.getCategory("Suspense"));
         Movie pb = new Movie("Peaky Blinders","Otto Buthurst","Basada en la historia de una familia gitana y en su auge por convertirse en gangsters reconocidos",2013,"peakyblinders.jpg", peaky);
         moviesService.addMovie(pb);
+        //movieRepository.save(pb);
         ArrayList<Category> tintina = new ArrayList<>();
         tintina.add(categoryService.getCategory("Miedo"));
         tintina.add(categoryService.getCategory("Suspense"));
         Movie tt = new Movie("Tin & Tina","Rubin Stein","Cuando Lola pierde a sus dos hijos también pierde la fe en Dios. Para intentar recuperarla adopta dos hermanos angelicales de los que empieza a sentirse atraída.",2023,"tintina.jpg", tintina);
         moviesService.addMovie(tt);
+        //movieRepository.save(tt);
 
         //We create the initials reviews for the initials movies
         Review r1 = new Review("Raul", "Una pelicula que merece mucho la pena ver, la recomiendo a todos los fanáticos de Jaime Lorente", moviesService.getMovie(6), 4);

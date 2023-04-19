@@ -1,5 +1,6 @@
 package com.example.uniflix.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
@@ -10,7 +11,8 @@ public class Moty {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id=-1;
-    @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToOne(mappedBy="moty")
     private Category Idcategory;
     private float score;
     private long idMovie;

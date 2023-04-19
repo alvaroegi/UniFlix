@@ -78,16 +78,7 @@ public class CategoryServiceController {
     }
 
     public Moty getMoty(Category c) {
-        List<Moty> list = motyService.getMotys();
-        String name = c.getName();
-        Moty sol = new Moty(c);
-        for(Moty aux : list) {
-            String other = categorys.get(aux.getIdcategory()).getName();
-            if(name.equals(other)) {
-                sol = aux;
-            }
-        }
-        return sol;
+        return c.getMoty();
     }
 
 

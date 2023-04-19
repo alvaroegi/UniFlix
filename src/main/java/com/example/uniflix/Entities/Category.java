@@ -13,7 +13,7 @@ public class Category {
     private long id = -1;
     private String name;
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(mappedBy="categorys")
     private List<Movie> movies;
     @OneToOne(cascade = CascadeType.ALL)
     private Moty moty;

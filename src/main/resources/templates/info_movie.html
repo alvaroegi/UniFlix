@@ -141,7 +141,7 @@ kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="a
                     <button class="btn btn-danger" id="modifyReviewButton{{id}}" onclick="showModifyForm('{{id}}')">Modificar</button>
                 </div>
                 <div id="modifyReviewForm{{id}}" class="modifyReviewForm">
-                    <form class="form-group" action="/modifyReview/{{Idmovie}}/{{id}}" method="post">
+                    <form class="form-group" action="/modifyReview/{{Idmovie.id}}/{{id}}" method="post">
                         <p>Usuario: </p>
                         <input class="form-control" type='text' name='user' required/>
                         <br>
@@ -191,7 +191,7 @@ kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="a
                         <button class="btn btn-danger" onclick="hideModifyForm('{{id}}')">Cancelar</button>
                     </div>
                 </div>
-                <form action="/deleteReview/{{Idmovie}}/{{id}}" method="post">
+                <form action="/deleteReview/{{Idmovie.id}}/{{id}}" method="post">
                     <input id="confirmed{{id}}" class="form-control" type="hidden" name="confirmed"/>
                     <div class="buttons">
                         <button class="btn btn-danger" type="submit" onclick="confirmDelete('{{id}}')">Eliminar</button>
