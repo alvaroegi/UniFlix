@@ -115,7 +115,7 @@ public class MovieServiceController {
     public boolean isCategory(Category c,Movie m) {
         boolean sol = false;
         String aux = c.getName().toLowerCase();
-        ArrayList<Category> clist = m.getCategorys();
+        List<Category> clist = m.getCategorys();
         for(Category caux : clist) {
             String s = caux.getName().toLowerCase();
             if(aux.equals(s)) sol=true;

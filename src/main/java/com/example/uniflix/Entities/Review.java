@@ -3,7 +3,8 @@ package com.example.uniflix.Entities;
 public class Review {
     private String user;
     private String comment;
-    private long Idmovie;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Movie Idmovie;
     private int score;
     private long id = -1;
 

@@ -74,5 +74,5 @@ public class Movie{
     }
 
     public void setImage(String image) { this.image = image; }
-    public void setCategorys(ArrayList<Category> c) { this.categorys = c; }
+    public void setCategorys(List<Category> c) { this.categorys = c; }
 }

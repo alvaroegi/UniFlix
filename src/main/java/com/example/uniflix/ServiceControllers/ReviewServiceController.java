@@ -31,7 +31,7 @@ public class ReviewServiceController {
         ArrayList<Review> reviewList = new ArrayList<>();
         for(Map.Entry entry: reviews.entrySet()) {
             Review r = (Review)entry.getValue();
-            long aux = r.getMovie();
+            long aux = r.getMovie().getId();
             if(idMovie==aux) {
                 reviewList.add(r);
             }
@@ -42,7 +42,7 @@ public class ReviewServiceController {
     public void deleteReviewsofMovie(long id) {
         for(Map.Entry entry: reviews.entrySet()) {
             Review r = (Review)entry.getValue();
-            long aux = r.getMovie();
+            long aux = r.getMovie().getId();
             if(id==aux) {
                 reviews.remove(r.getId());
             }
@@ -63,7 +63,7 @@ public class ReviewServiceController {
     }
 
     public void updateReview(long id, Review r) {
-        long iden = r.getMovie();
+        long iden = r.getMovie().getId();
         //Movie m = moviesService.getMovie(iden);
         reviews.put(id, r);
     }

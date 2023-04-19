@@ -29,7 +29,7 @@ public class ReviewController {
 
     @PostMapping("/newReview/{Idmovie}")
     public String newReview(Model model, @RequestParam String user, @RequestParam String comment, @RequestParam int score, @PathVariable long Idmovie) {
-        Review r = new Review(user, comment, Idmovie, score);
+        Review r = new Review(user, comment, moviesService.getMovie(Idmovie), score);
         reviewService.addReview(r);
         moviesService.updateScore(Idmovie);
         motyService.updateMotysOfCategorys(moviesService.getMovie(Idmovie).getCategorys());
@@ -49,7 +49,7 @@ public class ReviewController {
 
     @PostMapping("/modifyReview/{Idmovie}/{id}")
     public String updateReview(Model model, @PathVariable long id, @RequestParam String user, @RequestParam String comment, @RequestParam int score, @PathVariable long Idmovie){
-        Review updatedReview = new Review(user, comment, Idmovie, score);
+        Review updatedReview = new Review(user, comment, moviesService.getMovie(Idmovie), score);
         updatedReview.setId(id);
         reviewService.updateReview(id, updatedReview);
         moviesService.updateScore(Idmovie);

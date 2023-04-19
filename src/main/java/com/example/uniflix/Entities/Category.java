@@ -32,16 +32,16 @@ public class Category {
     public void setId(long id) {
         this.id = id;
     }
-    public void setMovies(ArrayList<Movie> m) { this.movies = m; }
+    public void setMovies(List<Movie> m) { this.movies = m; }
 
     public String getName() {return this.name;}
 
     public long getId() { return this.id; }
-    public void setMoty(long id) { this.moty = id; }
+    public void setMoty(Moty moty) { this.moty = moty; }
 
-    public ArrayList<Movie> getMovies() {return this.movies;}
+    public List<Movie> getMovies() {return this.movies;}
 
-    public long getMoty() { return this.moty; }
+    public Moty getMoty() { return this.moty; }
 
 
 }

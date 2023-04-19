@@ -2,18 +2,30 @@ package com.example.uniflix.Entities;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
 public class Moty {
-    private long Idcategory;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id=-1;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Category Idcategory;
     private float score;
     private long idMovie;
 
-    public Moty(long cat) {
+    public Moty() {
+
+    }
+
+    public Moty(Category cat) {
         this.score=-1;
         this.Idcategory=cat;
         this.idMovie=-1;
     }
 
-    public void setCategory(long c) {
+    public void setCategory(Category c) {
         this.Idcategory=c;
     }
 

@@ -7,10 +7,7 @@ import com.example.uniflix.Entities.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -64,7 +61,7 @@ public class CategoryServiceController {
     public void addMovieToCategories(Movie m) {
         for(Category c : m.getCategorys()) {
             Category aux = getCategory(c.getName());
-            ArrayList<Movie> movieList = aux.getMovies();
+            List<Movie> movieList = aux.getMovies();
             movieList.add(m);
             aux.setMovies(movieList);
             categorys.put(aux.getId(), aux);
@@ -83,7 +80,7 @@ public class CategoryServiceController {
     public Moty getMoty(Category c) {
         ArrayList<Moty> list = motyService.getMotys();
         String name = c.getName();
-        Moty sol = new Moty(1);
+        Moty sol = new Moty(c);
         for(Moty aux : list) {
             String other = categorys.get(aux.getIdcategory()).getName();
             if(name.equals(other)) {

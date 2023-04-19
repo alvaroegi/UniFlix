@@ -52,21 +52,24 @@ public class MovieController {
         motyService.addMoty(m2);
 
         Category drama = new Category("Drama");
-        drama.setMoty(3);
+        Moty m3 = new Moty(categoryService.getCategory("Drama"));
+        drama.setMoty(m3);
+        m3.setCategory(drama);
         categoryService.addCategory(drama);
-        Moty m3 = new Moty(categoryService.getCategory("Drama").getId());
         motyService.addMoty(m3);
 
         Category anime = new Category("Anime");
-        anime.setMoty(4);
+        Moty m4 = new Moty(categoryService.getCategory("Anime"));
+        anime.setMoty(m4);
+        m4.setCategory(anime);
         categoryService.addCategory(anime);
-        Moty m4 = new Moty(categoryService.getCategory("Anime").getId());
         motyService.addMoty(m4);
 
         Category suspense = new Category("Suspense");
-        suspense.setMoty(5);
+        Moty m5 = new Moty(categoryService.getCategory("Suspense"));
+        suspense.setMoty(m5);
+        m5.setCategory(suspense);
         categoryService.addCategory(suspense);
-        Moty m5 = new Moty(categoryService.getCategory("Suspense").getId());
         motyService.addMoty(m5);
 
         //We create the initial movies
@@ -103,12 +106,12 @@ public class MovieController {
         moviesService.addMovie(tt);
 
         //We create the initials reviews for the initials movies
-        Review r1 = new Review("Raul", "Una pelicula que merece mucho la pena ver, la recomiendo a todos los fanáticos de Jaime Lorente", 6, 4);
+        Review r1 = new Review("Raul", "Una pelicula que merece mucho la pena ver, la recomiendo a todos los fanáticos de Jaime Lorente", moviesService.getMovie(6), 4);
         reviewService.addReview(r1);
         moviesService.updateScore(6);
 
-        Review r2 = new Review("Alvaro", "Una de las mejores series de la época, Cillian Murphy esta espectacular", 5, 5);
-        Review real = new Review("Fauste23","La serie más sobrevalorada de la historia, es una telenovela para hombres",5,1);
+        Review r2 = new Review("Alvaro", "Una de las mejores series de la época, Cillian Murphy esta espectacular", moviesService.getMovie(5), 5);
+        Review real = new Review("Fauste23","La serie más sobrevalorada de la historia, es una telenovela para hombres",moviesService.getMovie(5),1);
         reviewService.addReview(r2);
         reviewService.addReview(real);
         moviesService.updateScore(5);

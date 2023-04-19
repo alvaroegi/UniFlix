@@ -6,6 +6,7 @@ import com.example.uniflix.Entities.Movie;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
@@ -22,8 +23,8 @@ public class MotyServiceController {
         return m;
     }
 
-    public ArrayList<Moty> getMotys() {
-        ArrayList<Moty> sol = new ArrayList<>();
+    public List<Moty> getMotys() {
+        List<Moty> sol = new ArrayList<>();
         for(Map.Entry entry: motys.entrySet()) {
             Moty m = (Moty)entry.getValue();
             sol.add(m);
@@ -42,9 +43,9 @@ public class MotyServiceController {
         //categoryService.addMovieToCategories(m);
     }
 
-    public void updateMotysOfCategorys(ArrayList<Category> categorys) {
+    public void updateMotysOfCategorys(List<Category> categorys) {
         for(Category c : categorys) {
-            Moty bestMovie = getMoty(c.getMoty());
+            Moty bestMovie = getMoty(c.getMoty().getId());
             bestMovie.setScore(-1);
             bestMovie.setIdMovie(-1);
             for(Movie actual : c.getMovies()) {

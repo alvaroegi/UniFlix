@@ -39,8 +39,8 @@ public class ReviewRestController {
     @ResponseStatus(HttpStatus.CREATED)
     public Review addReviewApi(@RequestBody Review r) {
         reviewService.addReview(r);
-        moviesService.updateScore(r.getMovie());
-        motyService.updateMotysOfCategorys(moviesService.getMovie(r.getMovie()).getCategorys());
+        moviesService.updateScore(r.getMovie().getId());
+        motyService.updateMotysOfCategorys(moviesService.getMovie(r.getMovie().getId()).getCategorys());
         return r;
     }
 
