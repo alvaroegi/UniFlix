@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Moty {
     private long Idcategory;
     private float score;
-    private long id=-1;
     private long idMovie;
 
     public Moty(long cat) {

@@ -14,7 +14,8 @@ public class Movie{
     private String image;
     private long id = -1; //Primary Key
 
-    private ArrayList<Category> categorys;
+    @ManyToMany
+    private List<Category> categorys;
 
     public Movie(String name, String director, String synopsis, int year, String image, ArrayList<Category> categorys){
         this.name = name;

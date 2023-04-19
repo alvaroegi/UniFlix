@@ -18,7 +18,7 @@ public class MotyServiceController {
     public Moty addMoty(Moty m){
         long id = lastId.incrementAndGet();
         m.setId(id);
-        motys.put(id, m);
+        Moty put = motys.put(id, m);
         return m;
     }
 

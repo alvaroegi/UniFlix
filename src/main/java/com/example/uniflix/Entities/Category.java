@@ -2,16 +2,24 @@ package com.example.uniflix.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
+@Entity
 public class Category {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id = -1;
     private String name;
     @JsonIgnore
-    private ArrayList<Movie> movies;
+    @ManyToMany
+    private List<Movie> movies;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Moty moty;
 
-    private long moty;
-    private long id = -1;
-
+    public Category(){
+    }
     public Category(String n) {
         this.name = n;
         movies = new ArrayList<>();

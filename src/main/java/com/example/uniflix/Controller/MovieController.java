@@ -39,25 +39,30 @@ public class MovieController {
     public void init(){
         //We create the default categorys and motys
         Category miedo = new Category("Miedo");
-        miedo.setMoty(1);
+        Moty m1 = new Moty(categoryService.getCategory("Miedo"));
+        miedo.setMoty(m1);
+        m1.setCategory(miedo);
         categoryService.addCategory(miedo);
-        Moty m1 = new Moty(categoryService.getCategory("Miedo").getId());
         motyService.addMoty(m1);
         Category accion = new Category("Accion");
-        accion.setMoty(2);
+        Moty m2 = new Moty(categoryService.getCategory("Accion"));
+        accion.setMoty(m2);
+        m1.setCategory(accion);
         categoryService.addCategory(accion);
-        Moty m2 = new Moty(categoryService.getCategory("Accion").getId());
         motyService.addMoty(m2);
+
         Category drama = new Category("Drama");
         drama.setMoty(3);
         categoryService.addCategory(drama);
         Moty m3 = new Moty(categoryService.getCategory("Drama").getId());
         motyService.addMoty(m3);
+
         Category anime = new Category("Anime");
         anime.setMoty(4);
         categoryService.addCategory(anime);
         Moty m4 = new Moty(categoryService.getCategory("Anime").getId());
         motyService.addMoty(m4);
+
         Category suspense = new Category("Suspense");
         suspense.setMoty(5);
         categoryService.addCategory(suspense);
@@ -108,8 +113,8 @@ public class MovieController {
         reviewService.addReview(real);
         moviesService.updateScore(5);
 
-        Review r3 = new Review("Alejandro", "Una de las peores series de Netflix", 1, 1);
-        Review real2 = new Review("Experto23","La mezcla del romanticismo con la psicopatía del personaje crea un aura de suspense espectacular",1,5);
+        Review r3 = new Review("Alejandro", "Una de las peores series de Netflix", moviesService.getMovie(1), 1);
+        Review real2 = new Review("Experto23","La mezcla del romanticismo con la psicopatía del personaje crea un aura de suspense espectacular",moviesService.getMovie(1),5);
         reviewService.addReview(r3);
         reviewService.addReview(real2);
         moviesService.updateScore(1);
@@ -118,7 +123,7 @@ public class MovieController {
         reviewService.addReview(r4);
         moviesService.updateScore(2);
 
-        Review r5 = new Review("lechuga", "Se podría decir que me ha gustado más que el juego y eso que tengo muchas horas jugadas", 3, 5);
+        Review r5 = new Review("lechuga", "Se podría decir que me ha gustado más que el juego y eso que tengo muchas horas jugadas", moviesService.getMovie(3), 5);
         reviewService.addReview(r5);
         moviesService.updateScore(3);
 

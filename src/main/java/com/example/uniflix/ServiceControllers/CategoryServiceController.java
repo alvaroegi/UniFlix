@@ -41,7 +41,7 @@ public class CategoryServiceController {
 
     public Category getCategory(String name) {
         Category sol = new Category("");
-        for(Map.Entry entry: categorys.entrySet()) {
+        for(Map.Entry entry : categorys.entrySet()) {
             Category c = (Category) entry.getValue();
             String aux = c.getName();
             if(aux.equals(name)) {
