@@ -33,7 +33,7 @@ public class Moty {
     public void setScore(float s) {this.score=s;}
     public void setIdMovie(long id){this.idMovie=id;}
     public long getIdMovie(){return this.idMovie;}
-    public long getIdcategory() {return this.Idcategory;}
+    public Category getIdcategory() {return this.Idcategory;}
     public long getId() {return this.id;}
 
     public void setId(long id) {this.id=id;}

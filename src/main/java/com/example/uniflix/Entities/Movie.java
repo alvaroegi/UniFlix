@@ -2,9 +2,14 @@ package com.example.uniflix.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
+@Entity
 public class Movie{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
 
     private String name; //Unique Key
     private String director;
@@ -38,6 +43,10 @@ public class Movie{
         this.categorys=aux.getCategorys();
     }
 
+    public Movie() {
+
+    }
+
     public String getName(){
         return name;
     }
@@ -54,7 +63,7 @@ public class Movie{
     public String getImage() { return image; }
 
     public String getSynopsis() {return synopsis;}
-    public ArrayList<Category> getCategorys(){return categorys;}
+    public List<Category> getCategorys(){return categorys;}
 
     public void setName(String name){
         this.name = name;

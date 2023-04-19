@@ -1,6 +1,12 @@
 package com.example.uniflix.Entities;
 
+
+import javax.persistence.*;
+
+@Entity
 public class Review {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String user;
     private String comment;
     @ManyToOne(cascade = CascadeType.ALL)
@@ -15,6 +21,10 @@ public class Review {
         if(score>5) score=5;
         else if(score<0) score=0;
         this.score = score;
+    }
+
+    public Review() {
+
     }
 
     public String getUser(){

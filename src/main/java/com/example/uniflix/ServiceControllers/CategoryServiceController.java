@@ -70,7 +70,7 @@ public class CategoryServiceController {
     public void deleteMovieFromCategories(Movie m) {
         for(Category c : m.getCategorys()) {
             Category aux = getCategory(c.getName());
-            ArrayList<Movie> movieList = aux.getMovies();
+            List<Movie> movieList = aux.getMovies();
             movieList.remove(m);
             aux.setMovies(movieList);
             categorys.put(aux.getId(), aux);
@@ -78,7 +78,7 @@ public class CategoryServiceController {
     }
 
     public Moty getMoty(Category c) {
-        ArrayList<Moty> list = motyService.getMotys();
+        List<Moty> list = motyService.getMotys();
         String name = c.getName();
         Moty sol = new Moty(c);
         for(Moty aux : list) {

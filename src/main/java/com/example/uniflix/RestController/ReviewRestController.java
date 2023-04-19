@@ -48,8 +48,8 @@ public class ReviewRestController {
     public ResponseEntity<Review> deleteReviewApi(@PathVariable long id) {
         Review r = reviewService.deleteReview(id);
         if(r!=null) {
-            moviesService.updateScore(r.getMovie());
-            motyService.updateMotysOfCategorys(moviesService.getMovie(r.getMovie()).getCategorys());
+            moviesService.updateScore(r.getMovie().getId());
+            motyService.updateMotysOfCategorys(moviesService.getMovie(r.getMovie().getId()).getCategorys());
             return new ResponseEntity<>(r, HttpStatus.OK);
         }
         else {
@@ -63,8 +63,8 @@ public class ReviewRestController {
         if (r != null) {
             updatedReview.setId(id);
             reviewService.updateReview(id, updatedReview);
-            moviesService.updateScore(r.getMovie());
-            motyService.updateMotysOfCategorys(moviesService.getMovie(r.getMovie()).getCategorys());
+            moviesService.updateScore(r.getMovie().getId());
+            motyService.updateMotysOfCategorys(moviesService.getMovie(r.getMovie().getId()).getCategorys());
             return new ResponseEntity<>(updatedReview, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

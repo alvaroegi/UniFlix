@@ -44,6 +44,7 @@ public class MovieController {
         m1.setCategory(miedo);
         categoryService.addCategory(miedo);
         motyService.addMoty(m1);
+
         Category accion = new Category("Accion");
         Moty m2 = new Moty(categoryService.getCategory("Accion"));
         accion.setMoty(m2);
@@ -122,7 +123,7 @@ public class MovieController {
         reviewService.addReview(real2);
         moviesService.updateScore(1);
 
-        Review r4 = new Review("user123", "Una continuación de la mejor saga de la historia, pero no está a la altura", 2, 3);
+        Review r4 = new Review("user123", "Una continuación de la mejor saga de la historia, pero no está a la altura", moviesService.getMovie(2), 3);
         reviewService.addReview(r4);
         moviesService.updateScore(2);
 
@@ -130,8 +131,8 @@ public class MovieController {
         reviewService.addReview(r5);
         moviesService.updateScore(3);
 
-        Review r6 = new Review("alemg_29", "Si te gusta el anime y no has visto Naruto... deberías estar preso", 4, 4);
-        Review real3 = new Review("como33", "Esto solo lo ve la gente que huele mal. Que naruto y naruta mejor el nano ese puede con todo",4,1);
+        Review r6 = new Review("alemg_29", "Si te gusta el anime y no has visto Naruto... deberías estar preso", moviesService.getMovie(4), 4);
+        Review real3 = new Review("como33", "Esto solo lo ve la gente que huele mal. Que naruto y naruta mejor el nano ese puede con todo", moviesService.getMovie(4),1);
         reviewService.addReview(r6);
         reviewService.addReview(real3);
         moviesService.updateScore(4);
