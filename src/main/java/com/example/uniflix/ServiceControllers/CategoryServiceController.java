@@ -4,6 +4,7 @@ import com.example.uniflix.Entities.Category;
 import com.example.uniflix.Entities.Moty;
 import com.example.uniflix.Entities.Movie;
 import com.example.uniflix.Entities.Review;
+import com.example.uniflix.InterfacesBBDD.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,21 +17,24 @@ public class CategoryServiceController {
 
     @Autowired
     MotyServiceController motyService;
+    @Autowired
+    CategoryRepository categoryRepo;
+
     private Map<Long, Category> categorys = new ConcurrentHashMap<>();
     private AtomicLong lastId = new AtomicLong();
 
 
     public Category addCategory(Category c){
-        long id = lastId.incrementAndGet();
+        /*long id = lastId.incrementAndGet();
         c.setId(id);
-        categorys.put(id, c);
+         */
+        categoryRepo.save(c);
         return c;
     }
 
-    public ArrayList<Category> getCategorys() {
-        ArrayList<Category> catList = new ArrayList<>();
-        for(Map.Entry entry: categorys.entrySet()) {
-            Category c = (Category) entry.getValue();
+    public List<Category> getCategorys() {
+        List<Category> catList = categoryRepo.findAll();
+        for(Category c : catList) {
             catList.add(c);
         }
         return catList;
@@ -38,8 +42,8 @@ public class CategoryServiceController {
 
     public Category getCategory(String name) {
         Category sol = new Category("");
-        for(Map.Entry entry : categorys.entrySet()) {
-            Category c = (Category) entry.getValue();
+        List<Category> catList = categoryRepo.findAll();
+        for(Category c : catList) {
             String aux = c.getName();
             if(aux.equals(name)) {
                 sol = c;
@@ -49,7 +53,7 @@ public class CategoryServiceController {
     }
 
     public Category getCategory(long id) {
-        return categorys.get(id);
+        return categoryRepo.getReferenceById(id);
     }
 
     public ArrayList<Category> getSelectedCategorys(String[] categoryList) {
@@ -58,6 +62,7 @@ public class CategoryServiceController {
             selectedCategorys.add(getCategory(categoryList[i]));
         return selectedCategorys;
     }
+
     public void addMovieToCategories(Movie m) {
         for(Category c : m.getCategorys()) {
             Category aux = getCategory(c.getName());
@@ -76,6 +81,7 @@ public class CategoryServiceController {
             categorys.put(aux.getId(), aux);
         }
     }
+
 
     public Moty getMoty(Category c) {
         return c.getMoty();

@@ -1,6 +1,7 @@
 package com.example.uniflix.ServiceControllers;
 
 import com.example.uniflix.Entities.*;
+import com.example.uniflix.InterfacesBBDD.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,9 @@ import java.util.concurrent.atomic.AtomicLong;
 public class MovieServiceController {
     private Map<Long, Movie> movies = new ConcurrentHashMap<>();
     private AtomicLong lastId = new AtomicLong();
+
+    @Autowired
+    MovieRepository movieRepo;
 
     @Autowired
     ReviewServiceController reviewService;
