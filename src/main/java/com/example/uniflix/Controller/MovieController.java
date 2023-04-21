@@ -56,7 +56,7 @@ public class MovieController {
         miedo.setMoty(m1);
         m1.setCategory(miedo);
         //categoryService.addCategory(miedo);
-        categoryRepository.save(miedo);
+        miedo = categoryRepository.save(miedo);
         //motyService.addMoty(m1);
         //motyRepository.save(m1);
 
@@ -65,7 +65,7 @@ public class MovieController {
         accion.setMoty(m2);
         m2.setCategory(accion);
         //categoryService.addCategory(accion);
-        categoryRepository.save(accion);
+        accion = categoryRepository.save(accion);
         //motyService.addMoty(m2);
         //motyRepository.save(m2);
 
@@ -74,7 +74,7 @@ public class MovieController {
         drama.setMoty(m3);
         m3.setCategory(drama);
         //categoryService.addCategory(drama);
-        categoryRepository.save(drama);
+        drama = categoryRepository.save(drama);
         //motyService.addMoty(m3);
         //motyRepository.save(m3);
 
@@ -83,7 +83,7 @@ public class MovieController {
         anime.setMoty(m4);
         m4.setCategory(anime);
         //categoryService.addCategory(anime);
-        categoryRepository.save(anime);
+        anime = categoryRepository.save(anime);
         //motyService.addMoty(m4);
         //motyRepository.save(m4);
 
@@ -92,45 +92,45 @@ public class MovieController {
         suspense.setMoty(m5);
         m5.setCategory(suspense);
         //categoryService.addCategory(suspense);
-        categoryRepository.save(suspense);
+        suspense = categoryRepository.save(suspense);
         //motyService.addMoty(m5);
         //motyRepository.save(m5);
 
         //We create the initial movies
         ArrayList<Category> you = new ArrayList<>();
-        you.add(categoryService.getCategory("Suspense"));
-        you.add(categoryService.getCategory("Drama"));
+        you.add(suspense);
+        you.add(drama);
         Movie y = new Movie("You","Greg Berlanti","Un joven profundamente obsesivo y peligrosamente seductor mueve cielo y tierra para instalarse en la vida de aquellas personas por quienes se siente cautivado",2018,"you.jpg", you);
         //moviesService.addMovie(y);
         y = movieRepository.save(y);
         ArrayList<Category> mand = new ArrayList<>();
-        mand.add(categoryService.getCategory("Accion"));
-        mand.add(categoryService.getCategory("Suspense"));
+        mand.add(accion);
+        mand.add(suspense);
         Movie m = new Movie("The Mandalorian","Jon Favreau", "Serie de aventura espacial que se ubica en el universo de Stars Wars",2019,"mandalorian.jpg", mand);
         //moviesService.addMovie(m);
         m = movieRepository.save(m);
         ArrayList<Category> tlou = new ArrayList<>();
-        tlou.add(categoryService.getCategory("Miedo"));
-        tlou.add(categoryService.getCategory("Accion"));
+        tlou.add(miedo);
+        tlou.add(accion);
         Movie t = new Movie("The Last of Us","Craig Mazin","Basado en un videojuego de accion y aventuras la serie nos relata como Joel y Ellie sobreviven a una pandemia en EEUU",2023,"thelastofus.jpg", tlou);
         //moviesService.addMovie(t);
         t = movieRepository.save(t);
         ArrayList<Category> naruto = new ArrayList<>();
-        naruto.add(categoryService.getCategory("Anime"));
-        naruto.add(categoryService.getCategory("Accion"));
+        naruto.add(anime);
+        naruto.add(accion);
         Movie n = new Movie("Naruto","Osamu Kobayashi","Basada en la historia de un ninja huérfano que aspira a convertirse en Hokage y ser alguien importante en su aldea.",2002,"naruto.jpg", naruto);
         //moviesService.addMovie(n);
         n = movieRepository.save(n);
         ArrayList<Category> peaky = new ArrayList<>();
-        peaky.add(categoryService.getCategory("Drama"));
-        peaky.add(categoryService.getCategory("Accion"));
-        peaky.add(categoryService.getCategory("Suspense"));
+        peaky.add(drama);
+        peaky.add(accion);
+        peaky.add(suspense);
         Movie pb = new Movie("Peaky Blinders","Otto Buthurst","Basada en la historia de una familia gitana y en su auge por convertirse en gangsters reconocidos",2013,"peakyblinders.jpg", peaky);
         //moviesService.addMovie(pb);
         pb = movieRepository.save(pb);
         ArrayList<Category> tintina = new ArrayList<>();
-        tintina.add(categoryService.getCategory("Miedo"));
-        tintina.add(categoryService.getCategory("Suspense"));
+        tintina.add(miedo);
+        tintina.add(suspense);
         Movie tt = new Movie("Tin & Tina","Rubin Stein","Cuando Lola pierde a sus dos hijos también pierde la fe en Dios. Para intentar recuperarla adopta dos hermanos angelicales de los que empieza a sentirse atraída.",2023,"tintina.jpg", tintina);
         //moviesService.addMovie(tt);
         tt = movieRepository.save(tt);

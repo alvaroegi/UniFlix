@@ -45,7 +45,7 @@ public class MotyServiceController {
 
     public void updateMotysOfCategorys(List<Category> categorys) {
         for(Category c : categorys) {
-            Moty bestMovie = getMoty(c.getMoty().getId());
+            Moty bestMovie = getRealMoty(c.getId());
             bestMovie.setScore(-1);
             bestMovie.setIdMovie(-1);
             for(Movie actual : c.getMovies()) {

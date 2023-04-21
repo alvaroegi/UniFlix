@@ -79,10 +79,10 @@ public class MovieServiceController {
     public void updateMovie(long id, Movie m) {
         Movie originalMovie = movies.get(id);
         //borrar esta peli de los motys en los que esté
-        categoryService.deleteMovieFromCategories(originalMovie);
+        //categoryService.deleteMovieFromCategories(originalMovie);
         motyService.updateMotysOfCategorys(originalMovie.getCategorys());
-        movies.put(id, m);
-        categoryService.addMovieToCategories(m);
+        movieRepo.save(originalMovie);
+        //categoryService.addMovieToCategories(m);
         motyService.updateMotysOfCategorys(m.getCategorys());
         updateScore(id);
     }
@@ -101,7 +101,7 @@ public class MovieServiceController {
     }
 
     public void updateScore(long id) {
-        ArrayList<Review> reviewList = reviewService.getReviewsOfMovie(id);
+        List<Review> reviewList = reviewService.getReviewsOfMovie(id);
         float amount = 0;
         float total = 0;
         for(Review r : reviewList) {
@@ -182,5 +182,4 @@ public class MovieServiceController {
             return aux;
         }
     }
-
 }
