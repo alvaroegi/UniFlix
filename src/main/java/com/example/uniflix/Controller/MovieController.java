@@ -102,32 +102,32 @@ public class MovieController {
         you.add(categoryService.getCategory("Drama"));
         Movie y = new Movie("You","Greg Berlanti","Un joven profundamente obsesivo y peligrosamente seductor mueve cielo y tierra para instalarse en la vida de aquellas personas por quienes se siente cautivado",2018,"you.jpg", you);
         //moviesService.addMovie(y);
-        movieRepository.save(y);
+        y = movieRepository.save(y);
         ArrayList<Category> mand = new ArrayList<>();
         mand.add(categoryService.getCategory("Accion"));
         mand.add(categoryService.getCategory("Suspense"));
         Movie m = new Movie("The Mandalorian","Jon Favreau", "Serie de aventura espacial que se ubica en el universo de Stars Wars",2019,"mandalorian.jpg", mand);
         //moviesService.addMovie(m);
-        movieRepository.save(m);
+        m = movieRepository.save(m);
         ArrayList<Category> tlou = new ArrayList<>();
         tlou.add(categoryService.getCategory("Miedo"));
         tlou.add(categoryService.getCategory("Accion"));
         Movie t = new Movie("The Last of Us","Craig Mazin","Basado en un videojuego de accion y aventuras la serie nos relata como Joel y Ellie sobreviven a una pandemia en EEUU",2023,"thelastofus.jpg", tlou);
         //moviesService.addMovie(t);
-        movieRepository.save(t);
+        t = movieRepository.save(t);
         ArrayList<Category> naruto = new ArrayList<>();
         naruto.add(categoryService.getCategory("Anime"));
         naruto.add(categoryService.getCategory("Accion"));
         Movie n = new Movie("Naruto","Osamu Kobayashi","Basada en la historia de un ninja huérfano que aspira a convertirse en Hokage y ser alguien importante en su aldea.",2002,"naruto.jpg", naruto);
         //moviesService.addMovie(n);
-        movieRepository.save(n);
+        n = movieRepository.save(n);
         ArrayList<Category> peaky = new ArrayList<>();
         peaky.add(categoryService.getCategory("Drama"));
         peaky.add(categoryService.getCategory("Accion"));
         peaky.add(categoryService.getCategory("Suspense"));
         Movie pb = new Movie("Peaky Blinders","Otto Buthurst","Basada en la historia de una familia gitana y en su auge por convertirse en gangsters reconocidos",2013,"peakyblinders.jpg", peaky);
         //moviesService.addMovie(pb);
-        movieRepository.save(pb);
+        pb = movieRepository.save(pb);
         ArrayList<Category> tintina = new ArrayList<>();
         tintina.add(categoryService.getCategory("Miedo"));
         tintina.add(categoryService.getCategory("Suspense"));
@@ -143,35 +143,35 @@ public class MovieController {
         reviewRepository.save(r1);
         //moviesService.updateScore(6);
 
-        Review r2 = new Review("Alvaro", "Una de las mejores series de la época, Cillian Murphy esta espectacular", moviesService.getMovie(5), 5);
-        Review real = new Review("Fauste23","La serie más sobrevalorada de la historia, es una telenovela para hombres",moviesService.getMovie(5),1);
+        Review r2 = new Review("Alvaro", "Una de las mejores series de la época, Cillian Murphy esta espectacular", pb, 5);
+        Review real = new Review("Fauste23","La serie más sobrevalorada de la historia, es una telenovela para hombres",pb,1);
         //reviewService.addReview(r2);
         reviewRepository.save(r2);
         //reviewService.addReview(real);
         reviewRepository.save(real);
         //moviesService.updateScore(5);
 
-        Review r3 = new Review("Alejandro", "Una de las peores series de Netflix", moviesService.getMovie(1), 1);
-        Review real2 = new Review("Experto23","La mezcla del romanticismo con la psicopatía del personaje crea un aura de suspense espectacular",moviesService.getMovie(1),5);
+        Review r3 = new Review("Alejandro", "Una de las peores series de Netflix", y, 1);
+        Review real2 = new Review("Experto23","La mezcla del romanticismo con la psicopatía del personaje crea un aura de suspense espectacular", y,5);
         //reviewService.addReview(r3);
         reviewRepository.save(r3);
         //reviewService.addReview(real2);
         reviewRepository.save(real2);
         //moviesService.updateScore(1);
 
-        Review r4 = new Review("user123", "Una continuación de la mejor saga de la historia, pero no está a la altura", moviesService.getMovie(2), 3);
+        Review r4 = new Review("user123", "Una continuación de la mejor saga de la historia, pero no está a la altura", m, 3);
 
         //reviewService.addReview(r4);
         reviewRepository.save(r4);
         //moviesService.updateScore(2);
 
-        Review r5 = new Review("lechuga", "Se podría decir que me ha gustado más que el juego y eso que tengo muchas horas jugadas", moviesService.getMovie(3), 5);
+        Review r5 = new Review("lechuga", "Se podría decir que me ha gustado más que el juego y eso que tengo muchas horas jugadas",t, 5);
         //reviewService.addReview(r5);
         reviewRepository.save(r5);
         //moviesService.updateScore(3);
 
-        Review r6 = new Review("alemg_29", "Si te gusta el anime y no has visto Naruto... deberías estar preso", moviesService.getMovie(4), 4);
-        Review real3 = new Review("como33", "Esto solo lo ve la gente que huele mal. Que naruto y naruta mejor el nano ese puede con todo", moviesService.getMovie(4),1);
+        Review r6 = new Review("alemg_29", "Si te gusta el anime y no has visto Naruto... deberías estar preso", n, 4);
+        Review real3 = new Review("como33", "Esto solo lo ve la gente que huele mal. Que naruto y naruta mejor el nano ese puede con todo", n,1);
         //reviewService.addReview(r6);
         reviewRepository.save(r6);
         //reviewService.addReview(real3);

@@ -34,9 +34,6 @@ public class CategoryServiceController {
 
     public List<Category> getCategorys() {
         List<Category> catList = categoryRepo.findAll();
-        for(Category c : catList) {
-            catList.add(c);
-        }
         return catList;
     }
 

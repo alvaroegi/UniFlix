@@ -138,10 +138,10 @@ public class MovieServiceController {
         return sol;
     }
     public ArrayList<Movie> getSixMovies(){
+        List<Movie> movieList = movieRepo.findAll();
         ArrayList<Movie> sol = new ArrayList<>();
-        if (movies.size() <= 6) {
-            for(Map.Entry entry : movies.entrySet()) {
-                Movie m = (Movie) entry.getValue();
+        if (movieList.size() <= 6) {
+            for(Movie m : movieList) {
                 sol.add(m);
             }
         } else {
