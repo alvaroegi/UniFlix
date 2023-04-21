@@ -41,8 +41,8 @@ public class CategoryServiceController {
         Category sol = new Category("");
         List<Category> catList = categoryRepo.findAll();
         for(Category c : catList) {
-            String aux = c.getName();
-            if(aux.equals(name)) {
+            String aux = c.getName().toLowerCase();
+            if(aux.equals(name.toLowerCase())) {
                 sol = c;
             }
         }

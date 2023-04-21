@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 @Controller
 public class CategoryController {
@@ -28,7 +29,7 @@ public class CategoryController {
     @GetMapping("/cat/{name}")
     public String cat(Model model, @PathVariable String name){
         Category c = categoryService.getCategory(name);
-        LinkedList<Movie> mlist =  movieService.getMovies();
+        List<Movie> mlist =  movieService.getMovies();
         ArrayList<Movie> m = new ArrayList<>();
         for(Movie aux : mlist) {
             if(movieService.isCategory(c,aux)) {

@@ -5,10 +5,7 @@ import com.example.uniflix.Entities.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -27,10 +24,10 @@ public class ReviewServiceController {
         return newReview;
     }
 
-    public ArrayList<Review> getReviewsOfMovie(long idMovie) {
-        ArrayList<Review> reviewList = new ArrayList<>();
-        for(Map.Entry entry: reviews.entrySet()) {
-            Review r = (Review)entry.getValue();
+    public List<Review> getReviewsOfMovie(long idMovie) {
+        List<Review> sol = new ArrayList<>();
+        List<Review> reviewList = reviewRepo.findAll();
+        for(Review r : reviewList) {
             long aux = r.getMovie().getId();
             if(idMovie==aux) {
                 reviewList.add(r);

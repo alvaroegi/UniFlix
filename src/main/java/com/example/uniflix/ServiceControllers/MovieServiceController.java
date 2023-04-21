@@ -108,12 +108,16 @@ public class MovieServiceController {
             amount++;
             total = total + r.getScore();
         }
-        Movie m = movies.get(id);
-        if(amount!=0)
-            m.setScore((float)Math.round(total/amount*100)/100);
-        else
-            m.setScore(0);
-        movies.put(id, m);
+        Optional<Movie> aux = movieRepo.findById(id);
+        Movie m = new Movie();
+        if(aux.isPresent()){
+            m = aux.get();
+            if(amount!=0)
+                m.setScore((float)Math.round(total/amount*100)/100);
+            else
+                m.setScore(0);
+        }
+        movieRepo.save(m);
     }
 
     public boolean isCategory(Category c,Movie m) {

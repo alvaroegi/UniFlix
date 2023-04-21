@@ -188,9 +188,9 @@ public class MovieController {
         model.addAttribute("categorys", categoryService.getCategorys());
         ArrayList<Movie> aux1 = moviesService.getSixMoviesofCat(categoryService.getCategory(1));
         model.addAttribute("fear",aux1);
-        ArrayList<Movie> aux2 = moviesService.getSixMoviesofCat(categoryService.getCategory(2));
+        List<Movie> aux2 = moviesService.getSixMoviesofCat(categoryService.getCategory("Accion"));
         model.addAttribute("action",aux2);
-        ArrayList<Movie> aux3 = moviesService.getSixMoviesofCat(categoryService.getCategory(3));
+        List<Movie> aux3 = moviesService.getSixMoviesofCat(categoryService.getCategory("Drama"));
         model.addAttribute("drama",aux3);
         ArrayList<Movie> aux4 = moviesService.getSixMoviesofCat(categoryService.getCategory(4));
         model.addAttribute("anime",aux4);
