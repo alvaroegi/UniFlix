@@ -22,7 +22,7 @@ public class Movie{
 
 
 
-    public Movie(String name, String director, String synopsis, int years, String image, ArrayList<Category> categorys){
+    public Movie(String name, String director, String synopsis, int years, String image, List<Category> categorys){
         this.name = name;
         this.director = director;
         this.synopsis=synopsis;

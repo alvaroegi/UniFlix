@@ -26,6 +26,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 @Controller
 public class MovieController {
@@ -72,7 +73,7 @@ public class MovieController {
         Moty m3 = new Moty(categoryService.getCategory("Drama"));
         drama.setMoty(m3);
         m3.setCategory(drama);
-        categoryService.addCategory(drama);
+        //categoryService.addCategory(drama);
         categoryRepository.save(drama);
         //motyService.addMoty(m3);
         //motyRepository.save(m3);
@@ -90,7 +91,7 @@ public class MovieController {
         Moty m5 = new Moty(categoryService.getCategory("Suspense"));
         suspense.setMoty(m5);
         m5.setCategory(suspense);
-        categoryService.addCategory(suspense);
+        //categoryService.addCategory(suspense);
         categoryRepository.save(suspense);
         //motyService.addMoty(m5);
         //motyRepository.save(m5);
@@ -131,8 +132,10 @@ public class MovieController {
         tintina.add(categoryService.getCategory("Miedo"));
         tintina.add(categoryService.getCategory("Suspense"));
         Movie tt = new Movie("Tin & Tina","Rubin Stein","Cuando Lola pierde a sus dos hijos también pierde la fe en Dios. Para intentar recuperarla adopta dos hermanos angelicales de los que empieza a sentirse atraída.",2023,"tintina.jpg", tintina);
-        moviesService.addMovie(tt);
-        //movieRepository.save(tt);
+        //moviesService.addMovie(tt);
+        tt = movieRepository.save(tt);
+        tt.setScore(5);
+        tt = movieRepository.save(tt);
 
         //We create the initials reviews for the initials movies
         Review r1 = new Review("Raul", "Una pelicula que merece mucho la pena ver, la recomiendo a todos los fanáticos de Jaime Lorente",tt, 4);
@@ -157,18 +160,23 @@ public class MovieController {
         //moviesService.updateScore(1);
 
         Review r4 = new Review("user123", "Una continuación de la mejor saga de la historia, pero no está a la altura", moviesService.getMovie(2), 3);
-        reviewService.addReview(r4);
-        moviesService.updateScore(2);
+
+        //reviewService.addReview(r4);
+        reviewRepository.save(r4);
+        //moviesService.updateScore(2);
 
         Review r5 = new Review("lechuga", "Se podría decir que me ha gustado más que el juego y eso que tengo muchas horas jugadas", moviesService.getMovie(3), 5);
-        reviewService.addReview(r5);
-        moviesService.updateScore(3);
+        //reviewService.addReview(r5);
+        reviewRepository.save(r5);
+        //moviesService.updateScore(3);
 
         Review r6 = new Review("alemg_29", "Si te gusta el anime y no has visto Naruto... deberías estar preso", moviesService.getMovie(4), 4);
         Review real3 = new Review("como33", "Esto solo lo ve la gente que huele mal. Que naruto y naruta mejor el nano ese puede con todo", moviesService.getMovie(4),1);
-        reviewService.addReview(r6);
-        reviewService.addReview(real3);
-        moviesService.updateScore(4);
+        //reviewService.addReview(r6);
+        reviewRepository.save(r6);
+        //reviewService.addReview(real3);
+        reviewRepository.save(real3);
+        //moviesService.updateScore(4);
 
         //motyService.updateMotysOfCategorys(categoryService.getCategorys());
     }
@@ -206,8 +214,8 @@ public class MovieController {
         return "create_movie"; }
     @PostMapping("/result")                                                                                                /*para las imagenes-----------------------*/
     public String checkMovie(Model model, @RequestParam String name, @RequestParam String director,@RequestParam String synopsis, @RequestParam int year, @RequestParam/*("file")*/ MultipartFile image, @RequestParam String[] selectedCategorys) {
-        ArrayList<Category> categorys = categoryService.getSelectedCategorys(selectedCategorys);
-        ArrayList<Category> categorys2 = categoryService.getCategorys();
+        List<Category> categorys = categoryService.getSelectedCategorys(selectedCategorys);
+        List<Category> categorys2 = categoryService.getCategorys();
         Movie m = new Movie(name, director,synopsis, year, image.getOriginalFilename(), categorys);
         model.addAttribute("categorys",categorys2);
         if(moviesService.addMovie(m)!=null) {
