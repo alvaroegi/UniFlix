@@ -5,7 +5,9 @@ import com.example.uniflix.Entities.Moty;
 import com.example.uniflix.Entities.Movie;
 import com.example.uniflix.Entities.Review;
 import com.example.uniflix.InterfacesBBDD.CategoryRepository;
+import com.example.uniflix.InterfacesBBDD.MotyRepository;
 import com.example.uniflix.InterfacesBBDD.MovieRepository;
+import com.example.uniflix.InterfacesBBDD.ReviewRepository;
 import com.example.uniflix.ServiceControllers.CategoryServiceController;
 import com.example.uniflix.ServiceControllers.MotyServiceController;
 import com.example.uniflix.ServiceControllers.MovieServiceController;
@@ -32,6 +34,10 @@ public class MovieController {
     @Autowired
     MovieRepository movieRepository;
     @Autowired
+    MotyRepository motyRepository;
+    @Autowired
+    ReviewRepository reviewRepository;
+    @Autowired
     MovieServiceController moviesService;
     @Autowired
     ReviewServiceController reviewService;
@@ -48,17 +54,19 @@ public class MovieController {
         Moty m1 = new Moty(categoryService.getCategory("Miedo"));
         miedo.setMoty(m1);
         m1.setCategory(miedo);
-        categoryService.addCategory(miedo);
+        //categoryService.addCategory(miedo);
         categoryRepository.save(miedo);
-        motyService.addMoty(m1);
+        //motyService.addMoty(m1);
+        //motyRepository.save(m1);
 
         Category accion = new Category("Accion");
         Moty m2 = new Moty(categoryService.getCategory("Accion"));
         accion.setMoty(m2);
         m2.setCategory(accion);
-        categoryService.addCategory(accion);
+        //categoryService.addCategory(accion);
         categoryRepository.save(accion);
-        motyService.addMoty(m2);
+        //motyService.addMoty(m2);
+        //motyRepository.save(m2);
 
         Category drama = new Category("Drama");
         Moty m3 = new Moty(categoryService.getCategory("Drama"));
@@ -66,15 +74,17 @@ public class MovieController {
         m3.setCategory(drama);
         categoryService.addCategory(drama);
         categoryRepository.save(drama);
-        motyService.addMoty(m3);
+        //motyService.addMoty(m3);
+        //motyRepository.save(m3);
 
         Category anime = new Category("Anime");
         Moty m4 = new Moty(categoryService.getCategory("Anime"));
         anime.setMoty(m4);
         m4.setCategory(anime);
-        categoryService.addCategory(anime);
+        //categoryService.addCategory(anime);
         categoryRepository.save(anime);
-        motyService.addMoty(m4);
+        //motyService.addMoty(m4);
+        //motyRepository.save(m4);
 
         Category suspense = new Category("Suspense");
         Moty m5 = new Moty(categoryService.getCategory("Suspense"));
@@ -82,40 +92,41 @@ public class MovieController {
         m5.setCategory(suspense);
         categoryService.addCategory(suspense);
         categoryRepository.save(suspense);
-        motyService.addMoty(m5);
+        //motyService.addMoty(m5);
+        //motyRepository.save(m5);
 
         //We create the initial movies
         ArrayList<Category> you = new ArrayList<>();
         you.add(categoryService.getCategory("Suspense"));
         you.add(categoryService.getCategory("Drama"));
         Movie y = new Movie("You","Greg Berlanti","Un joven profundamente obsesivo y peligrosamente seductor mueve cielo y tierra para instalarse en la vida de aquellas personas por quienes se siente cautivado",2018,"you.jpg", you);
-        moviesService.addMovie(y);
-        //movieRepository.save(y);
+        //moviesService.addMovie(y);
+        movieRepository.save(y);
         ArrayList<Category> mand = new ArrayList<>();
         mand.add(categoryService.getCategory("Accion"));
         mand.add(categoryService.getCategory("Suspense"));
         Movie m = new Movie("The Mandalorian","Jon Favreau", "Serie de aventura espacial que se ubica en el universo de Stars Wars",2019,"mandalorian.jpg", mand);
-        moviesService.addMovie(m);
-        //movieRepository.save(m);
+        //moviesService.addMovie(m);
+        movieRepository.save(m);
         ArrayList<Category> tlou = new ArrayList<>();
         tlou.add(categoryService.getCategory("Miedo"));
         tlou.add(categoryService.getCategory("Accion"));
         Movie t = new Movie("The Last of Us","Craig Mazin","Basado en un videojuego de accion y aventuras la serie nos relata como Joel y Ellie sobreviven a una pandemia en EEUU",2023,"thelastofus.jpg", tlou);
-        moviesService.addMovie(t);
-        //movieRepository.save(t);
+        //moviesService.addMovie(t);
+        movieRepository.save(t);
         ArrayList<Category> naruto = new ArrayList<>();
         naruto.add(categoryService.getCategory("Anime"));
         naruto.add(categoryService.getCategory("Accion"));
         Movie n = new Movie("Naruto","Osamu Kobayashi","Basada en la historia de un ninja huérfano que aspira a convertirse en Hokage y ser alguien importante en su aldea.",2002,"naruto.jpg", naruto);
-        moviesService.addMovie(n);
-        //movieRepository.save(n);
+        //moviesService.addMovie(n);
+        movieRepository.save(n);
         ArrayList<Category> peaky = new ArrayList<>();
         peaky.add(categoryService.getCategory("Drama"));
         peaky.add(categoryService.getCategory("Accion"));
         peaky.add(categoryService.getCategory("Suspense"));
         Movie pb = new Movie("Peaky Blinders","Otto Buthurst","Basada en la historia de una familia gitana y en su auge por convertirse en gangsters reconocidos",2013,"peakyblinders.jpg", peaky);
-        moviesService.addMovie(pb);
-        //movieRepository.save(pb);
+        //moviesService.addMovie(pb);
+        movieRepository.save(pb);
         ArrayList<Category> tintina = new ArrayList<>();
         tintina.add(categoryService.getCategory("Miedo"));
         tintina.add(categoryService.getCategory("Suspense"));
@@ -124,21 +135,26 @@ public class MovieController {
         //movieRepository.save(tt);
 
         //We create the initials reviews for the initials movies
-        Review r1 = new Review("Raul", "Una pelicula que merece mucho la pena ver, la recomiendo a todos los fanáticos de Jaime Lorente", moviesService.getMovie(6), 4);
-        reviewService.addReview(r1);
-        moviesService.updateScore(6);
+        Review r1 = new Review("Raul", "Una pelicula que merece mucho la pena ver, la recomiendo a todos los fanáticos de Jaime Lorente",tt, 4);
+        //reviewService.addReview(r1);
+        reviewRepository.save(r1);
+        //moviesService.updateScore(6);
 
         Review r2 = new Review("Alvaro", "Una de las mejores series de la época, Cillian Murphy esta espectacular", moviesService.getMovie(5), 5);
         Review real = new Review("Fauste23","La serie más sobrevalorada de la historia, es una telenovela para hombres",moviesService.getMovie(5),1);
-        reviewService.addReview(r2);
-        reviewService.addReview(real);
-        moviesService.updateScore(5);
+        //reviewService.addReview(r2);
+        reviewRepository.save(r2);
+        //reviewService.addReview(real);
+        reviewRepository.save(real);
+        //moviesService.updateScore(5);
 
         Review r3 = new Review("Alejandro", "Una de las peores series de Netflix", moviesService.getMovie(1), 1);
         Review real2 = new Review("Experto23","La mezcla del romanticismo con la psicopatía del personaje crea un aura de suspense espectacular",moviesService.getMovie(1),5);
-        reviewService.addReview(r3);
-        reviewService.addReview(real2);
-        moviesService.updateScore(1);
+        //reviewService.addReview(r3);
+        reviewRepository.save(r3);
+        //reviewService.addReview(real2);
+        reviewRepository.save(real2);
+        //moviesService.updateScore(1);
 
         Review r4 = new Review("user123", "Una continuación de la mejor saga de la historia, pero no está a la altura", moviesService.getMovie(2), 3);
         reviewService.addReview(r4);
@@ -154,7 +170,7 @@ public class MovieController {
         reviewService.addReview(real3);
         moviesService.updateScore(4);
 
-        motyService.updateMotysOfCategorys(categoryService.getCategorys());
+        //motyService.updateMotysOfCategorys(categoryService.getCategorys());
     }
 
     @GetMapping("/")

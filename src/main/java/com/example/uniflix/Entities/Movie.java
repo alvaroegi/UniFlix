@@ -20,6 +20,8 @@ public class Movie{
     @ManyToMany
     private List<Category> categorys;
 
+
+
     public Movie(String name, String director, String synopsis, int years, String image, ArrayList<Category> categorys){
         this.name = name;
         this.director = director;
