@@ -27,23 +27,19 @@ public class MovieServiceController {
     //inicializar peliculas iniciales
 
     public Movie getMovie(long id) {
-        return movies.get(id);
+        return movieRepo.getReferenceById(id);
     }
 
-    public LinkedList<Movie> getMovies() {
-        LinkedList<Movie> movieList = new LinkedList<>();
-        for(Map.Entry entry: movies.entrySet()) {
-            Movie m = (Movie)entry.getValue();
-                movieList.add(m);
-        }
+    public List<Movie> getMovies() {
+        List<Movie> movieList = movieRepo.findAll();
         return movieList;
     }
     public long containsMovie(String name) {
         long sol = 0;
-        for(Map.Entry entry: movies.entrySet()) {
-            Movie m = (Movie)entry.getValue();
+        List<Movie> movieList = movieRepo.findAll();
+        for(Movie m : movieList){
             if(m.getName().toLowerCase().replace(" ", "").equals(name.toLowerCase().replace(" ", ""))) {
-                sol = (long)entry.getKey();
+                sol = (long)m.getId();
             }
         }
         if(sol!=0)
@@ -55,29 +51,36 @@ public class MovieServiceController {
         if(containsMovie(m.getName())!=-1)
             return null;
         else {
-            long id = lastId.incrementAndGet();
-            m.setId(id);
-            categoryService.addMovieToCategories(m);
+            //categoryService.addMovieToCategories(m);
             motyService.updateMotysOfCategorys(m.getCategorys());
-            movies.put(id, m);
-            return m;
+            return movieRepo.save(m);
         }
     }
 
     public Movie deleteMovie(long id){
-        Movie m = movies.remove(id);
-        reviewService.deleteReviewsofMovie(id);
+        Movie m = getMovie(id);
+        movieRepo.delete(m);
+        //reviewService.deleteReviewsofMovie(id);
         // borrar esta peli de los motys en los que esté
-        categoryService.deleteMovieFromCategories(m);
+        // categoryService.deleteMovieFromCategories(m);
         motyService.updateMotysOfCategorys(m.getCategorys());
         return m;
     }
     public Collection<Movie> getAllMovies() {
-        return movies.values();
+        return movieRepo.findAll();
     }
 
     public void updateMovie(long id, Movie m) {
-        Movie originalMovie = movies.get(id);
+        Optional<Movie> aux = movieRepo.findById(id);
+        Movie originalMovie = new Movie();
+        if (aux.isPresent()){
+            originalMovie = aux.get();
+            originalMovie.setName(m.getName());
+            originalMovie.setSynopsis(m.getSynopsis());
+            originalMovie.setYears(m.getYears());
+            originalMovie.setDirector(m.getDirector());
+            originalMovie.setCategorys(m.getCategorys());
+        }
         //borrar esta peli de los motys en los que esté
         //categoryService.deleteMovieFromCategories(originalMovie);
         motyService.updateMotysOfCategorys(originalMovie.getCategorys());
@@ -89,8 +92,8 @@ public class MovieServiceController {
 
     public LinkedList<Movie> searchMovies(String name){
         LinkedList<Movie> sol = new LinkedList<>();
-        for(Map.Entry entry: movies.entrySet()) {
-            Movie m = (Movie)entry.getValue();
+        List<Movie> movieList = movieRepo.findAll();
+        for(Movie m : movieList) {
             String aux = m.getName().toLowerCase().replace(" ","");
             name= name.toLowerCase().replace(" ","");
             if(aux.contains(name)) {
@@ -133,12 +136,12 @@ public class MovieServiceController {
 
     public ArrayList<Movie> moviesOfCategory(Category c){
         ArrayList<Movie> sol = new ArrayList<>();
-        for(Map.Entry entry: movies.entrySet()) {
-            Movie m = (Movie)entry.getValue();
+        List<Movie> movieList = movieRepo.findAll();
+        for(Movie m : movieList)
             if(isCategory(c,m)) {
                 sol.add(m);
             }
-        }
+
         return sol;
     }
     public ArrayList<Movie> getSixMovies(){
@@ -153,31 +156,31 @@ public class MovieServiceController {
             Set<Long> numbers = new HashSet<>();
             while (numbers.size() < 6) {
                 long randomNumber = random.nextInt(lastId.intValue()) + 1;
-                if(movies.get(randomNumber) != null)
+                if(movieList.get((int)randomNumber) != null)
                     numbers.add(randomNumber);
             }
-            for(Long aux : numbers) {
-                Movie m = movies.get(aux);
+            for(long aux : numbers) {
+                Movie m = movieList.get((int) aux);
                 sol.add(m);
             }
         }
         return sol;
     }
 
-    public ArrayList<Movie> getSixMoviesofCat(Category c){
-        ArrayList<Movie> sol = moviesOfCategory(c);
-        if (sol.size() <= 6) {
-            return sol;
+    public List<Movie> getSixMoviesofCat(Category c) {
+        List<Movie> movieList = c.getMovies();
+        if (movieList.size() <= 6) {
+            return movieList;
         } else {
-            ArrayList<Movie> aux = new ArrayList<>();
+            List<Movie> aux = new ArrayList<>();
             Random random = new Random();
             Set<Integer> numbers = new HashSet<>();
             while (numbers.size() < 6) {
-                int randomNumber = random.nextInt(sol.size());
+                int randomNumber = random.nextInt(movieList.size());
                 numbers.add(randomNumber);
             }
-            for(int i : numbers) {
-                aux.add(sol.get(i));
+            for (int i : numbers) {
+                aux.add(movieList.get(i));
             }
             return aux;
         }

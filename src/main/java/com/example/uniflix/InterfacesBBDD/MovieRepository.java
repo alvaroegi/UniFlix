@@ -1,5 +1,6 @@
 package com.example.uniflix.InterfacesBBDD;
 
+import com.example.uniflix.Entities.Category;
 import com.example.uniflix.Entities.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 
