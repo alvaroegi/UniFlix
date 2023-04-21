@@ -140,8 +140,8 @@ public class MovieController {
         //We create the initials reviews for the initials movies
         Review r1 = new Review("Raul", "Una pelicula que merece mucho la pena ver, la recomiendo a todos los fanáticos de Jaime Lorente",tt, 4);
         //reviewService.addReview(r1);
-        reviewRepository.save(r1);
-        //moviesService.updateScore(6);
+        r1 = reviewRepository.save(r1);
+        moviesService.updateScore(tt.getId());
 
         Review r2 = new Review("Alvaro", "Una de las mejores series de la época, Cillian Murphy esta espectacular", pb, 5);
         Review real = new Review("Fauste23","La serie más sobrevalorada de la historia, es una telenovela para hombres",pb,1);
@@ -149,7 +149,7 @@ public class MovieController {
         reviewRepository.save(r2);
         //reviewService.addReview(real);
         reviewRepository.save(real);
-        //moviesService.updateScore(5);
+        moviesService.updateScore(pb.getId());
 
         Review r3 = new Review("Alejandro", "Una de las peores series de Netflix", y, 1);
         Review real2 = new Review("Experto23","La mezcla del romanticismo con la psicopatía del personaje crea un aura de suspense espectacular", y,5);
@@ -157,18 +157,18 @@ public class MovieController {
         reviewRepository.save(r3);
         //reviewService.addReview(real2);
         reviewRepository.save(real2);
-        //moviesService.updateScore(1);
+        moviesService.updateScore(y.getId());
 
         Review r4 = new Review("user123", "Una continuación de la mejor saga de la historia, pero no está a la altura", m, 3);
 
         //reviewService.addReview(r4);
         reviewRepository.save(r4);
-        //moviesService.updateScore(2);
+        moviesService.updateScore(m.getId());
 
         Review r5 = new Review("lechuga", "Se podría decir que me ha gustado más que el juego y eso que tengo muchas horas jugadas",t, 5);
         //reviewService.addReview(r5);
         reviewRepository.save(r5);
-        //moviesService.updateScore(3);
+        moviesService.updateScore(t.getId());
 
         Review r6 = new Review("alemg_29", "Si te gusta el anime y no has visto Naruto... deberías estar preso", n, 4);
         Review real3 = new Review("como33", "Esto solo lo ve la gente que huele mal. Que naruto y naruta mejor el nano ese puede con todo", n,1);
@@ -176,9 +176,9 @@ public class MovieController {
         reviewRepository.save(r6);
         //reviewService.addReview(real3);
         reviewRepository.save(real3);
-        //moviesService.updateScore(4);
+        moviesService.updateScore(n.getId());
 
-        //motyService.updateMotysOfCategorys(categoryService.getCategorys());
+        motyService.updateMotysOfCategorys(categoryService.getCategorys());
     }
 
     @GetMapping("/")
@@ -186,15 +186,15 @@ public class MovieController {
         model.addAttribute("nofilter",true);
         model.addAttribute("movies", moviesService.getSixMovies());
         model.addAttribute("categorys", categoryService.getCategorys());
-        ArrayList<Movie> aux1 = moviesService.getSixMoviesofCat(categoryService.getCategory(1));
+        List<Movie> aux1 = moviesService.getSixMoviesofCat(categoryService.getCategory("Miedo"));
         model.addAttribute("fear",aux1);
         List<Movie> aux2 = moviesService.getSixMoviesofCat(categoryService.getCategory("Accion"));
         model.addAttribute("action",aux2);
         List<Movie> aux3 = moviesService.getSixMoviesofCat(categoryService.getCategory("Drama"));
         model.addAttribute("drama",aux3);
-        ArrayList<Movie> aux4 = moviesService.getSixMoviesofCat(categoryService.getCategory(4));
+        List<Movie> aux4 = moviesService.getSixMoviesofCat(categoryService.getCategory("Anime"));
         model.addAttribute("anime",aux4);
-        ArrayList<Movie> aux5 = moviesService.getSixMoviesofCat(categoryService.getCategory(5));
+        List<Movie> aux5 = moviesService.getSixMoviesofCat(categoryService.getCategory("Suspense"));
         model.addAttribute("suspense",aux5);
         return "index";
     }
