@@ -165,7 +165,7 @@ public class MovieServiceController {
             Random random = new Random();
             Set<Long> numbers = new HashSet<>();
             while (numbers.size() < 6) {
-                long randomNumber = random.nextInt(lastId.intValue()) + 1;
+                long randomNumber = random.nextInt(movieList.size());
                 if(movieList.get((int)randomNumber) != null)
                     numbers.add(randomNumber);
             }

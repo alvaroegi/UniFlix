@@ -24,7 +24,7 @@ public class CategoryRestController {
 
     @GetMapping("/api/category/{id}")
     public ResponseEntity<Category> getCategoryApi(@PathVariable long id) {
-        Category c = categoryService.getCategory(id);
+        Category c = categoryService.getRealCategory(id);
         if (c != null) {
             return new ResponseEntity<>(c, HttpStatus.OK);
         } else {

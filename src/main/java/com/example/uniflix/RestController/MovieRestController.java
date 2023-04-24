@@ -31,7 +31,7 @@ public class MovieRestController {
 
     @GetMapping("/api/movie/{id}")
     public ResponseEntity<Movie> getMovieApi(@PathVariable long id) {
-        Movie m = moviesService.getMovie(id);
+        Movie m = moviesService.getRealMovie(id);
         if (m != null) {
             return new ResponseEntity<>(m, HttpStatus.OK);
         } else {
@@ -49,7 +49,7 @@ public class MovieRestController {
             }
             m.setCategorys(selectedCategorys);
             m.setImage("/default.jpg");
-            moviesService.addMovie(m);
+            m = moviesService.addMovie(m);
             return m;
         }
         return null;
@@ -66,7 +66,7 @@ public class MovieRestController {
         catch (IOException e) {
             e.printStackTrace();
         }
-        Movie m = moviesService.getMovie(id);
+        Movie m = moviesService.getRealMovie(id);
         m.setImage(image.getOriginalFilename());
         moviesService.updateMovie(id, m);
         return new ResponseEntity<>(m, HttpStatus.OK);
@@ -97,7 +97,7 @@ public class MovieRestController {
                 selectedCategorys.add(categorysService.getCategory(c.getName()));
             }
             updatedMovie.setCategorys(selectedCategorys);
-            moviesService.updateMovie(id, updatedMovie);
+            updatedMovie = moviesService.updateMovie(id, updatedMovie);
             return new ResponseEntity<>(updatedMovie, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

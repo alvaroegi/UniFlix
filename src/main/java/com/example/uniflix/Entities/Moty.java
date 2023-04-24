@@ -12,6 +12,7 @@ public class Moty {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id=-1;
     @OneToOne(mappedBy="moty")
+    @JsonIgnore
     private Category Idcategory;
     private float score;
     private long idMovie;

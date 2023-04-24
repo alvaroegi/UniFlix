@@ -22,7 +22,7 @@ public class MotyRestController {
 
     @GetMapping("/api/moty/{id}")
     public ResponseEntity<Moty> getMovieApi(@PathVariable long id) {
-        Moty m = motyService.getMoty(id);
+        Moty m = motyService.getRealMoty(id);
         if (m != null) {
             return new ResponseEntity<>(m, HttpStatus.OK);
         } else {

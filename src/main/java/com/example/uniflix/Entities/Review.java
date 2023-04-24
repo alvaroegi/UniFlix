@@ -1,6 +1,9 @@
 package com.example.uniflix.Entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.engine.internal.Cascade;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,7 +13,8 @@ public class Review {
     private long id = -1;
     private String name;
     private String comment;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "movie_id")
     private Movie Idmovie;
     private int score;
 
@@ -22,6 +26,8 @@ public class Review {
         else if(score<0) score=0;
         this.score = score;
     }
+
+
 
     public Review() {
 

@@ -201,7 +201,7 @@ public class MovieController {
 
     @GetMapping("/peli/{name}")
     public String reseñas(Model model, @PathVariable String name){
-        Movie m = moviesService.getMovie(moviesService.containsMovie(name));
+        Movie m = moviesService.getRealMovie(moviesService.containsMovie(name));
         model.addAttribute("movie", m);
         model.addAttribute("categorys",categoryService.getCategorys());
         if(!reviewService.getReviewsOfMovie(moviesService.containsMovie(name)).isEmpty())

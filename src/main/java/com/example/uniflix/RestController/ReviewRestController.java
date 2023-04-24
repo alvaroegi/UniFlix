@@ -40,7 +40,7 @@ public class ReviewRestController {
     public Review addReviewApi(@RequestBody Review r) {
         reviewService.addReview(r);
         moviesService.updateScore(r.getMovie().getId());
-        motyService.updateMotysOfCategorys(moviesService.getMovie(r.getMovie().getId()).getCategorys());
+        motyService.updateMotysOfCategorys(moviesService.getRealMovie(r.getMovie().getId()).getCategorys());
         return r;
     }
 
@@ -59,7 +59,7 @@ public class ReviewRestController {
 
     @PutMapping("/api/review/{id}")
     public ResponseEntity<Review> updateReviewApi(@PathVariable long id, @RequestBody Review updatedReview) {
-        Review r = reviewService.getReview(id);
+        Review r = reviewService.getRealReview(id);
         if (r != null) {
             updatedReview.setId(id);
             reviewService.updateReview(id, updatedReview);
