@@ -30,6 +30,15 @@ public class MovieServiceController {
         return movieRepo.getReferenceById(id);
     }
 
+    public Movie getRealMovie(long id){
+        Optional<Movie> aux = movieRepo.findById(id);
+        Movie m = new Movie();
+        if(aux.isPresent()){
+            m = aux.get();
+        }
+        return m;
+    }
+
     public List<Movie> getMovies() {
         List<Movie> movieList = movieRepo.findAll();
         return movieList;
@@ -70,7 +79,7 @@ public class MovieServiceController {
         return movieRepo.findAll();
     }
 
-    public void updateMovie(long id, Movie m) {
+    public Movie updateMovie(long id, Movie m) {
         Optional<Movie> aux = movieRepo.findById(id);
         Movie originalMovie = new Movie();
         if (aux.isPresent()){
@@ -84,10 +93,11 @@ public class MovieServiceController {
         //borrar esta peli de los motys en los que esté
         //categoryService.deleteMovieFromCategories(originalMovie);
         motyService.updateMotysOfCategorys(originalMovie.getCategorys());
-        movieRepo.save(originalMovie);
+        m = movieRepo.save(originalMovie);
         //categoryService.addMovieToCategories(m);
         motyService.updateMotysOfCategorys(m.getCategorys());
         updateScore(id);
+        return m;
     }
 
     public LinkedList<Movie> searchMovies(String name){

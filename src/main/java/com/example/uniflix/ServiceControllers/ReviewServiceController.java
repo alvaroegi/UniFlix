@@ -63,7 +63,7 @@ public class ReviewServiceController {
         return r;
     }
 
-    public void updateReview(long id, Review r) {
+    public Review updateReview(long id, Review r) {
         Optional<Review> aux = reviewRepo.findById(id);
         Review sol = new Review();
         if(aux.isPresent()){
@@ -75,6 +75,6 @@ public class ReviewServiceController {
 
         //long iden = r.getMovie().getId();
         //Movie m = moviesService.getMovie(iden);
-        reviewRepo.save(sol);
+        return reviewRepo.save(sol);
     }
 }

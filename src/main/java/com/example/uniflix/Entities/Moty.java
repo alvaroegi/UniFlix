@@ -11,7 +11,6 @@ public class Moty {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id=-1;
-    @JsonIgnore
     @OneToOne(mappedBy="moty")
     private Category Idcategory;
     private float score;

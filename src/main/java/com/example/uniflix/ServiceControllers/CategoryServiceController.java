@@ -53,6 +53,15 @@ public class CategoryServiceController {
         return categoryRepo.getReferenceById(id);
     }
 
+    public Category getRealCategory(long id){
+        Optional<Category> aux = categoryRepo.findById(id);
+        Category m = new Category();
+        if(aux.isPresent()){
+            m = aux.get();
+        }
+        return m;
+    }
+
     public ArrayList<Category> getSelectedCategorys(String[] categoryList) {
         ArrayList<Category> selectedCategorys = new ArrayList<>();
         for (int i = 0; i < categoryList.length; i++)
