@@ -8,8 +8,10 @@ import java.util.List;
 
 @Entity
 public class Movie{
+    //https://www.youtube.com/watch?v=mg2E4RWbd44 conectar mysql
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="movie_id")
     private long id = -1; //Primary Key
     private String name; //Unique Key
     private String director;

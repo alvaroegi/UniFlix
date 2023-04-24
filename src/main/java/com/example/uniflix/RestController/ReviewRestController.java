@@ -27,7 +27,7 @@ public class ReviewRestController {
 
     @GetMapping("/api/review/{id}")
     public ResponseEntity<Review> getReviewApi(@PathVariable long id) {
-        Review r = reviewService.getReview(id);
+        Review r = reviewService.getRealReview(id);
         if (r != null) {
             return new ResponseEntity<>(r, HttpStatus.OK);
         } else {
@@ -37,8 +37,9 @@ public class ReviewRestController {
 
     @PostMapping("/api/review")
     @ResponseStatus(HttpStatus.CREATED)
-    public Review addReviewApi(@RequestBody Review r) {
-        reviewService.addReview(r);
+    public Review addReviewApi(@RequestBody Review r, @RequestParam long Idmovie) {
+        r.setMovie(moviesService.getRealMovie(Idmovie));
+        r = reviewService.addReview(r);
         moviesService.updateScore(r.getMovie().getId());
         motyService.updateMotysOfCategorys(moviesService.getRealMovie(r.getMovie().getId()).getCategorys());
         return r;
@@ -62,7 +63,7 @@ public class ReviewRestController {
         Review r = reviewService.getRealReview(id);
         if (r != null) {
             updatedReview.setId(id);
-            reviewService.updateReview(id, updatedReview);
+            updatedReview = reviewService.updateReview(id, updatedReview);
             moviesService.updateScore(r.getMovie().getId());
             motyService.updateMotysOfCategorys(moviesService.getMovie(r.getMovie().getId()).getCategorys());
             return new ResponseEntity<>(updatedReview, HttpStatus.OK);

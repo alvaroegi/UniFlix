@@ -57,6 +57,16 @@ public class ReviewServiceController {
         return reviewRepo.getReferenceById(id);
     }
 
+    public Review getRealReview(long id) {
+        Optional<Review> aux = reviewRepo.findById(id);
+        Review m = new Review();
+        if(aux.isPresent()){
+            m = aux.get();
+        }
+        return m;
+
+    }
+
     public Review deleteReview(long id) {
         Review r = reviewRepo.getReferenceById(id);
         reviewRepo.deleteById(id);

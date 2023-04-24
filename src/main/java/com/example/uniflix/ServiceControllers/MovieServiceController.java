@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
-public class MovieServiceController {
+public class    MovieServiceController {
     private Map<Long, Movie> movies = new ConcurrentHashMap<>();
     private AtomicLong lastId = new AtomicLong();
 
