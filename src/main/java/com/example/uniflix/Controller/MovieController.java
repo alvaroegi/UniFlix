@@ -48,7 +48,7 @@ public class MovieController {
     @Autowired
     MotyServiceController motyService;
 
-
+    /*
     @PostConstruct
     public void init(){
         //We create the default categorys and motys
@@ -180,7 +180,7 @@ public class MovieController {
         moviesService.updateScore(n.getId());
 
         motyService.updateMotysOfCategorys(categoryService.getCategorys());
-    }
+    }*/
 
     @GetMapping("/")
     public String back(Model model) {
