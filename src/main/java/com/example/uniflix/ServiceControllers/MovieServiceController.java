@@ -1,6 +1,7 @@
 package com.example.uniflix.ServiceControllers;
 
 import com.example.uniflix.Entities.*;
+import com.example.uniflix.InterfacesBBDD.CategoryRepository;
 import com.example.uniflix.InterfacesBBDD.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ public class    MovieServiceController {
 
     @Autowired
     MovieRepository movieRepo;
+    @Autowired
+    CategoryRepository categoryRepo;
 
     @Autowired
     ReviewServiceController reviewService;
