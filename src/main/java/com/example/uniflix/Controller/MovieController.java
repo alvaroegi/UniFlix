@@ -48,6 +48,7 @@ public class MovieController {
     @Autowired
     MotyServiceController motyService;
 
+
     @PostConstruct
     public void init(){
         //We create the default categorys and motys
