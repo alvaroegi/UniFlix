@@ -19,10 +19,11 @@ public class Movie{
     private float score;
     private int years;
     private String image;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Category> categorys;
-
-
+    @OneToMany(mappedBy="Idmovie", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Review> reviews;
 
     public Movie(String name, String director, String synopsis, int years, String image, List<Category> categorys){
         this.name = name;
@@ -66,6 +67,7 @@ public class Movie{
 
     public String getSynopsis() {return synopsis;}
     public List<Category> getCategorys(){return categorys;}
+    public List<Review> getReviews(){return reviews;}
 
     public void setName(String name){
         this.name = name;
@@ -86,4 +88,5 @@ public class Movie{
 
     public void setImage(String image) { this.image = image; }
     public void setCategorys(List<Category> c) { this.categorys = c; }
+    public void setReviews(List<Review> r) { this.reviews = r; }
 }

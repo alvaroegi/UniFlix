@@ -67,12 +67,17 @@ public class    MovieServiceController {
     }
 
     public Movie deleteMovie(long id){
-        Movie m = getMovie(id);
-        movieRepo.delete(m);
+        Movie m = getRealMovie(id);
         //reviewService.deleteReviewsofMovie(id);
-        // borrar esta peli de los motys en los que esté
         // categoryService.deleteMovieFromCategories(m);
-        motyService.updateMotysOfCategorys(m.getCategorys());
+        movieRepo.delete(m);
+        List<Category> categoryList = new ArrayList<>();
+        for (Category c : m.getCategorys()) {
+            c.getMovies().remove(m);
+            c = categoryRepo.save(c);
+            categoryList.add(c);
+        }
+        motyService.updateMotysOfCategorys(categoryList);
         return m;
     }
     public Collection<Movie> getAllMovies() {

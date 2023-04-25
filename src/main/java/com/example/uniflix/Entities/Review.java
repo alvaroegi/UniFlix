@@ -13,8 +13,7 @@ public class Review {
     private long id = -1;
     private String name;
     private String comment;
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "movie_id")
+    @ManyToOne
     private Movie Idmovie;
     private int score;
 
