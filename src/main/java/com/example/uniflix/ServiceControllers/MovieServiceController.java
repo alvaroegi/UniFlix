@@ -5,6 +5,9 @@ import com.example.uniflix.InterfacesBBDD.CategoryRepository;
 import com.example.uniflix.InterfacesBBDD.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -15,7 +18,8 @@ public class    MovieServiceController {
     private Map<Long, Movie> movies = new ConcurrentHashMap<>();
     private AtomicLong lastId = new AtomicLong();
     //typedQuerys
-
+    @PersistenceContext
+    private EntityManager entityManager;
     @Autowired
     MovieRepository movieRepo;
     @Autowired
@@ -109,17 +113,9 @@ public class    MovieServiceController {
         return m;
     }
 
-    public LinkedList<Movie> searchMovies(String name){
-        LinkedList<Movie> sol = new LinkedList<>();
-        List<Movie> movieList = movieRepo.findAll();
-        for(Movie m : movieList) {
-            String aux = m.getName().toLowerCase().replace(" ","");
-            name= name.toLowerCase().replace(" ","");
-            if(aux.contains(name)) {
-                sol.add(m);
-            }
-        }
-        return sol;
+    public List<Movie> searchMovies(String name){
+        TypedQuery<Movie> query = entityManager.createQuery("SELECT m FROM Movie m WHERE m.name LIKE :name", Movie.class);
+        return query.setParameter("name", "%" + name + "%").getResultList();
     }
 
     public void updateScore(long id) {

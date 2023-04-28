@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.TypedQuery;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.nio.file.Files;
