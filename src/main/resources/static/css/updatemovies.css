@@ -44,3 +44,24 @@ form{
     text-align: center;
     margin-top:1%;
 }
+
+#botonB {
+    font-weight: bold;
+    width:30px;
+    height:30px;
+    margin-bottom: 2px;
+}
+
+#botonI {
+    font-style: italic;
+    width:30px;
+    height:30px;
+    margin-bottom: 2px;
+}
+
+#botonU {
+    text-decoration: underline;
+    width:30px;
+    height:30px;
+    margin-bottom: 2px;
+}
