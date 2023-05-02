@@ -15,9 +15,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class    MovieServiceController {
-    private Map<Long, Movie> movies = new ConcurrentHashMap<>();
-    private AtomicLong lastId = new AtomicLong();
-    //typedQuerys
+
     @PersistenceContext
     private EntityManager entityManager;
     @Autowired
@@ -32,7 +30,6 @@ public class    MovieServiceController {
 
     @Autowired
     MotyServiceController motyService;
-    //inicializar peliculas iniciales
 
     public Movie getMovie(long id) {
         return movieRepo.getReferenceById(id);
@@ -103,11 +100,8 @@ public class    MovieServiceController {
             originalMovie.setDirector(m.getDirector());
             originalMovie.setCategorys(m.getCategorys());
         }
-        //borrar esta peli de los motys en los que esté
-        //categoryService.deleteMovieFromCategories(originalMovie);
         motyService.updateMotysOfCategorys(originalMovie.getCategorys());
         m = movieRepo.save(originalMovie);
-        //categoryService.addMovieToCategories(m);
         motyService.updateMotysOfCategorys(m.getCategorys());
         updateScore(id);
         return m;
@@ -149,16 +143,6 @@ public class    MovieServiceController {
         return sol;
     }
 
-    public ArrayList<Movie> moviesOfCategory(Category c){
-        ArrayList<Movie> sol = new ArrayList<>();
-        List<Movie> movieList = movieRepo.findAll();
-        for(Movie m : movieList)
-            if(isCategory(c,m)) {
-                sol.add(m);
-            }
-
-        return sol;
-    }
     public ArrayList<Movie> getSixMovies(){
         List<Movie> movieList = movieRepo.findAll();
         ArrayList<Movie> sol = new ArrayList<>();

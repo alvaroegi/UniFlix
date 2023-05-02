@@ -2,15 +2,12 @@ package com.example.uniflix.ServiceControllers;
 
 import com.example.uniflix.Entities.Category;
 import com.example.uniflix.Entities.Moty;
-import com.example.uniflix.Entities.Movie;
-import com.example.uniflix.Entities.Review;
 import com.example.uniflix.InterfacesBBDD.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicLong;
+
 
 @Service
 public class CategoryServiceController {
@@ -19,18 +16,6 @@ public class CategoryServiceController {
     MotyServiceController motyService;
     @Autowired
     CategoryRepository categoryRepo;
-
-    private Map<Long, Category> categorys = new ConcurrentHashMap<>();
-    private AtomicLong lastId = new AtomicLong();
-
-
-    public Category addCategory(Category c){
-        /*long id = lastId.incrementAndGet();
-        c.setId(id);
-         */
-        categoryRepo.save(c);
-        return c;
-    }
 
     public List<Category> getCategorys() {
         List<Category> catList = categoryRepo.findAll();
@@ -49,10 +34,6 @@ public class CategoryServiceController {
         return sol;
     }
 
-    public Category getCategory(long id) {
-        return categoryRepo.getReferenceById(id);
-    }
-
     public Category getRealCategory(long id){
         Optional<Category> aux = categoryRepo.findById(id);
         Category m = new Category();
@@ -67,25 +48,6 @@ public class CategoryServiceController {
         for (int i = 0; i < categoryList.length; i++)
             selectedCategorys.add(getCategory(categoryList[i]));
         return selectedCategorys;
-    }
-
-    public void addMovieToCategories(Movie m) {
-        for(Category c : m.getCategorys()) {
-            Category aux = getCategory(c.getName());
-            List<Movie> movieList = aux.getMovies();
-            movieList.add(m);
-            aux.setMovies(movieList);
-            categorys.put(aux.getId(), aux);
-        }
-    }
-    public void deleteMovieFromCategories(Movie m) {
-        for(Category c : m.getCategorys()) {
-            Category aux = getCategory(c.getName());
-            List<Movie> movieList = aux.getMovies();
-            movieList.remove(m);
-            aux.setMovies(movieList);
-            categorys.put(aux.getId(), aux);
-        }
     }
 
 

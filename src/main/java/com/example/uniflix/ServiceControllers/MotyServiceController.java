@@ -6,34 +6,21 @@ import com.example.uniflix.Entities.Movie;
 import com.example.uniflix.InterfacesBBDD.MotyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class MotyServiceController {
-    private Map<Long, Moty> motys = new ConcurrentHashMap<>();
-    private AtomicLong lastId = new AtomicLong();
 
     @Autowired
     MotyRepository motyRepo;
 
-    public Moty addMoty(Moty m){
-        return motyRepo.save(m);
-    }
 
     public List<Moty> getMotys() {
         List<Moty> sol = motyRepo.findAll();
         return sol;
     }
 
-    public Moty getMoty(long id) {
-        return motyRepo.getReferenceById(id);
-    }
 
     public Moty getRealMoty(long id) {
         Optional<Moty> aux = motyRepo.findById(id);
@@ -45,8 +32,6 @@ public class MotyServiceController {
     }
 
     public void updateMoty(long id, Moty m) {
-        //Moty originalMovie = motys.get(id);
-        //categoryService.deleteMovieFromCategories(originalMovie);
         Optional<Moty> aux = motyRepo.findById(id);
         Moty updateMoty = new Moty();
         if(aux.isPresent()){
@@ -55,7 +40,6 @@ public class MotyServiceController {
             updateMoty.setIdMovie(m.getIdMovie());
         }
         motyRepo.save(m);
-        //categoryService.addMovieToCategories(m);
     }
 
     public void updateMotysOfCategorys(List<Category> categorys) {
